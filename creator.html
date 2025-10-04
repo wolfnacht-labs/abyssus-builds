@@ -195,18 +195,24 @@
 
         .selected-icon {
             position: absolute;
-            left: 8px;
+            left: 10px;
             top: 50%;
             transform: translateY(-50%);
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
             object-fit: contain;
             pointer-events: none;
             display: none;
+            z-index: 1;
         }
 
         .select-with-icon select {
-            padding-left: 40px;
+            padding-left: 38px;
+        }
+        
+        .select-with-icon {
+            position: relative;
+            display: block;
         }
 
         .preview-icon {
@@ -251,9 +257,9 @@
                 <!-- Weapon Column -->
                 <div class="weapon-column">
                     <div class="section-header">Weapon</div>
-                    <div class="select-with-icon">
+                    <div class="select-with-icon" style="margin-bottom: 15px;">
                         <img id="weaponIcon" class="selected-icon" src="" alt="">
-                        <select id="weaponSelect" style="width: 100%; margin-bottom: 15px;" onchange="updateWeaponIcon()">
+                        <select id="weaponSelect" style="width: 100%;" onchange="updateWeaponIcon()">
                             <option value="">Select Weapon</option>
                             <option value="Engine Rifle">Engine Rifle</option>
                             <option value="Shotgun">Shotgun</option>
@@ -351,9 +357,9 @@
                 <!-- Ability Column -->
                 <div class="ability-column">
                     <div class="section-header">Ability</div>
-                    <div class="select-with-icon">
+                    <div class="select-with-icon" style="margin-bottom: 15px;">
                         <img id="abilityIcon" class="selected-icon" src="" alt="">
-                        <select id="abilitySelect" style="width: 100%; margin-bottom: 15px;" onchange="updateAbilityIcon()">
+                        <select id="abilitySelect" style="width: 100%;" onchange="updateAbilityIcon()">
                             <option value="">Select Ability</option>
                             <option value="Frag Grenade">Frag Grenade</option>
                             <option value="Anchor">Anchor</option>
