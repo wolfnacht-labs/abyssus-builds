@@ -63,6 +63,12 @@
             padding: 20px;
         }
 
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #059669;
+        }
+
         .form-section {
             background-color: #1A1A1A;
             padding: 20px;
@@ -197,7 +203,7 @@
     </nav>
 
     <div class="creator-container">
-        <h1 style="text-align: center; margin-bottom: 30px; color: #059669;">Create Your Build</h1>
+        <h1>Create Your Build</h1>
         
         <div id="successMessage" class="success-message">
             Build created successfully! <a href="index.html" style="color: white; text-decoration: underline;">View all builds</a>
@@ -330,4 +336,233 @@
                             <option value="Blessing6">Blessing6</option>
                             <option value="Blessing7">Blessing7</option>
                             <option value="Blessing8">Blessing8</option>
-                            <option value="Blessing9">
+                            <option value="Blessing9">Blessing9</option>
+                            <option value="Blessing10">Blessing10</option>
+                        </select>
+                    </div>
+
+                    <div class="forge-section">
+                        <div class="section-header">Forge Upgrades</div>
+                        <div class="forge-item">
+                            <select id="abilityForge1" style="width: 100%;">
+                                <option value="">Forge Upgrade #1</option>
+                            </select>
+                        </div>
+                        <div class="forge-item">
+                            <select id="abilityForge2" style="width: 100%;">
+                                <option value="">Forge Upgrade #2</option>
+                            </select>
+                        </div>
+                        <div class="forge-item">
+                            <select id="abilityForge3" style="width: 100%;">
+                                <option value="">Forge Upgrade #3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <div class="section-header">Charms</div>
+            <div class="charms-row">
+                <select id="charm1" style="flex: 1; margin-right: 10px;" onchange="updateCharmOptions()">
+                    <option value="">Select Charm</option>
+                    <option value="Charm1">Charm1</option>
+                    <option value="Charm2">Charm2</option>
+                    <option value="Charm3">Charm3</option>
+                    <option value="Charm4">Charm4</option>
+                    <option value="Charm5">Charm5</option>
+                    <option value="Charm6">Charm6</option>
+                    <option value="Charm7">Charm7</option>
+                    <option value="Charm8">Charm8</option>
+                    <option value="Charm9">Charm9</option>
+                    <option value="Charm10">Charm10</option>
+                    <option value="Charm11">Charm11</option>
+                    <option value="Charm12">Charm12</option>
+                    <option value="Charm13">Charm13</option>
+                    <option value="Charm14">Charm14</option>
+                    <option value="Charm15">Charm15</option>
+                    <option value="Charm16">Charm16</option>
+                    <option value="Charm17">Charm17</option>
+                    <option value="Charm18">Charm18</option>
+                    <option value="Charm19">Charm19</option>
+                    <option value="Charm20">Charm20</option>
+                    <option value="Charm21">Charm21</option>
+                    <option value="Charm22">Charm22</option>
+                    <option value="Charm23">Charm23</option>
+                    <option value="Charm24">Charm24</option>
+                    <option value="Charm25">Charm25</option>
+                    <option value="Charm26">Charm26</option>
+                    <option value="Charm27">Charm27</option>
+                    <option value="Charm28">Charm28</option>
+                    <option value="Charm29">Charm29</option>
+                    <option value="Charm30">Charm30</option>
+                    <option value="Charm31">Charm31</option>
+                    <option value="Charm32">Charm32</option>
+                    <option value="Charm33">Charm33</option>
+                    <option value="Charm34">Charm34</option>
+                    <option value="Charm35">Charm35</option>
+                    <option value="Charm36">Charm36</option>
+                    <option value="Charm37">Charm37</option>
+                    <option value="Charm38">Charm38</option>
+                    <option value="Charm39">Charm39</option>
+                    <option value="Charm40">Charm40</option>
+                </select>
+                <select id="charm2" style="flex: 1;" onchange="updateCharmOptions()">
+                    <option value="">Select Charm</option>
+                    <option value="Charm1">Charm1</option>
+                    <option value="Charm2">Charm2</option>
+                    <option value="Charm3">Charm3</option>
+                    <option value="Charm4">Charm4</option>
+                    <option value="Charm5">Charm5</option>
+                    <option value="Charm6">Charm6</option>
+                    <option value="Charm7">Charm7</option>
+                    <option value="Charm8">Charm8</option>
+                    <option value="Charm9">Charm9</option>
+                    <option value="Charm10">Charm10</option>
+                    <option value="Charm11">Charm11</option>
+                    <option value="Charm12">Charm12</option>
+                    <option value="Charm13">Charm13</option>
+                    <option value="Charm14">Charm14</option>
+                    <option value="Charm15">Charm15</option>
+                    <option value="Charm16">Charm16</option>
+                    <option value="Charm17">Charm17</option>
+                    <option value="Charm18">Charm18</option>
+                    <option value="Charm19">Charm19</option>
+                    <option value="Charm20">Charm20</option>
+                    <option value="Charm21">Charm21</option>
+                    <option value="Charm22">Charm22</option>
+                    <option value="Charm23">Charm23</option>
+                    <option value="Charm24">Charm24</option>
+                    <option value="Charm25">Charm25</option>
+                    <option value="Charm26">Charm26</option>
+                    <option value="Charm27">Charm27</option>
+                    <option value="Charm28">Charm28</option>
+                    <option value="Charm29">Charm29</option>
+                    <option value="Charm30">Charm30</option>
+                    <option value="Charm31">Charm31</option>
+                    <option value="Charm32">Charm32</option>
+                    <option value="Charm33">Charm33</option>
+                    <option value="Charm34">Charm34</option>
+                    <option value="Charm35">Charm35</option>
+                    <option value="Charm36">Charm36</option>
+                    <option value="Charm37">Charm37</option>
+                    <option value="Charm38">Charm38</option>
+                    <option value="Charm39">Charm39</option>
+                    <option value="Charm40">Charm40</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <div class="section-header">Description</div>
+            <textarea id="description" placeholder="Here should be a short description."></textarea>
+        </div>
+
+        <button class="submit-btn" onclick="addBuild()">Add Build</button>
+    </div>
+
+    <script>
+        function updateAspectOptions() {
+            const aspect1 = document.getElementById('aspect1').value;
+            const aspect2 = document.getElementById('aspect2').value;
+            const aspect3 = document.getElementById('aspect3').value;
+            
+            const selectedAspects = [aspect1, aspect2, aspect3].filter(a => a !== '');
+            
+            const aspectSelects = ['aspect1', 'aspect2', 'aspect3'];
+            aspectSelects.forEach(selectId => {
+                const select = document.getElementById(selectId);
+                const options = select.querySelectorAll('option');
+                options.forEach(option => {
+                    if (option.value !== '' && selectedAspects.includes(option.value) && select.value !== option.value) {
+                        option.disabled = true;
+                    } else {
+                        option.disabled = false;
+                    }
+                });
+            });
+        }
+
+        function updateCharmOptions() {
+            const charm1 = document.getElementById('charm1').value;
+            const charm2 = document.getElementById('charm2').value;
+            
+            const selectedCharms = [charm1, charm2].filter(c => c !== '');
+            
+            const charmSelects = ['charm1', 'charm2'];
+            charmSelects.forEach(selectId => {
+                const select = document.getElementById(selectId);
+                const options = select.querySelectorAll('option');
+                options.forEach(option => {
+                    if (option.value !== '' && selectedCharms.includes(option.value) && select.value !== option.value) {
+                        option.disabled = true;
+                    } else {
+                        option.disabled = false;
+                    }
+                });
+            });
+        }
+
+        function addBuild() {
+            const buildName = document.getElementById('buildName').value || 'Untitled Build';
+            const authorName = document.getElementById('authorName').value || 'Anonymous';
+            const weapon = document.getElementById('weaponSelect').value;
+            const ability = document.getElementById('abilitySelect').value;
+            const primary = document.getElementById('primarySelect').value;
+            const secondary = document.getElementById('secondarySelect').value;
+            const aspect1 = document.getElementById('aspect1').value;
+            const aspect2 = document.getElementById('aspect2').value;
+            const aspect3 = document.getElementById('aspect3').value;
+            const weaponForge1 = document.getElementById('weaponForge1').value;
+            const weaponForge2 = document.getElementById('weaponForge2').value;
+            const weaponForge3 = document.getElementById('weaponForge3').value;
+            const abilityForge1 = document.getElementById('abilityForge1').value;
+            const abilityForge2 = document.getElementById('abilityForge2').value;
+            const abilityForge3 = document.getElementById('abilityForge3').value;
+            const charm1 = document.getElementById('charm1').value;
+            const charm2 = document.getElementById('charm2').value;
+            const description = document.getElementById('description').value || 'No description provided.';
+
+            const build = {
+                id: Date.now(),
+                buildname: buildName,
+                author: authorName,
+                weapon: weapon,
+                ability: ability,
+                primary: primary,
+                secondary: secondary,
+                aspect1: aspect1,
+                aspect2: aspect2,
+                aspect3: aspect3,
+                weaponforge1: weaponForge1,
+                weaponforge2: weaponForge2,
+                weaponforge3: weaponForge3,
+                abilityforge1: abilityForge1,
+                abilityforge2: abilityForge2,
+                abilityforge3: abilityForge3,
+                charm1: charm1,
+                charm2: charm2,
+                description: description,
+                date: new Date().toISOString(),
+                likes: 0
+            };
+
+            let builds = [];
+            const savedBuilds = localStorage.getItem('abyssusBuilds');
+            if (savedBuilds) {
+                builds = JSON.parse(savedBuilds);
+            }
+
+            builds.push(build);
+            localStorage.setItem('abyssusBuilds', JSON.stringify(builds));
+
+            document.getElementById('successMessage').style.display = 'block';
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
