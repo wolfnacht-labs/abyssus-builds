@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Creator - Abyssus Builds</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0f0f0f;
+            color: white;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #000;
+            border-bottom: 3px solid #059669;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            padding: 0 30px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #059669;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0;
+            margin-left: auto;
+            height: 100%;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            height: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background-color: #1a1a1a;
+        }
+
+        /* Creator Content */
+        .creator-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .form-section {
+            background-color: #1A1A1A;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], select, textarea {
+            background-color: #2C3539;
+            color: white;
+            border: 1px solid #444;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input[type="text"]:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #059669;
+        }
+
+        .build-content {
+            display: flex;
+            gap: 15px;
+        }
+
+        .weapon-column {
+            flex: 2;
+        }
+
+        .ability-column {
+            flex: 1;
+        }
+
+        .section-header {
+            background-color: #2C3539;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .form-col {
+            flex: 1;
+        }
+
+        .form-col label {
+            display: block;
+            background-color: #2C3539;
+            padding: 8px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-bottom: 5px;
+        }
+
+        .form-col select {
+            width: 100%;
+        }
+
+        .forge-section {
+            margin-top: 20px;
+        }
+
+        .forge-item {
+            margin-bottom: 8px;
+        }
+
+        .charms-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 80px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: #059669;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .submit-btn:hover {
+            background-color: #047857;
+        }
+
+        .success-message {
+            background-color: #059669;
+            color: white;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+            margin: 20px 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="abyssus_builds.png" alt="Abyssus Builds" style="height: 50px;">
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Builds</a>
+            <a href="creator.html" class="active">Build Creator</a>
+        </div>
+    </nav>
+
+    <div class="creator-container">
+        <h1 style="text-align: center; margin-bottom: 30px; color: #059669;">Create Your Build</h1>
+        
+        <div id="successMessage" class="success-message">
+            Build created successfully! <a href="index.html" style="color: white; text-decoration: underline;">View all builds</a>
+        </div>
+
+        <div class="form-section">
+            <div class="input-group">
+                <input type="text" id="buildName" placeholder="Build Name" style="width: 400px;">
+                <span style="color: white; font-size: 16px; margin: 0 5px;">@</span>
+                <input type="text" id="authorName" placeholder="Author Name" style="width: 300px;">
+            </div>
+        </div>
+
+        <div class="form-section">
+            <div class="build-content">
+                <!-- Weapon Column -->
+                <div class="weapon-column">
+                    <div class="section-header">Weapon</div>
+                    <select id="weaponSelect" style="width: 100%; margin-bottom: 15px;">
+                        <option value="">Select Weapon</option>
+                        <option value="Engine Rifle">Engine Rifle</option>
+                        <option value="Shotgun">Shotgun</option>
+                        <option value="Tesla Gun">Tesla Gun</option>
+                        <option value="Brine Revolver">Brine Revolver</option>
+                        <option value="Disc Thrower">Disc Thrower</option>
+                        <option value="Combat Bow">Combat Bow</option>
+                        <option value="Plasma Launcher">Plasma Launcher</option>
+                        <option value="Fish Deity">Fish Deity</option>
+                    </select>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <label>Primary</label>
+                            <select id="primarySelect">
+                                <option value="">Select Primary</option>
+                                <option value="Primary1">Primary1</option>
+                                <option value="Primary2">Primary2</option>
+                                <option value="Primary3">Primary3</option>
+                            </select>
+                        </div>
+                        <div class="form-col">
+                            <label>Secondary</label>
+                            <select id="secondarySelect">
+                                <option value="">Select Secondary</option>
+                                <option value="Secondary1">Secondary1</option>
+                                <option value="Secondary2">Secondary2</option>
+                                <option value="Secondary3">Secondary3</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <label>Aspect</label>
+                            <select id="aspect1" onchange="updateAspectOptions()">
+                                <option value="">Select Aspect</option>
+                                <option value="Blessing1">Blessing1</option>
+                                <option value="Blessing2">Blessing2</option>
+                                <option value="Blessing3">Blessing3</option>
+                                <option value="Blessing4">Blessing4</option>
+                                <option value="Blessing5">Blessing5</option>
+                                <option value="Blessing6">Blessing6</option>
+                                <option value="Blessing7">Blessing7</option>
+                                <option value="Blessing8">Blessing8</option>
+                                <option value="Blessing9">Blessing9</option>
+                                <option value="Blessing10">Blessing10</option>
+                            </select>
+                        </div>
+                        <div class="form-col">
+                            <label>Aspect</label>
+                            <select id="aspect2" onchange="updateAspectOptions()">
+                                <option value="">Select Aspect</option>
+                                <option value="Blessing1">Blessing1</option>
+                                <option value="Blessing2">Blessing2</option>
+                                <option value="Blessing3">Blessing3</option>
+                                <option value="Blessing4">Blessing4</option>
+                                <option value="Blessing5">Blessing5</option>
+                                <option value="Blessing6">Blessing6</option>
+                                <option value="Blessing7">Blessing7</option>
+                                <option value="Blessing8">Blessing8</option>
+                                <option value="Blessing9">Blessing9</option>
+                                <option value="Blessing10">Blessing10</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="forge-section">
+                        <div class="section-header">Forge Upgrades</div>
+                        <div class="forge-item">
+                            <select id="weaponForge1" style="width: 100%;">
+                                <option value="">Forge Upgrade #1</option>
+                            </select>
+                        </div>
+                        <div class="forge-item">
+                            <select id="weaponForge2" style="width: 100%;">
+                                <option value="">Forge Upgrade #2</option>
+                            </select>
+                        </div>
+                        <div class="forge-item">
+                            <select id="weaponForge3" style="width: 100%;">
+                                <option value="">Forge Upgrade #3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ability Column -->
+                <div class="ability-column">
+                    <div class="section-header">Ability</div>
+                    <select id="abilitySelect" style="width: 100%; margin-bottom: 15px;">
+                        <option value="">Select Ability</option>
+                        <option value="Frag Grenade">Frag Grenade</option>
+                        <option value="Anchor">Anchor</option>
+                        <option value="Ancient Core">Ancient Core</option>
+                        <option value="Brine Field">Brine Field</option>
+                        <option value="Turret">Turret</option>
+                    </select>
+
+                    <div style="height: 75px; margin-bottom: 15px;"></div>
+
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; background-color: #2C3539; padding: 8px; text-align: center; font-weight: bold; border-radius: 4px; margin-bottom: 5px;">Aspect</label>
+                        <select id="aspect3" style="width: 100%;" onchange="updateAspectOptions()">
+                            <option value="">Select Aspect</option>
+                            <option value="Blessing1">Blessing1</option>
+                            <option value="Blessing2">Blessing2</option>
+                            <option value="Blessing3">Blessing3</option>
+                            <option value="Blessing4">Blessing4</option>
+                            <option value="Blessing5">Blessing5</option>
+                            <option value="Blessing6">Blessing6</option>
+                            <option value="Blessing7">Blessing7</option>
+                            <option value="Blessing8">Blessing8</option>
+                            <option value="Blessing9">
