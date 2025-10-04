@@ -188,6 +188,35 @@
             margin: 20px 0;
             display: none;
         }
+
+        .select-with-icon {
+            position: relative;
+        }
+
+        .selected-icon {
+            position: absolute;
+            left: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            pointer-events: none;
+            display: none;
+        }
+
+        .select-with-icon select {
+            padding-left: 40px;
+        }
+
+        .preview-icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            vertical-align: middle;
+            margin-left: 8px;
+        }
     </style>
 </head>
 <body>
@@ -222,17 +251,20 @@
                 <!-- Weapon Column -->
                 <div class="weapon-column">
                     <div class="section-header">Weapon</div>
-                    <select id="weaponSelect" style="width: 100%; margin-bottom: 15px;">
-                        <option value="">Select Weapon</option>
-                        <option value="Engine Rifle">Engine Rifle</option>
-                        <option value="Shotgun">Shotgun</option>
-                        <option value="Tesla Gun">Tesla Gun</option>
-                        <option value="Brine Revolver">Brine Revolver</option>
-                        <option value="Disc Thrower">Disc Thrower</option>
-                        <option value="Combat Bow">Combat Bow</option>
-                        <option value="Plasma Launcher">Plasma Launcher</option>
-                        <option value="Fish Deity">Fish Deity</option>
-                    </select>
+                    <div class="select-with-icon">
+                        <img id="weaponIcon" class="selected-icon" src="" alt="">
+                        <select id="weaponSelect" style="width: 100%; margin-bottom: 15px;" onchange="updateWeaponIcon()">
+                            <option value="">Select Weapon</option>
+                            <option value="Engine Rifle">Engine Rifle</option>
+                            <option value="Shotgun">Shotgun</option>
+                            <option value="Tesla Gun">Tesla Gun</option>
+                            <option value="Brine Revolver">Brine Revolver</option>
+                            <option value="Disc Thrower">Disc Thrower</option>
+                            <option value="Combat Bow">Combat Bow</option>
+                            <option value="Plasma Launcher">Plasma Launcher</option>
+                            <option value="Fish Deity">Fish Deity</option>
+                        </select>
+                    </div>
 
                     <div class="form-row">
                         <div class="form-col">
@@ -258,35 +290,41 @@
                     <div class="form-row">
                         <div class="form-col">
                             <label>Aspect</label>
-                            <select id="aspect1" onchange="updateAspectOptions()">
-                                <option value="">Select Aspect</option>
-                                <option value="Blood">Blood</option>
-                                <option value="Barrier">Barrier</option>
-                                <option value="Flares">Flares</option>
-                                <option value="Goldburst">Goldburst</option>
-                                <option value="Frozen">Frozen</option>
-                                <option value="Chain Lightning">Chain Lightning</option>
-                                <option value="Shadows">Shadows</option>
-                                <option value="Tentacles">Tentacles</option>
-                                <option value="Spirit">Spirit</option>
-                                <option value="Windburst">Windburst</option>
-                            </select>
+                            <div class="select-with-icon">
+                                <img id="aspect1Icon" class="selected-icon" src="" alt="">
+                                <select id="aspect1" onchange="updateAspectOptions(); updateAspectIcons()">
+                                    <option value="">Select Aspect</option>
+                                    <option value="Blood">Blood</option>
+                                    <option value="Barrier">Barrier</option>
+                                    <option value="Flares">Flares</option>
+                                    <option value="Goldburst">Goldburst</option>
+                                    <option value="Frozen">Frozen</option>
+                                    <option value="Chain Lightning">Chain Lightning</option>
+                                    <option value="Shadows">Shadows</option>
+                                    <option value="Tentacles">Tentacles</option>
+                                    <option value="Spirit">Spirit</option>
+                                    <option value="Windburst">Windburst</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-col">
                             <label>Aspect</label>
-                            <select id="aspect2" onchange="updateAspectOptions()">
-                                <option value="">Select Aspect</option>
-                                <option value="Blood">Blood</option>
-                                <option value="Barrier">Barrier</option>
-                                <option value="Flares">Flares</option>
-                                <option value="Goldburst">Goldburst</option>
-                                <option value="Frozen">Frozen</option>
-                                <option value="Chain Lightning">Chain Lightning</option>
-                                <option value="Shadows">Shadows</option>
-                                <option value="Tentacles">Tentacles</option>
-                                <option value="Spirit">Spirit</option>
-                                <option value="Windburst">Windburst</option>
-                            </select>
+                            <div class="select-with-icon">
+                                <img id="aspect2Icon" class="selected-icon" src="" alt="">
+                                <select id="aspect2" onchange="updateAspectOptions(); updateAspectIcons()">
+                                    <option value="">Select Aspect</option>
+                                    <option value="Blood">Blood</option>
+                                    <option value="Barrier">Barrier</option>
+                                    <option value="Flares">Flares</option>
+                                    <option value="Goldburst">Goldburst</option>
+                                    <option value="Frozen">Frozen</option>
+                                    <option value="Chain Lightning">Chain Lightning</option>
+                                    <option value="Shadows">Shadows</option>
+                                    <option value="Tentacles">Tentacles</option>
+                                    <option value="Spirit">Spirit</option>
+                                    <option value="Windburst">Windburst</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
 
@@ -313,32 +351,38 @@
                 <!-- Ability Column -->
                 <div class="ability-column">
                     <div class="section-header">Ability</div>
-                    <select id="abilitySelect" style="width: 100%; margin-bottom: 15px;">
-                        <option value="">Select Ability</option>
-                        <option value="Frag Grenade">Frag Grenade</option>
-                        <option value="Anchor">Anchor</option>
-                        <option value="Ancient Core">Ancient Core</option>
-                        <option value="Brine Field">Brine Field</option>
-                        <option value="Turret">Turret</option>
-                    </select>
+                    <div class="select-with-icon">
+                        <img id="abilityIcon" class="selected-icon" src="" alt="">
+                        <select id="abilitySelect" style="width: 100%; margin-bottom: 15px;" onchange="updateAbilityIcon()">
+                            <option value="">Select Ability</option>
+                            <option value="Frag Grenade">Frag Grenade</option>
+                            <option value="Anchor">Anchor</option>
+                            <option value="Ancient Core">Ancient Core</option>
+                            <option value="Brine Field">Brine Field</option>
+                            <option value="Turret">Turret</option>
+                        </select>
+                    </div>
 
                     <div style="height: 75px; margin-bottom: 15px;"></div>
 
                     <div style="margin-bottom: 15px;">
                         <label style="display: block; background-color: #2C3539; padding: 8px; text-align: center; font-weight: bold; border-radius: 4px; margin-bottom: 5px;">Aspect</label>
-                        <select id="aspect3" style="width: 100%;" onchange="updateAspectOptions()">
-                            <option value="">Select Aspect</option>
-                            <option value="Blood">Blood</option>
-                            <option value="Barrier">Barrier</option>
-                            <option value="Flares">Flares</option>
-                            <option value="Goldburst">Goldburst</option>
-                            <option value="Frozen">Frozen</option>
-                            <option value="Chain Lightning">Chain Lightning</option>
-                            <option value="Shadows">Shadows</option>
-                            <option value="Tentacles">Tentacles</option>
-                            <option value="Spirit">Spirit</option>
-                            <option value="Windburst">Windburst</option>
-                        </select>
+                        <div class="select-with-icon">
+                            <img id="aspect3Icon" class="selected-icon" src="" alt="">
+                            <select id="aspect3" style="width: 100%;" onchange="updateAspectOptions(); updateAspectIcons()">
+                                <option value="">Select Aspect</option>
+                                <option value="Blood">Blood</option>
+                                <option value="Barrier">Barrier</option>
+                                <option value="Flares">Flares</option>
+                                <option value="Goldburst">Goldburst</option>
+                                <option value="Frozen">Frozen</option>
+                                <option value="Chain Lightning">Chain Lightning</option>
+                                <option value="Shadows">Shadows</option>
+                                <option value="Tentacles">Tentacles</option>
+                                <option value="Spirit">Spirit</option>
+                                <option value="Windburst">Windburst</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="forge-section">
@@ -464,6 +508,73 @@
     </div>
 
     <script>
+        const weaponIcons = {
+            'Engine Rifle': 'images/weapons/Engine_Rifle_Icon.png',
+            'Shotgun': 'images/weapons/Shotgun_Icon.png',
+            'Tesla Gun': 'images/weapons/Tesla_Gun_Icon.png',
+            'Brine Revolver': 'images/weapons/Brine_Revolver_Icon.png',
+            'Disc Thrower': 'images/weapons/Disc_Thrower_Icon.png',
+            'Combat Bow': 'images/weapons/Combat_Bow_Icon.png',
+            'Plasma Launcher': 'images/weapons/Plasma_Launcher_Icon.png',
+            'Fish Deity': 'images/weapons/Fish_Deity_Icon.png'
+        };
+
+        const abilityIcons = {
+            'Frag Grenade': 'images/abilities/Frag_Grenade_Icon.png',
+            'Anchor': 'images/abilities/Anchor_Icon.png',
+            'Ancient Core': 'images/abilities/Ancient_Core_Icon.png',
+            'Brine Field': 'images/abilities/Brine_Field_Icon.png',
+            'Turret': 'images/abilities/Turret_Icon.png'
+        };
+
+        const aspectIcons = {
+            'Blood': 'images/aspects/Blood_Icon.png',
+            'Barrier': 'images/aspects/Barrier_Icon.png',
+            'Flares': 'images/aspects/Flares_Icon.png',
+            'Goldburst': 'images/aspects/Goldburst_Icon.png',
+            'Frozen': 'images/aspects/Frozen_Icon.png',
+            'Chain Lightning': 'images/aspects/Chain_Lightning_Icon.png',
+            'Shadows': 'images/aspects/Shadows_Icon.png',
+            'Tentacles': 'images/aspects/Tentacles_Icon.png',
+            'Spirit': 'images/aspects/Spirit_Icon.png',
+            'Windburst': 'images/aspects/Windburst_Icon.png'
+        };
+
+        function updateWeaponIcon() {
+            const weapon = document.getElementById('weaponSelect').value;
+            const icon = document.getElementById('weaponIcon');
+            if (weapon && weaponIcons[weapon]) {
+                icon.src = weaponIcons[weapon];
+                icon.style.display = 'block';
+            } else {
+                icon.style.display = 'none';
+            }
+        }
+
+        function updateAbilityIcon() {
+            const ability = document.getElementById('abilitySelect').value;
+            const icon = document.getElementById('abilityIcon');
+            if (ability && abilityIcons[ability]) {
+                icon.src = abilityIcons[ability];
+                icon.style.display = 'block';
+            } else {
+                icon.style.display = 'none';
+            }
+        }
+
+        function updateAspectIcons() {
+            ['aspect1', 'aspect2', 'aspect3'].forEach(id => {
+                const aspect = document.getElementById(id).value;
+                const icon = document.getElementById(id + 'Icon');
+                if (aspect && aspectIcons[aspect]) {
+                    icon.src = aspectIcons[aspect];
+                    icon.style.display = 'block';
+                } else {
+                    icon.style.display = 'none';
+                }
+            });
+        }
+
         function updateAspectOptions() {
             const aspect1 = document.getElementById('aspect1').value;
             const aspect2 = document.getElementById('aspect2').value;
