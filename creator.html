@@ -275,12 +275,12 @@
                     <div class="form-row">
                         <div class="form-col">
                             <label>Primary</label>
-                            <select id="primarySelect">
-                                <option value="">Select Primary</option>
-                                <option value="Primary1">Primary1</option>
-                                <option value="Primary2">Primary2</option>
-                                <option value="Primary3">Primary3</option>
-                            </select>
+                            <div class="select-with-icon">
+                                <img id="primaryIcon" class="selected-icon" src="" alt="">
+                                <select id="primarySelect" style="width: 100%;" onchange="updatePrimaryIcon()">
+                                    <option value="">Select Primary</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-col">
                             <label>Secondary</label>
@@ -595,11 +595,72 @@
             'Productive': 'images/charms/Charm_Common_Icon.png'
         };
 
+        const primaryIcons = {
+            'Automatic Fire': 'images/primaries/Automatic_Fire.png',
+            'Burst Fire': 'images/primaries/Burst_Fire.png',
+            'Gatling Rifle': 'images/primaries/Gatling_Fire.png',
+            'Semi-automatic': 'images/primaries/Semi-automatic_Shotgun.png',
+            'Full-automatic': 'images/primaries/Full-automatic.png',
+            'Superheavy Slug': 'images/primaries/Superheavy_Slug.png',
+            'Electrical Beam': 'images/primaries/Electrical_Beam.png',
+            'Charge Beam': 'images/primaries/Charge_Beam.png',
+            'Unstable Coil': 'images/primaries/Unstable_Coil.png',
+            'Large Caliber': 'images/primaries/Large_Caliber.png',
+            'Automatic': 'images/primaries/Automatic.png',
+            'Fan Fire': 'images/primaries/Fan_Fire.png',
+            'Dynamo': 'images/primaries/Dynamo.png',
+            'Precision Shot': 'images/primaries/Precision_Shot.png',
+            'Pierce': 'images/primaries/Pierce.png',
+            'Return Arrow': 'images/primaries/Return_Arrow.png',
+            'Flak Cannon': 'images/primaries/Flak_Cannon.png',
+            'Seekers': 'images/primaries/Seekers.png',
+            'Rapid Goo': 'images/primaries/Rapid_Goo.png',
+            'Fish Spit': 'images/primaries/Fish_Spit.png',
+            'Hazardous Goo': 'images/primaries/Hazardous_Goo.png'
+        };
+
+        const weaponPrimaries = {
+            'Engine Rifle': ['Automatic Fire', 'Burst Fire', 'Gatling Rifle'],
+            'Shotgun': ['Semi-automatic', 'Full-automatic', 'Superheavy Slug'],
+            'Tesla Gun': ['Electrical Beam', 'Charge Beam', 'Unstable Coil'],
+            'Brine Revolver': ['Semi-automatic', 'Burst Fire', 'Large Caliber'],
+            'Disc Thrower': ['Automatic', 'Fan Fire', 'Dynamo'],
+            'Combat Bow': ['Precision Shot', 'Pierce', 'Return Arrow'],
+            'Plasma Launcher': ['Semi-automatic', 'Flak Cannon', 'Seekers'],
+            'Fish Deity': ['Rapid Goo', 'Fish Spit', 'Hazardous Goo']
+        };
+
         function updateWeaponIcon() {
             const weapon = document.getElementById('weaponSelect').value;
             const icon = document.getElementById('weaponIcon');
             if (weapon && weaponIcons[weapon]) {
                 icon.src = weaponIcons[weapon];
+                icon.style.display = 'block';
+            } else {
+                icon.style.display = 'none';
+            }
+
+            // Update primary options based on weapon
+            const primarySelect = document.getElementById('primarySelect');
+            const primaryIcon = document.getElementById('primaryIcon');
+            primarySelect.innerHTML = '<option value="">Select Primary</option>';
+            primaryIcon.style.display = 'none';
+
+            if (weapon && weaponPrimaries[weapon]) {
+                weaponPrimaries[weapon].forEach(primary => {
+                    const option = document.createElement('option');
+                    option.value = primary;
+                    option.textContent = primary;
+                    primarySelect.appendChild(option);
+                });
+            }
+        }
+
+        function updatePrimaryIcon() {
+            const primary = document.getElementById('primarySelect').value;
+            const icon = document.getElementById('primaryIcon');
+            if (primary && primaryIcons[primary]) {
+                icon.src = primaryIcons[primary];
                 icon.style.display = 'block';
             } else {
                 icon.style.display = 'none';
