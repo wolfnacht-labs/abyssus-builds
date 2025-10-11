@@ -284,12 +284,12 @@
                         </div>
                         <div class="form-col">
                             <label>Secondary</label>
-                            <select id="secondarySelect">
-                                <option value="">Select Secondary</option>
-                                <option value="Secondary1">Secondary1</option>
-                                <option value="Secondary2">Secondary2</option>
-                                <option value="Secondary3">Secondary3</option>
-                            </select>
+                            <div class="select-with-icon">
+                                <img id="secondaryIcon" class="selected-icon" src="" alt="">
+                                <select id="secondarySelect" style="width: 100%;" onchange="updateSecondaryIcon()">
+                                    <option value="">Select Secondary</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
 
@@ -598,8 +598,8 @@
         const primaryIcons = {
             'Automatic Fire': 'images/primaries/Automatic_Fire.png',
             'Burst Fire': 'images/primaries/Burst_Fire.png',
-            'Gatling Rifle': 'images/primaries/Gatling_Fire.png',
-            'Semi-automatic': 'images/primaries/Semi-automatic_Shotgun.png',
+            'Gatling Fire': 'images/primaries/Gatling_Fire.png',
+            'Semi-automatic': 'images/primaries/Semi-automatic.png',
             'Full-automatic': 'images/primaries/Full-automatic.png',
             'Superheavy Slug': 'images/primaries/Superheavy_Slug.png',
             'Electrical Beam': 'images/primaries/Electrical_Beam.png',
@@ -619,8 +619,47 @@
             'Hazardous Goo': 'images/primaries/Hazardous_Goo.png'
         };
 
+        // Special handling for weapon-specific primaries with same names
+        const getPrimaryIcon = (weapon, primary) => {
+            if (weapon === 'Brine Revolver') {
+                if (primary === 'Semi-automatic') return 'images/primaries/Semi-automatic_Revolver.png';
+                if (primary === 'Burst Fire') return 'images/primaries/Burst_Fire_Revolver.png';
+            }
+            if (weapon === 'Shotgun' && primary === 'Semi-automatic') {
+                return 'images/primaries/Semi-automatic_Shotgun.png';
+            }
+            return primaryIcons[primary];
+        };
+
+        const secondaryIcons = {
+            'Engine Rev': 'images/secondaries/Engine_Rev.png',
+            'Split Shot': 'images/secondaries/Split_Shot.png',
+            'Concentrated Shot': 'images/secondaries/Concentrated_Shot.png',
+            'Buckshot': 'images/secondaries/Buckshot.png',
+            'Unload': 'images/secondaries/Unload.png',
+            'Pressure Shot': 'images/secondaries/Pressure_Shot.png',
+            'Spark Orb': 'images/secondaries/Spark_Orb.png',
+            'Charge Orb': 'images/secondaries/Charge_Orb.png',
+            'Magnetic Storm': 'images/secondaries/Magnetic_Storm.png',
+            'Steady Scope': 'images/secondaries/Steady_Scope.png',
+            'Quick Scope': 'images/secondaries/Quick_Scope.png',
+            'Charge Scope': 'images/secondaries/Charge_Scope.png',
+            'Inferno Discs': 'images/secondaries/Inferno_Discs.png',
+            'Electron Conductors': 'images/secondaries/Electron_Conductors.png',
+            'Search and Destroy': 'images/secondaries/Search_and_Destroy.png',
+            'Multi-Shot': 'images/secondaries/Multi-Shot.png',
+            'Smart Arrow': 'images/secondaries/Smart_Arrow.png',
+            'Exploding Arrow': 'images/secondaries/Exploding_Arrow.png',
+            'Disintegration Beam': 'images/secondaries/Disintegration_Beam.png',
+            'Void Infusion': 'images/secondaries/Void_Infusion.png',
+            'Adhesive Compound': 'images/secondaries/Adhesive_Compound.png',
+            'Piercing Stab': 'images/secondaries/Piercing_Stab.png',
+            'Wide Stab': 'images/secondaries/Wide_Stab.png',
+            'Chainsaw': 'images/secondaries/Chainsaw.png'
+        };
+
         const weaponPrimaries = {
-            'Engine Rifle': ['Automatic Fire', 'Burst Fire', 'Gatling Rifle'],
+            'Engine Rifle': ['Automatic Fire', 'Burst Fire', 'Gatling Fire'],
             'Shotgun': ['Semi-automatic', 'Full-automatic', 'Superheavy Slug'],
             'Tesla Gun': ['Electrical Beam', 'Charge Beam', 'Unstable Coil'],
             'Brine Revolver': ['Semi-automatic', 'Burst Fire', 'Large Caliber'],
@@ -628,6 +667,17 @@
             'Combat Bow': ['Precision Shot', 'Pierce', 'Return Arrow'],
             'Plasma Launcher': ['Semi-automatic', 'Flak Cannon', 'Seekers'],
             'Fish Deity': ['Rapid Goo', 'Fish Spit', 'Hazardous Goo']
+        };
+
+        const weaponSecondaries = {
+            'Engine Rifle': ['Engine Rev', 'Split Shot', 'Concentrated Shot'],
+            'Shotgun': ['Buckshot', 'Unload', 'Pressure Shot'],
+            'Tesla Gun': ['Spark Orb', 'Charge Orb', 'Magnetic Storm'],
+            'Brine Revolver': ['Steady Scope', 'Quick Scope', 'Charge Scope'],
+            'Disc Thrower': ['Inferno Discs', 'Electron Conductors', 'Search and Destroy'],
+            'Combat Bow': ['Multi-Shot', 'Smart Arrow', 'Exploding Arrow'],
+            'Plasma Launcher': ['Disintegration Beam', 'Void Infusion', 'Adhesive Compound'],
+            'Fish Deity': ['Piercing Stab', 'Wide Stab', 'Chainsaw']
         };
 
         function updateWeaponIcon() {
@@ -654,13 +704,45 @@
                     primarySelect.appendChild(option);
                 });
             }
+
+            // Update secondary options based on weapon
+            const secondarySelect = document.getElementById('secondarySelect');
+            const secondaryIcon = document.getElementById('secondaryIcon');
+            secondarySelect.innerHTML = '<option value="">Select Secondary</option>';
+            secondaryIcon.style.display = 'none';
+
+            if (weapon && weaponSecondaries[weapon]) {
+                weaponSecondaries[weapon].forEach(secondary => {
+                    const option = document.createElement('option');
+                    option.value = secondary;
+                    option.textContent = secondary;
+                    secondarySelect.appendChild(option);
+                });
+            }
         }
 
         function updatePrimaryIcon() {
+            const weapon = document.getElementById('weaponSelect').value;
             const primary = document.getElementById('primarySelect').value;
             const icon = document.getElementById('primaryIcon');
-            if (primary && primaryIcons[primary]) {
-                icon.src = primaryIcons[primary];
+            if (primary) {
+                const iconPath = getPrimaryIcon(weapon, primary);
+                if (iconPath) {
+                    icon.src = iconPath;
+                    icon.style.display = 'block';
+                } else {
+                    icon.style.display = 'none';
+                }
+            } else {
+                icon.style.display = 'none';
+            }
+        }
+
+        function updateSecondaryIcon() {
+            const secondary = document.getElementById('secondarySelect').value;
+            const icon = document.getElementById('secondaryIcon');
+            if (secondary && secondaryIcons[secondary]) {
+                icon.src = secondaryIcons[secondary];
                 icon.style.display = 'block';
             } else {
                 icon.style.display = 'none';
