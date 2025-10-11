@@ -416,92 +416,98 @@
         <div class="form-section">
             <div class="section-header">Charms</div>
             <div class="charms-row">
-                <select id="charm1" style="flex: 1; margin-right: 10px;" onchange="updateCharmOptions()">
-                    <option value="">Select Charm</option>
-                    <option value="Charm1">Charm1</option>
-                    <option value="Charm2">Charm2</option>
-                    <option value="Charm3">Charm3</option>
-                    <option value="Charm4">Charm4</option>
-                    <option value="Charm5">Charm5</option>
-                    <option value="Charm6">Charm6</option>
-                    <option value="Charm7">Charm7</option>
-                    <option value="Charm8">Charm8</option>
-                    <option value="Charm9">Charm9</option>
-                    <option value="Charm10">Charm10</option>
-                    <option value="Charm11">Charm11</option>
-                    <option value="Charm12">Charm12</option>
-                    <option value="Charm13">Charm13</option>
-                    <option value="Charm14">Charm14</option>
-                    <option value="Charm15">Charm15</option>
-                    <option value="Charm16">Charm16</option>
-                    <option value="Charm17">Charm17</option>
-                    <option value="Charm18">Charm18</option>
-                    <option value="Charm19">Charm19</option>
-                    <option value="Charm20">Charm20</option>
-                    <option value="Charm21">Charm21</option>
-                    <option value="Charm22">Charm22</option>
-                    <option value="Charm23">Charm23</option>
-                    <option value="Charm24">Charm24</option>
-                    <option value="Charm25">Charm25</option>
-                    <option value="Charm26">Charm26</option>
-                    <option value="Charm27">Charm27</option>
-                    <option value="Charm28">Charm28</option>
-                    <option value="Charm29">Charm29</option>
-                    <option value="Charm30">Charm30</option>
-                    <option value="Charm31">Charm31</option>
-                    <option value="Charm32">Charm32</option>
-                    <option value="Charm33">Charm33</option>
-                    <option value="Charm34">Charm34</option>
-                    <option value="Charm35">Charm35</option>
-                    <option value="Charm36">Charm36</option>
-                    <option value="Charm37">Charm37</option>
-                    <option value="Charm38">Charm38</option>
-                    <option value="Charm39">Charm39</option>
-                    <option value="Charm40">Charm40</option>
-                </select>
-                <select id="charm2" style="flex: 1;" onchange="updateCharmOptions()">
-                    <option value="">Select Charm</option>
-                    <option value="Charm1">Charm1</option>
-                    <option value="Charm2">Charm2</option>
-                    <option value="Charm3">Charm3</option>
-                    <option value="Charm4">Charm4</option>
-                    <option value="Charm5">Charm5</option>
-                    <option value="Charm6">Charm6</option>
-                    <option value="Charm7">Charm7</option>
-                    <option value="Charm8">Charm8</option>
-                    <option value="Charm9">Charm9</option>
-                    <option value="Charm10">Charm10</option>
-                    <option value="Charm11">Charm11</option>
-                    <option value="Charm12">Charm12</option>
-                    <option value="Charm13">Charm13</option>
-                    <option value="Charm14">Charm14</option>
-                    <option value="Charm15">Charm15</option>
-                    <option value="Charm16">Charm16</option>
-                    <option value="Charm17">Charm17</option>
-                    <option value="Charm18">Charm18</option>
-                    <option value="Charm19">Charm19</option>
-                    <option value="Charm20">Charm20</option>
-                    <option value="Charm21">Charm21</option>
-                    <option value="Charm22">Charm22</option>
-                    <option value="Charm23">Charm23</option>
-                    <option value="Charm24">Charm24</option>
-                    <option value="Charm25">Charm25</option>
-                    <option value="Charm26">Charm26</option>
-                    <option value="Charm27">Charm27</option>
-                    <option value="Charm28">Charm28</option>
-                    <option value="Charm29">Charm29</option>
-                    <option value="Charm30">Charm30</option>
-                    <option value="Charm31">Charm31</option>
-                    <option value="Charm32">Charm32</option>
-                    <option value="Charm33">Charm33</option>
-                    <option value="Charm34">Charm34</option>
-                    <option value="Charm35">Charm35</option>
-                    <option value="Charm36">Charm36</option>
-                    <option value="Charm37">Charm37</option>
-                    <option value="Charm38">Charm38</option>
-                    <option value="Charm39">Charm39</option>
-                    <option value="Charm40">Charm40</option>
-                </select>
+                <div class="select-with-icon" style="flex: 1; margin-right: 10px;">
+                    <img id="charm1Icon" class="selected-icon" src="" alt="">
+                    <select id="charm1" style="width: 100%;" onchange="updateCharmOptions(); updateCharmIcons()">
+                        <option value="">Select Charm</option>
+                        <option value="Hawkeye">Hawkeye</option>
+                        <option value="Gun Meets Face">Gun Meets Face</option>
+                        <option value="Activate Gun Mode">Activate Gun Mode</option>
+                        <option value="Hate Forged">Hate Forged</option>
+                        <option value="Supersonic">Supersonic</option>
+                        <option value="Power From Pain">Power From Pain</option>
+                        <option value="Golden Ticket">Golden Ticket</option>
+                        <option value="Fan">Fan</option>
+                        <option value="Ms. Boom">Ms. Boom</option>
+                        <option value="Mr. Boom">Mr. Boom</option>
+                        <option value="Gold Lure">Gold Lure</option>
+                        <option value="Freebie">Freebie</option>
+                        <option value="Bandage">Bandage</option>
+                        <option value="Phoenix Feather">Phoenix Feather</option>
+                        <option value="Perfectionist">Perfectionist</option>
+                        <option value="Durable">Durable</option>
+                        <option value="Consistent Killer">Consistent Killer</option>
+                        <option value="Piercing Rounds">Piercing Rounds</option>
+                        <option value="Assassination">Assassination</option>
+                        <option value="Violent Commitment">Violent Commitment</option>
+                        <option value="Healthy Commitment">Healthy Commitment</option>
+                        <option value="Slow Power">Slow Power</option>
+                        <option value="Upgrade Kit">Upgrade Kit</option>
+                        <option value="Gold Converter">Gold Converter</option>
+                        <option value="Marksman">Marksman</option>
+                        <option value="Skeleton Key">Skeleton Key</option>
+                        <option value="Overkill">Overkill</option>
+                        <option value="Giant Slayer">Giant Slayer</option>
+                        <option value="Headstart">Headstart</option>
+                        <option value="Favored Foe">Favored Foe</option>
+                        <option value="Lifeline">Lifeline</option>
+                        <option value="Overdrive">Overdrive</option>
+                        <option value="Lucky Charm">Lucky Charm</option>
+                        <option value="Revenant">Revenant</option>
+                        <option value="Hex">Hex</option>
+                        <option value="Backline">Backline</option>
+                        <option value="Thief's Eye">Thief's Eye</option>
+                        <option value="Blessed">Blessed</option>
+                        <option value="Spiritual">Spiritual</option>
+                        <option value="Productive">Productive</option>
+                    </select>
+                </div>
+                <div class="select-with-icon" style="flex: 1;">
+                    <img id="charm2Icon" class="selected-icon" src="" alt="">
+                    <select id="charm2" style="width: 100%;" onchange="updateCharmOptions(); updateCharmIcons()">
+                        <option value="">Select Charm</option>
+                        <option value="Hawkeye">Hawkeye</option>
+                        <option value="Gun Meets Face">Gun Meets Face</option>
+                        <option value="Activate Gun Mode">Activate Gun Mode</option>
+                        <option value="Hate Forged">Hate Forged</option>
+                        <option value="Supersonic">Supersonic</option>
+                        <option value="Power From Pain">Power From Pain</option>
+                        <option value="Golden Ticket">Golden Ticket</option>
+                        <option value="Fan">Fan</option>
+                        <option value="Ms. Boom">Ms. Boom</option>
+                        <option value="Mr. Boom">Mr. Boom</option>
+                        <option value="Gold Lure">Gold Lure</option>
+                        <option value="Freebie">Freebie</option>
+                        <option value="Bandage">Bandage</option>
+                        <option value="Phoenix Feather">Phoenix Feather</option>
+                        <option value="Perfectionist">Perfectionist</option>
+                        <option value="Durable">Durable</option>
+                        <option value="Consistent Killer">Consistent Killer</option>
+                        <option value="Piercing Rounds">Piercing Rounds</option>
+                        <option value="Assassination">Assassination</option>
+                        <option value="Violent Commitment">Violent Commitment</option>
+                        <option value="Healthy Commitment">Healthy Commitment</option>
+                        <option value="Slow Power">Slow Power</option>
+                        <option value="Upgrade Kit">Upgrade Kit</option>
+                        <option value="Gold Converter">Gold Converter</option>
+                        <option value="Marksman">Marksman</option>
+                        <option value="Skeleton Key">Skeleton Key</option>
+                        <option value="Overkill">Overkill</option>
+                        <option value="Giant Slayer">Giant Slayer</option>
+                        <option value="Headstart">Headstart</option>
+                        <option value="Favored Foe">Favored Foe</option>
+                        <option value="Lifeline">Lifeline</option>
+                        <option value="Overdrive">Overdrive</option>
+                        <option value="Lucky Charm">Lucky Charm</option>
+                        <option value="Revenant">Revenant</option>
+                        <option value="Hex">Hex</option>
+                        <option value="Backline">Backline</option>
+                        <option value="Thief's Eye">Thief's Eye</option>
+                        <option value="Blessed">Blessed</option>
+                        <option value="Spiritual">Spiritual</option>
+                        <option value="Productive">Productive</option>
+                    </select>
+                </div>
             </div>
         </div>
 
@@ -546,6 +552,49 @@
             'Windburst': 'images/aspects/Windburst_Icon.png'
         };
 
+        const charmIcons = {
+            'Hawkeye': 'images/charms/Charm_Common_Icon.png',
+            'Gun Meets Face': 'images/charms/Charm_Common_Icon.png',
+            'Activate Gun Mode': 'images/charms/Charm_Common_Icon.png',
+            'Hate Forged': 'images/charms/Charm_Common_Icon.png',
+            'Supersonic': 'images/charms/Charm_Common_Icon.png',
+            'Power From Pain': 'images/charms/Charm_Rare_Icon.png',
+            'Golden Ticket': 'images/charms/Charm_Legendary_Icon.png',
+            'Fan': 'images/charms/Charm_Legendary_Icon.png',
+            'Ms. Boom': 'images/charms/Charm_Rare_Icon.png',
+            'Mr. Boom': 'images/charms/Charm_Legendary_Icon.png',
+            'Gold Lure': 'images/charms/Charm_Legendary_Icon.png',
+            'Freebie': 'images/charms/Charm_Legendary_Icon.png',
+            'Bandage': 'images/charms/Charm_Rare_Icon.png',
+            'Phoenix Feather': 'images/charms/Charm_Legendary_Icon.png',
+            'Perfectionist': 'images/charms/Charm_Common_Icon.png',
+            'Durable': 'images/charms/Charm_Common_Icon.png',
+            'Consistent Killer': 'images/charms/Charm_Common_Icon.png',
+            'Piercing Rounds': 'images/charms/Charm_Common_Icon.png',
+            'Assassination': 'images/charms/Charm_Common_Icon.png',
+            'Violent Commitment': 'images/charms/Charm_Rare_Icon.png',
+            'Healthy Commitment': 'images/charms/Charm_Common_Icon.png',
+            'Slow Power': 'images/charms/Charm_Rare_Icon.png',
+            'Upgrade Kit': 'images/charms/Charm_Legendary_Icon.png',
+            'Gold Converter': 'images/charms/Charm_Rare_Icon.png',
+            'Marksman': 'images/charms/Charm_Common_Icon.png',
+            'Skeleton Key': 'images/charms/Charm_Legendary_Icon.png',
+            'Overkill': 'images/charms/Charm_Legendary_Icon.png',
+            'Giant Slayer': 'images/charms/Charm_Common_Icon.png',
+            'Headstart': 'images/charms/Charm_Common_Icon.png',
+            'Favored Foe': 'images/charms/Charm_Rare_Icon.png',
+            'Lifeline': 'images/charms/Charm_Common_Icon.png',
+            'Overdrive': 'images/charms/Charm_Common_Icon.png',
+            'Lucky Charm': 'images/charms/Charm_Rare_Icon.png',
+            'Revenant': 'images/charms/Charm_Rare_Icon.png',
+            'Hex': 'images/charms/Charm_Rare_Icon.png',
+            'Backline': 'images/charms/Charm_Common_Icon.png',
+            "Thief's Eye": 'images/charms/Charm_Legendary_Icon.png',
+            'Blessed': 'images/charms/Charm_Rare_Icon.png',
+            'Spiritual': 'images/charms/Charm_Legendary_Icon.png',
+            'Productive': 'images/charms/Charm_Common_Icon.png'
+        };
+
         function updateWeaponIcon() {
             const weapon = document.getElementById('weaponSelect').value;
             const icon = document.getElementById('weaponIcon');
@@ -574,6 +623,19 @@
                 const icon = document.getElementById(id + 'Icon');
                 if (aspect && aspectIcons[aspect]) {
                     icon.src = aspectIcons[aspect];
+                    icon.style.display = 'block';
+                } else {
+                    icon.style.display = 'none';
+                }
+            });
+        }
+
+        function updateCharmIcons() {
+            ['charm1', 'charm2'].forEach(id => {
+                const charm = document.getElementById(id).value;
+                const icon = document.getElementById(id + 'Icon');
+                if (charm && charmIcons[charm]) {
+                    icon.src = charmIcons[charm];
                     icon.style.display = 'block';
                 } else {
                     icon.style.display = 'none';
