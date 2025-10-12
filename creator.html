@@ -394,19 +394,28 @@
                     <div class="forge-section">
                         <div class="section-header">Forge Upgrades</div>
                         <div class="forge-item">
-                            <select id="abilityForge1" style="width: 100%;">
-                                <option value="">Forge Upgrade #1</option>
-                            </select>
+                            <div class="select-with-icon">
+                                <img id="abilityForge1Icon" class="selected-icon" src="" alt="">
+                                <select id="abilityForge1" style="width: 100%;" onchange="updateAbilityForgeIcons()">
+                                    <option value="">Forge Upgrade #1</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="forge-item">
-                            <select id="abilityForge2" style="width: 100%;">
-                                <option value="">Forge Upgrade #2</option>
-                            </select>
+                            <div class="select-with-icon">
+                                <img id="abilityForge2Icon" class="selected-icon" src="" alt="">
+                                <select id="abilityForge2" style="width: 100%;" onchange="updateAbilityForgeIcons()">
+                                    <option value="">Forge Upgrade #2</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="forge-item">
-                            <select id="abilityForge3" style="width: 100%;">
-                                <option value="">Forge Upgrade #3</option>
-                            </select>
+                            <div class="select-with-icon">
+                                <img id="abilityForge3Icon" class="selected-icon" src="" alt="">
+                                <select id="abilityForge3" style="width: 100%;" onchange="updateAbilityForgeIcons()">
+                                    <option value="">Forge Upgrade #3</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -680,6 +689,52 @@
             'Fish Deity': ['Piercing Stab', 'Wide Stab', 'Chainsaw']
         };
 
+        const sharedAbilityForges = [
+            'Extra Pockets', 'Increased Efficiency', 'Rich Get Richer', 'Investment', 'Double Trouble'
+        ];
+
+        const abilityForgeUpgrades = {
+            'Frag Grenade': [
+                ...sharedAbilityForges,
+                'Exposure Blast', 'Domino', 'Explosive Culling', 'Implosive Force', 'Cluster Bomb',
+                'Compact Grenade', 'Shrapnel', 'Bouncy Bomb', 'Gas Grenade', 'Gashing Shell', 'Sharp Shell'
+            ],
+            'Anchor': [
+                ...sharedAbilityForges,
+                'Self-sustaining', 'The Thrill', 'Grenanchor', 'Brine', 'Bulwark',
+                'Fearless', 'Anchored', 'Bonebreaker', 'Mighty', 'Geyser', 'Death Slam'
+            ],
+            'Ancient Core': [
+                ...sharedAbilityForges,
+                'Cone Blast', 'Gold Blast', 'Stun Blast', 'Bounce Blast', 'Active Reload',
+                'Target Lock', "Hunter's Mark", 'Laser Sight', 'Death Strike', 'Trigger Happy', 'Explosive Blast'
+            ],
+            'Brine Field': [
+                ...sharedAbilityForges,
+                'Quality Over Quantity', 'Personal Space', 'Safety Dance', 'Lingering Field', 'Steady Field',
+                'Mobility Field', 'End With a Bang!', 'Time Warp', 'Noxious Bubble', 'Expanding Territory', 'Sanctum'
+            ],
+            'Turret': [
+                ...sharedAbilityForges,
+                'Sniper Mode', 'Drones', 'Ammo Transfer', 'Buddy System', 'Unstable Cores',
+                'Sentinel', 'Persistent', 'Spiked Ammunition', 'Guiding Bullet', 'Teamwork', 'Ricochet'
+            ]
+        };
+
+        const getAbilityForgeIcon = (ability, forge) => {
+            if (sharedAbilityForges.includes(forge)) {
+                return 'images/forgeupgrades/Shared_Forge.png';
+            }
+            const abilityIconMap = {
+                'Frag Grenade': 'images/forgeupgrades/Frag_Grenade_Forge.png',
+                'Anchor': 'images/forgeupgrades/Anchor_Forge.png',
+                'Ancient Core': 'images/forgeupgrades/Ancient_Core_Forge.png',
+                'Brine Field': 'images/forgeupgrades/Brine_Field_Forge.png',
+                'Turret': 'images/forgeupgrades/Turret_Forge.png'
+            };
+            return abilityIconMap[ability];
+        };
+
         function updateWeaponIcon() {
             const weapon = document.getElementById('weaponSelect').value;
             const icon = document.getElementById('weaponIcon');
@@ -758,6 +813,43 @@
             } else {
                 icon.style.display = 'none';
             }
+
+            // Update ability forge upgrade options based on ability
+            const forgeSelects = ['abilityForge1', 'abilityForge2', 'abilityForge3'];
+            forgeSelects.forEach(selectId => {
+                const select = document.getElementById(selectId);
+                const icon = document.getElementById(selectId + 'Icon');
+                select.innerHTML = '<option value="">Forge Upgrade #' + selectId.slice(-1) + '</option>';
+                icon.style.display = 'none';
+
+                if (ability && abilityForgeUpgrades[ability]) {
+                    abilityForgeUpgrades[ability].forEach(forge => {
+                        const option = document.createElement('option');
+                        option.value = forge;
+                        option.textContent = forge;
+                        select.appendChild(option);
+                    });
+                }
+            });
+        }
+
+        function updateAbilityForgeIcons() {
+            const ability = document.getElementById('abilitySelect').value;
+            ['abilityForge1', 'abilityForge2', 'abilityForge3'].forEach(id => {
+                const forge = document.getElementById(id).value;
+                const icon = document.getElementById(id + 'Icon');
+                if (forge && ability) {
+                    const iconPath = getAbilityForgeIcon(ability, forge);
+                    if (iconPath) {
+                        icon.src = iconPath;
+                        icon.style.display = 'block';
+                    } else {
+                        icon.style.display = 'none';
+                    }
+                } else {
+                    icon.style.display = 'none';
+                }
+            });
         }
 
         function updateAspectIcons() {
