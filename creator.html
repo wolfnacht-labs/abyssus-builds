@@ -224,6 +224,29 @@
             margin-left: 8px;
         }
     </style>
+    <script type="module">
+        // Firebase imports
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCBpZluc0v2dxu1GhgQv8SucSKwmM2ESdU",
+            authDomain: "abyssus-builds.firebaseapp.com",
+            projectId: "abyssus-builds",
+            storageBucket: "abyssus-builds.firebasestorage.app",
+            messagingSenderId: "139945292825",
+            appId: "1:139945292825:web:f730c55dded04e689fa688"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Make functions available globally
+        window.db = db;
+        window.firestore = { collection, addDoc };
+    </script>
 </head>
 <body>
     <!-- Navigation Bar -->
