@@ -337,19 +337,28 @@
                     <div class="forge-section">
                         <div class="section-header">Forge Upgrades</div>
                         <div class="forge-item">
-                            <select id="weaponForge1" style="width: 100%;">
-                                <option value="">Forge Upgrade #1</option>
-                            </select>
+                            <div class="select-with-icon">
+                                <img id="weaponForge1Icon" class="selected-icon" src="" alt="">
+                                <select id="weaponForge1" style="width: 100%;" onchange="updateWeaponForgeIcons(); updateForgeAvailability()">
+                                    <option value="">Forge Upgrade #1</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="forge-item">
-                            <select id="weaponForge2" style="width: 100%;">
-                                <option value="">Forge Upgrade #2</option>
-                            </select>
+                            <div class="select-with-icon">
+                                <img id="weaponForge2Icon" class="selected-icon" src="" alt="">
+                                <select id="weaponForge2" style="width: 100%;" onchange="updateWeaponForgeIcons(); updateForgeAvailability()">
+                                    <option value="">Forge Upgrade #2</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="forge-item">
-                            <select id="weaponForge3" style="width: 100%;">
-                                <option value="">Forge Upgrade #3</option>
-                            </select>
+                            <div class="select-with-icon">
+                                <img id="weaponForge3Icon" class="selected-icon" src="" alt="">
+                                <select id="weaponForge3" style="width: 100%;" onchange="updateWeaponForgeIcons(); updateForgeAvailability()">
+                                    <option value="">Forge Upgrade #3</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -396,7 +405,7 @@
                         <div class="forge-item">
                             <div class="select-with-icon">
                                 <img id="abilityForge1Icon" class="selected-icon" src="" alt="">
-                                <select id="abilityForge1" style="width: 100%;" onchange="updateAbilityForgeIcons()">
+                                <select id="abilityForge1" style="width: 100%;" onchange="updateAbilityForgeIcons(); updateForgeAvailability()">
                                     <option value="">Forge Upgrade #1</option>
                                 </select>
                             </div>
@@ -404,7 +413,7 @@
                         <div class="forge-item">
                             <div class="select-with-icon">
                                 <img id="abilityForge2Icon" class="selected-icon" src="" alt="">
-                                <select id="abilityForge2" style="width: 100%;" onchange="updateAbilityForgeIcons()">
+                                <select id="abilityForge2" style="width: 100%;" onchange="updateAbilityForgeIcons(); updateForgeAvailability()">
                                     <option value="">Forge Upgrade #2</option>
                                 </select>
                             </div>
@@ -412,7 +421,7 @@
                         <div class="forge-item">
                             <div class="select-with-icon">
                                 <img id="abilityForge3Icon" class="selected-icon" src="" alt="">
-                                <select id="abilityForge3" style="width: 100%;" onchange="updateAbilityForgeIcons()">
+                                <select id="abilityForge3" style="width: 100%;" onchange="updateAbilityForgeIcons(); updateForgeAvailability()">
                                     <option value="">Forge Upgrade #3</option>
                                 </select>
                             </div>
@@ -735,6 +744,55 @@
             return abilityIconMap[ability];
         };
 
+        const weaponForgeUpgrades = {
+            'Engine Rifle': [
+                'Prolonged Revving', 'Greased Barrel', 'Insulated Barrel', 'Heat Converter',
+                'Binary Cooling', 'Burst Cooling', 'Large Capacity', 'Heat Expulsion'
+            ],
+            'Shotgun': [
+                'Light Frame', 'Long Barrel', 'Sawed-Off Barrel', 'Heavy Shell',
+                'Compact Shell', 'Optimized Gauge', 'Automatic Trigger', 'Automatic Action'
+            ],
+            'Tesla Gun': [
+                'Spark Gap', 'Streamlined Transistor', 'Compact Transformer', 'Larger Battery',
+                'Wireless Transmitter', 'High Voltage', 'High-Frequency', 'Backup Battery'
+            ],
+            'Brine Revolver': [
+                'Combustion Muzzle', 'Critical Cylinder', 'Fast Trigger', 'Critical Bullets',
+                'Accelerating Bullets', 'Overload Bullets', 'Boosted Cylinder', 'Exploitative Bullets'
+            ],
+            'Disc Thrower': [
+                'Spare Discs', 'Slim Discs', 'Twin Discs', 'Whetting Bounce',
+                'Elemental Overcharge', 'Halting Discs', 'Automatic Detonation', 'Priming Flight'
+            ],
+            'Combat Bow': [
+                'Pressure Arrow', 'Stable String', 'Elastic String', 'True Form',
+                'Consistent Scope', 'Spined Arrow', 'Longbow', 'Shortbow'
+            ],
+            'Plasma Launcher': [
+                'Seismic Fuel', 'Molotov Fuel', 'Revolving Valve', 'Explosive Valve',
+                'Accelerating Core', 'Bouncy Core', 'Spreading Heat', 'Repeating Blasts'
+            ],
+            'Fish Deity': [
+                'Discharging Reload', 'Elastic Goo', 'Softening Acid', 'Weakening Jabs',
+                'Repeating Jabs', 'Pursuing Horn', 'Long Horn', 'Stunning Strike'
+            ]
+        };
+
+        const getWeaponForgeIcon = (weapon) => {
+            const weaponIconMap = {
+                'Engine Rifle': 'images/forgeupgrades/Engine_Rifle_Forge.png',
+                'Shotgun': 'images/forgeupgrades/Shotgun_Forge.png',
+                'Tesla Gun': 'images/forgeupgrades/Tesla_Gun_Forge.png',
+                'Brine Revolver': 'images/forgeupgrades/Brine_Revolver_Forge.png',
+                'Disc Thrower': 'images/forgeupgrades/Disc_Thrower_Forge.png',
+                'Combat Bow': 'images/forgeupgrades/Combat_Bow_Forge.png',
+                'Plasma Launcher': 'images/forgeupgrades/Plasma_Launcher_Forge.png',
+                'Fish Deity': 'images/forgeupgrades/Fish_Deity_Forge.png'
+            };
+            return weaponIconMap[weapon];
+        };
+
         function updateWeaponIcon() {
             const weapon = document.getElementById('weaponSelect').value;
             const icon = document.getElementById('weaponIcon');
@@ -774,6 +832,65 @@
                     secondarySelect.appendChild(option);
                 });
             }
+
+            // Update weapon forge upgrade options based on weapon
+            const forgeSelects = ['weaponForge1', 'weaponForge2', 'weaponForge3'];
+            forgeSelects.forEach(selectId => {
+                const select = document.getElementById(selectId);
+                const icon = document.getElementById(selectId + 'Icon');
+                const currentValue = select.value;
+                select.innerHTML = '<option value="">Forge Upgrade #' + selectId.slice(-1) + '</option>';
+                icon.style.display = 'none';
+
+                if (weapon && weaponForgeUpgrades[weapon]) {
+                    weaponForgeUpgrades[weapon].forEach(forge => {
+                        const option = document.createElement('option');
+                        option.value = forge;
+                        option.textContent = forge;
+                        select.appendChild(option);
+                    });
+                }
+            });
+
+            updateForgeAvailability();
+        }
+
+        function updateWeaponForgeIcons() {
+            const weapon = document.getElementById('weaponSelect').value;
+            ['weaponForge1', 'weaponForge2', 'weaponForge3'].forEach(id => {
+                const forge = document.getElementById(id).value;
+                const icon = document.getElementById(id + 'Icon');
+                if (forge && weapon) {
+                    const iconPath = getWeaponForgeIcon(weapon);
+                    if (iconPath) {
+                        icon.src = iconPath;
+                        icon.style.display = 'block';
+                    } else {
+                        icon.style.display = 'none';
+                    }
+                } else {
+                    icon.style.display = 'none';
+                }
+            });
+
+            // Disable duplicate selections within weapon forges
+            const selectedWeaponForges = [
+                document.getElementById('weaponForge1').value,
+                document.getElementById('weaponForge2').value,
+                document.getElementById('weaponForge3').value
+            ].filter(v => v !== '');
+
+            ['weaponForge1', 'weaponForge2', 'weaponForge3'].forEach(selectId => {
+                const select = document.getElementById(selectId);
+                const options = select.querySelectorAll('option');
+                options.forEach(option => {
+                    if (option.value !== '' && selectedWeaponForges.includes(option.value) && select.value !== option.value) {
+                        option.disabled = true;
+                    } else {
+                        option.disabled = false;
+                    }
+                });
+            });
         }
 
         function updatePrimaryIcon() {
@@ -848,6 +965,50 @@
                     }
                 } else {
                     icon.style.display = 'none';
+                }
+            });
+
+            // Disable duplicate selections within ability forges
+            const selectedAbilityForges = [
+                document.getElementById('abilityForge1').value,
+                document.getElementById('abilityForge2').value,
+                document.getElementById('abilityForge3').value
+            ].filter(v => v !== '');
+
+            ['abilityForge1', 'abilityForge2', 'abilityForge3'].forEach(selectId => {
+                const select = document.getElementById(selectId);
+                const options = select.querySelectorAll('option');
+                options.forEach(option => {
+                    if (option.value !== '' && selectedAbilityForges.includes(option.value) && select.value !== option.value) {
+                        option.disabled = true;
+                    } else {
+                        option.disabled = false;
+                    }
+                });
+            });
+        }
+
+        function updateForgeAvailability() {
+            // Count total selected forge upgrades
+            const allForgeSelects = [
+                'weaponForge1', 'weaponForge2', 'weaponForge3',
+                'abilityForge1', 'abilityForge2', 'abilityForge3'
+            ];
+
+            const selectedForges = allForgeSelects.map(id => document.getElementById(id).value).filter(v => v !== '');
+            const selectedCount = selectedForges.length;
+
+            // Disable empty forge slots if 3 are already selected
+            allForgeSelects.forEach(selectId => {
+                const select = document.getElementById(selectId);
+                if (select.value === '' && selectedCount >= 3) {
+                    select.disabled = true;
+                    select.style.opacity = '0.5';
+                    select.style.cursor = 'not-allowed';
+                } else {
+                    select.disabled = false;
+                    select.style.opacity = '1';
+                    select.style.cursor = 'pointer';
                 }
             });
         }
