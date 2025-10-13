@@ -300,29 +300,6 @@
             object-fit: contain;
         }
     </style>
-    <script type="module">
-        // Firebase imports
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getFirestore, collection, addDoc, getDocs, updateDoc, doc, orderBy, query } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
-
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyCBpZluc0v2dxu1GhgQv8SucSKwmM2ESdU",
-            authDomain: "abyssus-builds.firebaseapp.com",
-            projectId: "abyssus-builds",
-            storageBucket: "abyssus-builds.firebasestorage.app",
-            messagingSenderId: "139945292825",
-            appId: "1:139945292825:web:f730c55dded04e689fa688"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        // Make functions available globally
-        window.db = db;
-        window.firestore = { collection, addDoc, getDocs, updateDoc, doc, orderBy, query };
-    </script>
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -451,71 +428,22 @@
             'Windburst': 'images/aspects/Windburst_Icon.png'
         };
 
-        const charmIcons = {
-            'Hawkeye': 'images/charms/Charm_Common_Icon.png',
-            'Gun Meets Face': 'images/charms/Charm_Common_Icon.png',
-            'Activate Gun Mode': 'images/charms/Charm_Common_Icon.png',
-            'Hate Forged': 'images/charms/Charm_Common_Icon.png',
-            'Supersonic': 'images/charms/Charm_Common_Icon.png',
-            'Power From Pain': 'images/charms/Charm_Rare_Icon.png',
-            'Golden Ticket': 'images/charms/Charm_Legendary_Icon.png',
-            'Fan': 'images/charms/Charm_Legendary_Icon.png',
-            'Ms. Boom': 'images/charms/Charm_Rare_Icon.png',
-            'Mr. Boom': 'images/charms/Charm_Legendary_Icon.png',
-            'Gold Lure': 'images/charms/Charm_Legendary_Icon.png',
-            'Freebie': 'images/charms/Charm_Legendary_Icon.png',
-            'Bandage': 'images/charms/Charm_Rare_Icon.png',
-            'Phoenix Feather': 'images/charms/Charm_Legendary_Icon.png',
-            'Perfectionist': 'images/charms/Charm_Common_Icon.png',
-            'Durable': 'images/charms/Charm_Common_Icon.png',
-            'Consistent Killer': 'images/charms/Charm_Common_Icon.png',
-            'Piercing Rounds': 'images/charms/Charm_Common_Icon.png',
-            'Assassination': 'images/charms/Charm_Common_Icon.png',
-            'Violent Commitment': 'images/charms/Charm_Rare_Icon.png',
-            'Healthy Commitment': 'images/charms/Charm_Common_Icon.png',
-            'Slow Power': 'images/charms/Charm_Rare_Icon.png',
-            'Upgrade Kit': 'images/charms/Charm_Legendary_Icon.png',
-            'Gold Converter': 'images/charms/Charm_Rare_Icon.png',
-            'Marksman': 'images/charms/Charm_Common_Icon.png',
-            'Skeleton Key': 'images/charms/Charm_Legendary_Icon.png',
-            'Overkill': 'images/charms/Charm_Legendary_Icon.png',
-            'Giant Slayer': 'images/charms/Charm_Common_Icon.png',
-            'Headstart': 'images/charms/Charm_Common_Icon.png',
-            'Favored Foe': 'images/charms/Charm_Rare_Icon.png',
-            'Lifeline': 'images/charms/Charm_Common_Icon.png',
-            'Overdrive': 'images/charms/Charm_Common_Icon.png',
-            'Lucky Charm': 'images/charms/Charm_Rare_Icon.png',
-            'Revenant': 'images/charms/Charm_Rare_Icon.png',
-            'Hex': 'images/charms/Charm_Rare_Icon.png',
-            'Backline': 'images/charms/Charm_Common_Icon.png',
-            "Thief's Eye": 'images/charms/Charm_Legendary_Icon.png',
-            'Blessed': 'images/charms/Charm_Rare_Icon.png',
-            'Spiritual': 'images/charms/Charm_Legendary_Icon.png',
-            'Productive': 'images/charms/Charm_Common_Icon.png'
-        };
-
-        // Load builds and liked status from Firebase
-        async function loadData() {
-            try {
-                const querySnapshot = await window.firestore.getDocs(window.firestore.collection(window.db, 'builds'));
-                builds = [];
-                querySnapshot.forEach((doc) => {
-                    builds.push({
-                        firebaseId: doc.id,
-                        ...doc.data()
-                    });
-                });
-                
-                const savedLikes = localStorage.getItem('likedBuilds');
-                if (savedLikes) {
-                    likedBuilds = new Set(JSON.parse(savedLikes));
-                }
-                
-                displayBuilds();
-            } catch (error) {
-                console.error("Error loading builds:", error);
-                document.getElementById('buildGrid').innerHTML = '<div class="no-builds">Error loading builds. Please refresh the page.</div>';
+        // Load builds and liked status
+        function loadData() {
+            const savedBuilds = localStorage.getItem('abyssusBuilds');
+            if (savedBuilds) {
+                builds = JSON.parse(savedBuilds);
             }
+            
+            const savedLikes = localStorage.getItem('likedBuilds');
+            if (savedLikes) {
+                likedBuilds = new Set(JSON.parse(savedLikes));
+            }
+        }
+
+        // Save builds to localStorage
+        function saveBuilds() {
+            localStorage.setItem('abyssusBuilds', JSON.stringify(builds));
         }
 
         // Save liked builds to localStorage
@@ -615,103 +543,54 @@
             const weaponIcon = build.weapon && weaponIcons[build.weapon] ? `<img src="${weaponIcons[build.weapon]}" class="modal-icon" alt="${build.weapon}">` : '';
             const abilityIcon = build.ability && abilityIcons[build.ability] ? `<img src="${abilityIcons[build.ability]}" class="modal-icon" alt="${build.ability}">` : '';
 
-            // Helper function to create aspect display
-            const createAspectDisplay = (aspect) => {
-                if (!aspect) return '<span style="color: #666;">None</span>';
-                const icon = aspectIcons[aspect] ? `<img src="${aspectIcons[aspect]}" alt="${aspect}" style="width: 28px; height: 28px; vertical-align: middle; margin-right: 8px;">` : '';
-                return `${icon}${aspect}`;
-            };
-
-            // Helper function to create charm display
-            const createCharmDisplay = (charm) => {
-                if (!charm) return '';
-                const icon = charmIcons[charm] ? `<img src="${charmIcons[charm]}" alt="${charm}" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 6px;">` : '';
-                return `<div style="display: inline-flex; align-items: center; margin-right: 15px;">${icon}${charm}</div>`;
-            };
+            const aspectsHTML = [build.aspect1, build.aspect2, build.aspect3]
+                .filter(a => a)
+                .map(aspect => {
+                    const icon = aspectIcons[aspect] ? `<img src="${aspectIcons[aspect]}" alt="${aspect}">` : '';
+                    return `<div class="aspect-item">${icon}${aspect}</div>`;
+                })
+                .join('');
 
             details.innerHTML = `
                 <h2 style="color: #059669; margin-bottom: 10px;">${build.buildname}</h2>
                 <p style="color: #888; margin-bottom: 20px;">Created by @${build.author} on ${new Date(build.date).toLocaleDateString()}</p>
-                <p style="margin-bottom: 25px; line-height: 1.6;">${build.description}</p>
+                <p style="margin-bottom: 20px;">${build.description}</p>
 
                 <h3 style="color: #059669; margin-bottom: 15px;">Loadout</h3>
-                
-                <!-- Two Column Layout -->
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px;">
+                <div style="background-color: #0f0f0f; padding: 20px; border-radius: 4px; margin-bottom: 20px;">
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 15px;">
+                        <div>
+                            <strong style="color: #888;">Weapon:</strong> ${weaponIcon}${build.weapon || 'None'}<br>
+                            <strong style="color: #888;">Primary:</strong> ${build.primary || 'None'}<br>
+                            <strong style="color: #888;">Secondary:</strong> ${build.secondary || 'None'}
+                        </div>
+                        <div>
+                            <strong style="color: #888;">Ability:</strong> ${abilityIcon}${build.ability || 'None'}
+                        </div>
+                    </div>
                     
-                    <!-- WEAPON COLUMN -->
-                    <div style="background-color: #0f0f0f; padding: 20px; border-radius: 8px;">
-                        <h4 style="color: #888; margin-bottom: 15px; text-align: center; font-size: 16px;">WEAPON</h4>
-                        
-                        <div style="margin-bottom: 15px;">
-                            <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                                ${weaponIcon}<strong style="font-size: 18px;">${build.weapon || 'None'}</strong>
-                            </div>
-                        </div>
+                    <div style="margin-bottom: 15px;">
+                        <strong style="color: #888;">Aspects:</strong><br>
+                        <div class="aspect-list">${aspectsHTML || 'None'}</div>
+                    </div>
 
-                        <div style="margin-bottom: 12px;">
-                            <strong style="color: #888; font-size: 13px;">Primary:</strong><br>
-                            <span style="font-size: 15px;">${build.primary || 'None'}</span>
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 15px;">
+                        <div>
+                            <strong style="color: #888;">Weapon Forge Upgrades:</strong><br>
+                            • ${build.weaponforge1 || 'None'}<br>
+                            • ${build.weaponforge2 || 'None'}<br>
+                            • ${build.weaponforge3 || 'None'}
                         </div>
-
-                        <div style="margin-bottom: 15px;">
-                            <strong style="color: #888; font-size: 13px;">Secondary:</strong><br>
-                            <span style="font-size: 15px;">${build.secondary || 'None'}</span>
-                        </div>
-
-                        <div style="border-top: 1px solid #2a2a2a; padding-top: 15px; margin-top: 15px;">
-                            <strong style="color: #888; font-size: 13px; display: block; margin-bottom: 10px;">Aspects:</strong>
-                            <div style="margin-bottom: 8px;">${createAspectDisplay(build.aspect1)}</div>
-                            <div style="margin-bottom: 8px;">${createAspectDisplay(build.aspect2)}</div>
-                        </div>
-
-                        <div style="border-top: 1px solid #2a2a2a; padding-top: 15px; margin-top: 15px;">
-                            <strong style="color: #888; font-size: 13px; display: block; margin-bottom: 8px;">Forge Upgrades:</strong>
-                            <div style="font-size: 14px; line-height: 1.8;">
-                                ${build.weaponforge1 ? '• ' + build.weaponforge1 + '<br>' : ''}
-                                ${build.weaponforge2 ? '• ' + build.weaponforge2 + '<br>' : ''}
-                                ${build.weaponforge3 ? '• ' + build.weaponforge3 + '<br>' : ''}
-                                ${!build.weaponforge1 && !build.weaponforge2 && !build.weaponforge3 ? '<span style="color: #666;">None</span>' : ''}
-                            </div>
+                        <div>
+                            <strong style="color: #888;">Ability Forge Upgrades:</strong><br>
+                            • ${build.abilityforge1 || 'None'}<br>
+                            • ${build.abilityforge2 || 'None'}<br>
+                            • ${build.abilityforge3 || 'None'}
                         </div>
                     </div>
 
-                    <!-- ABILITY COLUMN -->
-                    <div style="background-color: #0f0f0f; padding: 20px; border-radius: 8px;">
-                        <h4 style="color: #888; margin-bottom: 15px; text-align: center; font-size: 16px;">ABILITY</h4>
-                        
-                        <div style="margin-bottom: 15px;">
-                            <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                                ${abilityIcon}<strong style="font-size: 18px;">${build.ability || 'None'}</strong>
-                            </div>
-                        </div>
-
-                        <div style="height: 74px;"></div>
-
-                        <div style="border-top: 1px solid #2a2a2a; padding-top: 15px; margin-top: 15px;">
-                            <strong style="color: #888; font-size: 13px; display: block; margin-bottom: 10px;">Aspect:</strong>
-                            <div style="margin-bottom: 8px;">${createAspectDisplay(build.aspect3)}</div>
-                        </div>
-
-                        <div style="border-top: 1px solid #2a2a2a; padding-top: 15px; margin-top: 15px;">
-                            <strong style="color: #888; font-size: 13px; display: block; margin-bottom: 8px;">Forge Upgrades:</strong>
-                            <div style="font-size: 14px; line-height: 1.8;">
-                                ${build.abilityforge1 ? '• ' + build.abilityforge1 + '<br>' : ''}
-                                ${build.abilityforge2 ? '• ' + build.abilityforge2 + '<br>' : ''}
-                                ${build.abilityforge3 ? '• ' + build.abilityforge3 + '<br>' : ''}
-                                ${!build.abilityforge1 && !build.abilityforge2 && !build.abilityforge3 ? '<span style="color: #666;">None</span>' : ''}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CHARMS -->
-                <div style="background-color: #0f0f0f; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-                    <strong style="color: #888; font-size: 13px; display: block; margin-bottom: 12px;">Charms:</strong>
-                    <div style="display: flex; flex-wrap: wrap; align-items: center;">
-                        ${createCharmDisplay(build.charm1)}
-                        ${createCharmDisplay(build.charm2)}
-                        ${!build.charm1 && !build.charm2 ? '<span style="color: #666;">None</span>' : ''}
+                    <div>
+                        <strong style="color: #888;">Charms:</strong> ${build.charm1 || 'None'}${build.charm1 && build.charm2 ? ' • ' : ''}${build.charm2 || ''}
                     </div>
                 </div>
 
@@ -739,14 +618,7 @@
                 build.likes++;
             }
 
-            // Update in Firebase
-            if (build.firebaseId) {
-                const buildRef = window.firestore.doc(window.db, 'builds', build.firebaseId);
-                window.firestore.updateDoc(buildRef, {
-                    likes: build.likes
-                }).catch(error => console.error("Error updating likes:", error));
-            }
-
+            saveBuilds();
             saveLikes();
             displayBuilds();
             openModal(index);
