@@ -17,7 +17,6 @@
             color: white;
         }
 
-        /* Navbar */
         .navbar {
             background-color: #000;
             border-bottom: 3px solid #059669;
@@ -56,7 +55,6 @@
             background-color: #1a1a1a;
         }
 
-        /* Creator Content */
         .creator-container {
             max-width: 800px;
             margin: 0 auto;
@@ -212,11 +210,9 @@
         }
     </style>
     <script type="module">
-        // Firebase imports
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
         import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
-        // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyCBpZluc0v2dxu1GhgQv8SucSKwmM2ESdU",
             authDomain: "abyssus-builds.firebaseapp.com",
@@ -226,17 +222,14 @@
             appId: "1:139945292825:web:f730c55dded04e689fa688"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // Make functions available globally
         window.db = db;
         window.firestore = { collection, addDoc };
     </script>
 </head>
 <body>
-    <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="logo">
             <img src="abyssus_builds.png" alt="Abyssus Builds" style="height: 50px;">
@@ -264,7 +257,6 @@
 
         <div class="form-section">
             <div class="build-content">
-                <!-- Weapon Column -->
                 <div class="weapon-column">
                     <div class="section-header">Weapon</div>
                     <div class="select-with-icon" style="margin-bottom: 15px;">
@@ -303,7 +295,7 @@
                         </div>
                     </div>
 
-                    <div class="form-row" style="margin-top: 2px;">
+                    <div class="form-row">
                         <div class="form-col">
                             <label>Aspect</label>
                             <div class="select-with-icon">
@@ -373,7 +365,6 @@
                     </div>
                 </div>
 
-                <!-- Ability Column -->
                 <div class="ability-column">
                     <div class="section-header">Ability</div>
                     <div class="select-with-icon" style="margin-bottom: 15px;">
@@ -388,9 +379,9 @@
                         </select>
                     </div>
 
-                    <div style="height: 75px; margin-bottom: 0px;"></div>
+                    <div style="height: 75px; margin-bottom: 15px;"></div>
 
-                    <div style="margin-bottom: 15px; margin-top: 2px;">
+                    <div style="margin-bottom: 15px;">
                         <label style="display: block; background-color: #2C3539; padding: 8px; text-align: center; font-weight: bold; border-radius: 4px; margin-bottom: 5px;">Aspect</label>
                         <div class="select-with-icon">
                             <img id="aspect3Icon" class="selected-icon" src="" alt="">
@@ -548,6 +539,7 @@
     </div>
 
     <script>
+        // Icon mappings
         const weaponIcons = {
             'Engine Rifle': 'images/weapons/Engine_Rifle_Icon.png',
             'Shotgun': 'images/weapons/Shotgun_Icon.png',
@@ -636,4 +628,10 @@
             'Large Caliber': 'images/primaries/Large_Caliber.png',
             'Automatic': 'images/primaries/Automatic.png',
             'Fan Fire': 'images/primaries/Fan_Fire.png',
-            'Dynamo': 'images
+            'Dynamo': 'images/primaries/Dynamo.png',
+            'Precision Shot': 'images/primaries/Precision_Shot.png',
+            'Pierce': 'images/primaries/Pierce.png',
+            'Return Arrow': 'images/primaries/Return_Arrow.png',
+            'Flak Cannon': 'images/primaries/Flak_Cannon.png',
+            'Seekers': 'images/primaries/Seekers.png',
+            'Rapi
