@@ -177,8 +177,23 @@
             background-color: #047857;
         }
 
+        .submit-btn:disabled {
+            background-color: #666;
+            cursor: not-allowed;
+        }
+
         .success-message {
             background-color: #059669;
+            color: white;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .error-message {
+            background-color: #dc2626;
             color: white;
             padding: 15px;
             border-radius: 4px;
@@ -246,6 +261,8 @@
         <div id="successMessage" class="success-message">
             Build created successfully! <a href="index.html" style="color: white; text-decoration: underline;">View all builds</a>
         </div>
+
+        <div id="errorMessage" class="error-message"></div>
 
         <div class="form-section">
             <div class="input-group">
@@ -535,7 +552,7 @@
             <textarea id="description" placeholder="Here should be a short description."></textarea>
         </div>
 
-        <button class="submit-btn" onclick="addBuild()">Add Build</button>
+        <button class="submit-btn" id="submitBtn" onclick="addBuild()">Add Build</button>
     </div>
 
     <script>
@@ -639,7 +656,6 @@
             'Hazardous Goo': 'images/primaries/Hazardous_Goo.png'
         };
 
-        // Special handling for weapon-specific primaries with same names
         const getPrimaryIcon = (weapon, primary) => {
             if (weapon === 'Brine Revolver') {
                 if (primary === 'Semi-automatic') return 'images/primaries/Semi-automatic_Revolver.png';
@@ -805,7 +821,6 @@
                 icon.style.display = 'none';
             }
 
-            // Update primary options based on weapon
             const primarySelect = document.getElementById('primarySelect');
             const primaryIcon = document.getElementById('primaryIcon');
             primarySelect.innerHTML = '<option value="">Select Primary</option>';
@@ -820,7 +835,6 @@
                 });
             }
 
-            // Update secondary options based on weapon
             const secondarySelect = document.getElementById('secondarySelect');
             const secondaryIcon = document.getElementById('secondaryIcon');
             secondarySelect.innerHTML = '<option value="">Select Secondary</option>';
@@ -835,7 +849,6 @@
                 });
             }
 
-            // Update weapon forge upgrade options based on weapon
             const forgeSelects = ['weaponForge1', 'weaponForge2', 'weaponForge3'];
             forgeSelects.forEach(selectId => {
                 const select = document.getElementById(selectId);
@@ -875,7 +888,6 @@
                 }
             });
 
-            // Disable duplicate selections within weapon forges
             const selectedWeaponForges = [
                 document.getElementById('weaponForge1').value,
                 document.getElementById('weaponForge2').value,
@@ -933,7 +945,6 @@
                 icon.style.display = 'none';
             }
 
-            // Update ability forge upgrade options based on ability
             const forgeSelects = ['abilityForge1', 'abilityForge2', 'abilityForge3'];
             forgeSelects.forEach(selectId => {
                 const select = document.getElementById(selectId);
@@ -970,7 +981,6 @@
                 }
             });
 
-            // Disable duplicate selections within ability forges
             const selectedAbilityForges = [
                 document.getElementById('abilityForge1').value,
                 document.getElementById('abilityForge2').value,
@@ -991,7 +1001,6 @@
         }
 
         function updateForgeAvailability() {
-            // Count total selected forge upgrades
             const allForgeSelects = [
                 'weaponForge1', 'weaponForge2', 'weaponForge3',
                 'abilityForge1', 'abilityForge2', 'abilityForge3'
@@ -1000,7 +1009,6 @@
             const selectedForges = allForgeSelects.map(id => document.getElementById(id).value).filter(v => v !== '');
             const selectedCount = selectedForges.length;
 
-            // Disable empty forge slots if 3 are already selected
             allForgeSelects.forEach(selectId => {
                 const select = document.getElementById(selectId);
                 if (select.value === '' && selectedCount >= 3) {
@@ -1082,65 +1090,72 @@
             });
         }
 
-        function addBuild() {
-            const buildName = document.getElementById('buildName').value || 'Untitled Build';
-            const authorName = document.getElementById('authorName').value || 'Anonymous';
-            const weapon = document.getElementById('weaponSelect').value;
-            const ability = document.getElementById('abilitySelect').value;
-            const primary = document.getElementById('primarySelect').value;
-            const secondary = document.getElementById('secondarySelect').value;
-            const aspect1 = document.getElementById('aspect1').value;
-            const aspect2 = document.getElementById('aspect2').value;
-            const aspect3 = document.getElementById('aspect3').value;
-            const weaponForge1 = document.getElementById('weaponForge1').value;
-            const weaponForge2 = document.getElementById('weaponForge2').value;
-            const weaponForge3 = document.getElementById('weaponForge3').value;
-            const abilityForge1 = document.getElementById('abilityForge1').value;
-            const abilityForge2 = document.getElementById('abilityForge2').value;
-            const abilityForge3 = document.getElementById('abilityForge3').value;
-            const charm1 = document.getElementById('charm1').value;
-            const charm2 = document.getElementById('charm2').value;
-            const description = document.getElementById('description').value || 'No description provided.';
+        async function addBuild() {
+            const submitBtn = document.getElementById('submitBtn');
+            const errorMsg = document.getElementById('errorMessage');
+            
+            try {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Creating...';
+                errorMsg.style.display = 'none';
 
-            const build = {
-                id: Date.now(),
-                buildname: buildName,
-                author: authorName,
-                weapon: weapon,
-                ability: ability,
-                primary: primary,
-                secondary: secondary,
-                aspect1: aspect1,
-                aspect2: aspect2,
-                aspect3: aspect3,
-                weaponforge1: weaponForge1,
-                weaponforge2: weaponForge2,
-                weaponforge3: weaponForge3,
-                abilityforge1: abilityForge1,
-                abilityforge2: abilityForge2,
-                abilityforge3: abilityForge3,
-                charm1: charm1,
-                charm2: charm2,
-                description: description,
-                date: new Date().toISOString(),
-                likes: 0
-            };
+                const buildName = document.getElementById('buildName').value || 'Untitled Build';
+                const authorName = document.getElementById('authorName').value || 'Anonymous';
+                const weapon = document.getElementById('weaponSelect').value;
+                const ability = document.getElementById('abilitySelect').value;
+                const primary = document.getElementById('primarySelect').value;
+                const secondary = document.getElementById('secondarySelect').value;
+                const aspect1 = document.getElementById('aspect1').value;
+                const aspect2 = document.getElementById('aspect2').value;
+                const aspect3 = document.getElementById('aspect3').value;
+                const weaponForge1 = document.getElementById('weaponForge1').value;
+                const weaponForge2 = document.getElementById('weaponForge2').value;
+                const weaponForge3 = document.getElementById('weaponForge3').value;
+                const abilityForge1 = document.getElementById('abilityForge1').value;
+                const abilityForge2 = document.getElementById('abilityForge2').value;
+                const abilityForge3 = document.getElementById('abilityForge3').value;
+                const charm1 = document.getElementById('charm1').value;
+                const charm2 = document.getElementById('charm2').value;
+                const description = document.getElementById('description').value || 'No description provided.';
 
-            let builds = [];
-            const savedBuilds = localStorage.getItem('abyssusBuilds');
-            if (savedBuilds) {
-                builds = JSON.parse(savedBuilds);
+                const build = {
+                    buildname: buildName,
+                    author: authorName,
+                    weapon: weapon,
+                    ability: ability,
+                    primary: primary,
+                    secondary: secondary,
+                    aspect1: aspect1,
+                    aspect2: aspect2,
+                    aspect3: aspect3,
+                    weaponforge1: weaponForge1,
+                    weaponforge2: weaponForge2,
+                    weaponforge3: weaponForge3,
+                    abilityforge1: abilityForge1,
+                    abilityforge2: abilityForge2,
+                    abilityforge3: abilityForge3,
+                    charm1: charm1,
+                    charm2: charm2,
+                    description: description,
+                    date: new Date().toISOString(),
+                    likes: 0
+                };
+
+                await window.firestore.addDoc(window.firestore.collection(window.db, 'builds'), build);
+
+                document.getElementById('successMessage').style.display = 'block';
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            } catch (error) {
+                console.error('Error adding build:', error);
+                errorMsg.textContent = 'Error creating build: ' + error.message;
+                errorMsg.style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Add Build';
             }
-
-            builds.push(build);
-            localStorage.setItem('abyssusBuilds', JSON.stringify(builds));
-
-            document.getElementById('successMessage').style.display = 'block';
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 1500);
         }
-    </script>
+        </script>
 </body>
 </html>
 
