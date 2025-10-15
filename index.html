@@ -623,7 +623,7 @@
             const build = builds[index];
             const modal = document.getElementById('buildModal');
             const details = document.getElementById('buildDetails');
-            const isLiked = likedBuilds.has(build.id);
+            const isLiked = likedBuilds.has(build.firebaseId);
 
             const weaponIcon = build.weapon && weaponIcons[build.weapon] ? `<img src="${weaponIcons[build.weapon]}" class="modal-icon" alt="${build.weapon}">` : '';
             const abilityIcon = build.ability && abilityIcons[build.ability] ? `<img src="${abilityIcons[build.ability]}" class="modal-icon" alt="${build.ability}">` : '';
@@ -695,4 +695,82 @@
                         
                         <div style="margin-bottom: 15px;">
                             <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                                ${
+                                ${abilityIcon}<strong style="font-size: 18px;">${build.ability || 'None'}</strong>
+                            </div>
+                        </div>
+						<div style="margin-bottom: 15px;">
+                            <strong style="color: #888; font-size: 13px;">Aspect:</strong><br>
+                            <span style="font-size: 15px;">${createAspectDisplay(build.aspect3)}</span>
+                        </div>
+
+                        <div style="border-top: 1px solid #2a2a2a; padding-top: 15px; margin-top: 15px;">
+                            <strong style="color: #888; font-size: 13px; display: block; margin-bottom: 8px;">Forge Upgrades:</strong>
+                            <div style="font-size: 14px; line-height: 1.8;">
+                                ${build.abilityforge1 ? '• ' + build.abilityforge1 + '<br>' : ''}
+                                ${build.abilityforge2 ? '• ' + build.abilityforge2 + '<br>' : ''}
+                                ${build.abilityforge3 ? '• ' + build.abilityforge3 + '<br>' : ''}
+                                ${!build.abilityforge1 && !build.abilityforge2 && !build.abilityforge3 ? '<span style="color: #666;">None</span>' : ''}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="color: #059669; margin-bottom: 15px;">Charms</h3>
+                <div style="margin-bottom: 25px; display: flex; flex-wrap: wrap; gap: 10px;">
+                    ${createCharmDisplay(build.charm1)}
+                    ${createCharmDisplay(build.charm2)}
+                </div>
+
+                <div style="display: flex; gap: 10px;">
+                    <button class="action-btn ${isLiked ? 'liked' : ''}" onclick="toggleLike(${index}, this)">
+                        ${isLiked ? '❤️ Liked' : '🤍 Like'}
+                    </button>
+                    <button class="action-btn share-btn" onclick="shareBuild('${build.firebaseId}')">
+                        📋 Copy Link
+                    </button>
+                </div>
+            `;
+
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('buildModal').style.display = 'none';
+            window.history.pushState({}, '', window.location.pathname);
+        }
+
+        function toggleLike(index, button) {
+            const build = builds[index];
+            if (likedBuilds.has(build.firebaseId)) {
+                likedBuilds.delete(build.firebaseId);
+            } else {
+                likedBuilds.add(build.firebaseId);
+            }
+            saveLikes();
+            button.classList.toggle('liked');
+            button.textContent = likedBuilds.has(build.firebaseId) ? '❤️ Liked' : '🤍 Like';
+        }
+
+        function shareBuild(firebaseId) {
+            const url = `${window.location.origin}${window.location.pathname}?build=${firebaseId}`;
+            navigator.clipboard.writeText(url).then(() => {
+                alert('Build link copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                alert('Failed to copy link');
+            });
+        }
+
+        // Initialize the page
+        loadData();
+
+        // Close modal when clicking outside of it
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('buildModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
