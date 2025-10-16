@@ -736,8 +736,8 @@
 
             const createCharmDisplay = (charm) => {
                 if (!charm) return '';
-                const icon = charmIcons[charm] ? `<img src="${charmIcons[charm]}" alt="${charm}" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 6px;">` : '';
-                return `<div style="display: inline-flex; align-items: center; margin-right: 15px;">${icon}${charm}</div>`;
+                const icon = charmIcons[charm] ? `<img src="${charmIcons[charm]}" alt="${charm}" style="width: 28px; height: 28px; object-fit: contain; vertical-align: middle; margin-right: 8px;">` : '';
+                return `<div style="display: inline-flex; align-items: center; margin-right: 15px; white-space: nowrap;">${icon}${charm}</div>`;
             };
 
             const createPrimaryDisplay = (primary, weapon) => {
@@ -838,7 +838,7 @@
 
                 <div style="background-color: #0f0f0f; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
                     <h4 style="color: #888; margin-bottom: 15px; text-align: center; font-size: 16px;">CHARMS</h4>
-                    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
+                    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; align-items: center;">
                         ${createCharmDisplay(build.charm1)}
                         ${createCharmDisplay(build.charm2)}
                     </div>
@@ -895,6 +895,7 @@
     </script>
 </body>
 </html>
+
 
 
 
