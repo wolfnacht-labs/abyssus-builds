@@ -659,24 +659,24 @@
                             </div>
                         </div>
 
-                        <div style="margin-bottom: 12px;">
-                            <strong style="color: #888; font-size: 13px;">Primary:</strong><br>
-                            <span style="font-size: 15px;">${build.primary || 'None'}</span>
-                        </div>
-
-                        <div style="margin-bottom: 15px;">
-                            <strong style="color: #888; font-size: 13px;">Secondary:</strong><br>
-                            <span style="font-size: 15px;">${build.secondary || 'None'}</span>
-                        </div>
-
-                        <div style="border-top: 1px solid #2a2a2a; padding-top: 15px; margin-top: 15px;">
-                            <strong style="color: #888; font-size: 13px; display: block; margin-bottom: 10px;">Aspects:</strong>
-                            <div style="margin-bottom: 8px;">
-                                <span style="color: #666; font-size: 11px; text-transform: uppercase; display: block; margin-bottom: 4px;">Weapon Aspect #1</span>
+                        <div style="display: flex; gap: 20px; margin-bottom: 15px;">
+                            <div style="flex: 1;">
+                                <strong style="color: #888; font-size: 13px;">Primary:</strong><br>
+                                <span style="font-size: 15px;">${build.primary || 'None'}</span>
+                            </div>
+                            <div style="flex: 1; border-left: 1px solid #2a2a2a; padding-left: 20px;">
+                                <strong style="color: #888; font-size: 13px;">Aspect:</strong><br>
                                 ${createAspectDisplay(build.aspect1)}
                             </div>
-                            <div style="margin-bottom: 8px;">
-                                <span style="color: #666; font-size: 11px; text-transform: uppercase; display: block; margin-bottom: 4px;">Weapon Aspect #2</span>
+                        </div>
+
+                        <div style="display: flex; gap: 20px; margin-bottom: 15px;">
+                            <div style="flex: 1;">
+                                <strong style="color: #888; font-size: 13px;">Secondary:</strong><br>
+                                <span style="font-size: 15px;">${build.secondary || 'None'}</span>
+                            </div>
+                            <div style="flex: 1; border-left: 1px solid #2a2a2a; padding-left: 20px;">
+                                <strong style="color: #888; font-size: 13px;">Aspect:</strong><br>
                                 ${createAspectDisplay(build.aspect2)}
                             </div>
                         </div>
@@ -708,19 +708,21 @@
                         <div style="border-top: 1px solid #2a2a2a; padding-top: 15px; margin-top: 15px;">
                             <strong style="color: #888; font-size: 13px; display: block; margin-bottom: 8px;">Forge Upgrades:</strong>
                             <div style="font-size: 14px; line-height: 1.8;">
-                                ${build.abilityforge1 ? '• ' + build.abilityforge1 + '<br>' : ''}
-                                ${build.abilityforge2 ? '• ' + build.abilityforge2 + '<br>' : ''}
-                                ${build.abilityforge3 ? '• ' + build.abilityforge3 + '<br>' : ''}
-                                ${!build.abilityforge1 && !build.abilityforge2 && !build.abilityforge3 ? '<span style="color: #666;">None</span>' : ''}
+                                ${build.weaponforge1 ? '• ' + build.weaponforge1 + '<br>' : ''}
+                                ${build.weaponforge2 ? '• ' + build.weaponforge2 + '<br>' : ''}
+                                ${build.weaponforge3 ? '• ' + build.weaponforge3 + '<br>' : ''}
+                                ${!build.weaponforge1 && !build.weaponforge2 && !build.weaponforge3 ? '<span style="color: #666;">None</span>' : ''}
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <h3 style="color: #059669; margin-bottom: 15px;">Charms</h3>
-                <div style="margin-bottom: 25px; display: flex; flex-wrap: wrap; gap: 10px;">
-                    ${createCharmDisplay(build.charm1)}
-                    ${createCharmDisplay(build.charm2)}
+                <div style="background-color: #0f0f0f; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                    <h4 style="color: #888; margin-bottom: 15px; text-align: center; font-size: 16px;">CHARMS</h4>
+                    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
+                        ${createCharmDisplay(build.charm1)}
+                        ${createCharmDisplay(build.charm2)}
+                    </div>
                 </div>
 
                 <div style="display: flex; gap: 10px;">
@@ -774,6 +776,7 @@
     </script>
 </body>
 </html>
+
 
 
 
