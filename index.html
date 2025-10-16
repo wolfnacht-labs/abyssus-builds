@@ -619,6 +619,10 @@
 
         function openModal(index) {
             const build = builds[index];
+            if (!build) {
+                console.error('Build not found at index:', index);
+                return;
+            }
             const modal = document.getElementById('buildModal');
             const details = document.getElementById('buildDetails');
             const isLiked = likedBuilds.has(build.firebaseId);
@@ -720,7 +724,7 @@
                 </div>
 
                 <div style="display: flex; gap: 10px;">
-                    <button class="action-btn ${isLiked ? 'liked' : ''}" onclick="toggleLike(${index}, this)">
+                    <button class="action-btn ${isLiked ? 'liked' : ''}" onclick="toggleLike('${build.firebaseId}', this)">
                         ${isLiked ? '❤️ Liked' : '🤍 Like'}
                     </button>
                     <button class="action-btn share-btn" onclick="shareBuild('${build.firebaseId}')">
@@ -737,16 +741,15 @@
             window.history.pushState({}, '', window.location.pathname);
         }
 
-        function toggleLike(index, button) {
-            const build = builds[index];
-            if (likedBuilds.has(build.firebaseId)) {
-                likedBuilds.delete(build.firebaseId);
+        function toggleLike(firebaseId, button) {
+            if (likedBuilds.has(firebaseId)) {
+                likedBuilds.delete(firebaseId);
             } else {
-                likedBuilds.add(build.firebaseId);
+                likedBuilds.add(firebaseId);
             }
             saveLikes();
             button.classList.toggle('liked');
-            button.textContent = likedBuilds.has(build.firebaseId) ? '❤️ Liked' : '🤍 Like';
+            button.textContent = likedBuilds.has(firebaseId) ? '❤️ Liked' : '🤍 Like';
         }
 
         function shareBuild(firebaseId) {
@@ -771,6 +774,7 @@
     </script>
 </body>
 </html>
+
 
 
 
