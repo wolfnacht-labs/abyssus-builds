@@ -684,10 +684,10 @@
                         <div style="border-top: 1px solid #2a2a2a; padding-top: 15px; margin-top: 15px;">
                             <strong style="color: #888; font-size: 13px; display: block; margin-bottom: 8px;">Forge Upgrades:</strong>
                             <div style="font-size: 14px; line-height: 1.8;">
-                                ${build.abilityforge1 ? '• ' + build.abilityforge1 + '<br>' : ''}
-                                ${build.abilityforge2 ? '• ' + build.abilityforge2 + '<br>' : ''}
-                                ${build.abilityforge3 ? '• ' + build.abilityforge3 + '<br>' : ''}
-                                ${!build.abilityforge1 && !build.abilityforge2 && !build.abilityforge3 ? '<span style="color: #666;">None</span>' : ''}
+                                ${build.weaponforge1 ? '• ' + build.weaponforge1 + '<br>' : ''}
+                                ${build.weaponforge2 ? '• ' + build.weaponforge2 + '<br>' : ''}
+                                ${build.weaponforge3 ? '• ' + build.weaponforge3 + '<br>' : ''}
+                                ${!build.weaponforge1 && !build.weaponforge2 && !build.weaponforge3 ? '<span style="color: #666;">None</span>' : ''}
                             </div>
                         </div>
                     </div>
@@ -707,10 +707,10 @@
 
                         <div style="border-top: 1px solid #2a2a2a; padding-top: 15px; margin-top: 15px;">
                             <strong style="color: #888; font-size: 13px; display: block; margin-bottom: 8px;">Forge Upgrades:</strong>
-                            <div style="font-size: 14px; display: flex; flex-wrap: wrap; gap: 15px;">
-                                ${build.weaponforge1 ? '<span>• ' + build.abilityforge1 + '</span>' : ''}
-                                ${build.weaponforge2 ? '<span>• ' + build.abilityforge2 + '</span>' : ''}
-                                ${build.weaponforge3 ? '<span>• ' + build.abilityforge3 + '</span>' : ''}
+                            <div style="font-size: 14px; line-height: 1.8;">
+                                ${build.abilityforge1 ? '• ' + build.abilityforge1 + '<br>' : ''}
+                                ${build.abilityforge2 ? '• ' + build.abilityforge2 + '<br>' : ''}
+                                ${build.abilityforge3 ? '• ' + build.abilityforge3 + '<br>' : ''}
                                 ${!build.abilityforge1 && !build.abilityforge2 && !build.abilityforge3 ? '<span style="color: #666;">None</span>' : ''}
                             </div>
                         </div>
@@ -776,6 +776,7 @@
     </script>
 </body>
 </html>
+
 
 
 
