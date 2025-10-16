@@ -554,7 +554,7 @@
         });
 
         function filterBuilds() {
-            let filtered = [...builds];
+    		let filtered = [...(window.builds || [])];
 
             if (currentWeaponFilter !== 'all') {
                 filtered = filtered.filter(b => b.weapon === currentWeaponFilter);
@@ -772,6 +772,7 @@
     </script>
 </body>
 </html>
+
 
 
 
