@@ -737,7 +737,7 @@
             const createCharmDisplay = (charm) => {
                 if (!charm) return '';
                 const icon = charmIcons[charm] ? `<img src="${charmIcons[charm]}" alt="${charm}" style="width: 28px; height: 28px; object-fit: contain; vertical-align: middle; margin-right: 8px;">` : '';
-                return `<div style="display: inline-flex; align-items: center; margin-right: 15px; white-space: nowrap;">${icon}${charm}</div>`;
+                return `<div style="display: inline-flex; align-items: center; white-space: nowrap;">${icon}${charm}</div>`;
             };
 
             const createPrimaryDisplay = (primary, weapon) => {
@@ -895,6 +895,7 @@
     </script>
 </body>
 </html>
+
 
 
 
