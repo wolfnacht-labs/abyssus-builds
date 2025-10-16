@@ -743,14 +743,21 @@
             const createPrimaryDisplay = (primary, weapon) => {
                 if (!primary) return '<span style="color: #666;">None</span>';
                 const iconPath = getPrimaryIcon(weapon, primary);
-                const icon = iconPath ? `<img src="${iconPath}" alt="${primary}" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;">` : '';
+                const icon = iconPath ? `<img src="${iconPath}" alt="${primary}" style="width: 28px; height: 28px; vertical-align: middle; margin-right: 6px;">` : '';
                 return `${icon}${primary}`;
+            };
+
+			const createSecondaryDisplay = (secondary, weapon) => {
+                if (!secondary) return '<span style="color: #666;">None</span>';
+                const iconPath = secondaryIcons[secondary];
+                const icon = iconPath ? `<img src="${iconPath}" alt="${secondary}" style="width: 28px; height: 28px; vertical-align: middle; margin-right: 8px;">` : '';
+                return `${icon}${secondary}`;
             };
 
 			const createForgeDisplay = (forge, weaponOrAbility) => {
                 if (!forge) return '';
                 const iconPath = getForgeIcon(forge, weaponOrAbility);
-                const icon = iconPath ? `<img src="${iconPath}" alt="${forge}" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 6px;">` : '';
+                const icon = iconPath ? `<img src="${iconPath}" alt="${forge}" style="width: 28px; height: 28px; vertical-align: middle; margin-right: 6px;">` : '';
                 return `${icon}${forge}`;
             };
 
@@ -785,7 +792,7 @@
                         <div style="display: flex; gap: 20px; margin-bottom: 15px;">
                             <div style="flex: 1;">
                                 <strong style="color: #888; font-size: 13px;">Secondary:</strong><br>
-                                <span style="font-size: 15px;">${build.secondary || 'None'}</span>
+                                <span style="font-size: 15px;">${createSecondaryDisplay(build.secondary, build.weapon)}</span>
                             </div>
                             <div style="flex: 1; border-left: 1px solid #2a2a2a; padding-left: 20px;">
                                 <strong style="color: #888; font-size: 13px;">Aspect:</strong><br>
@@ -888,6 +895,7 @@
     </script>
 </body>
 </html>
+
 
 
 
