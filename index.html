@@ -438,12 +438,10 @@
     <script>
 		// These will be set by the module script
         let builds = window.builds || [];
-        let likedBuilds = window.likedBuilds || new Set();
-        let builds = [];
+		let likedBuilds = window.likedBuilds || new Set();
         let currentSort = 'recent';
         let currentWeaponFilter = 'all';
         let currentAbilityFilter = 'all';
-        let likedBuilds = new Set();
 
         const weaponIcons = {
             'Engine Rifle': 'images/weapons/Engine_Rifle_Icon.png',
@@ -808,4 +806,5 @@
     </script>
 </body>
 </html>
+
 
