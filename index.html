@@ -803,9 +803,9 @@
                         <div style="border-top: 1px solid #2a2a2a; padding-top: 15px; margin-top: 15px;">
                             <strong style="color: #888; font-size: 13px; display: block; margin-bottom: 8px;">Forge Upgrades:</strong>
                             <div style="font-size: 14px; line-height: 1.8;">
-                                ${build.weaponforge1 ? '• ' + createForgeDisplay(build.weaponforge1, build.weapon) + '<br>' : ''}
-                                ${build.weaponforge2 ? '• ' + createForgeDisplay(build.weaponforge2, build.weapon) + '<br>' : ''}
-                                ${build.weaponforge3 ? '• ' + createForgeDisplay(build.weaponforge3, build.weapon) + '<br>' : ''}
+                                ${build.weaponforge1 ? createForgeDisplay(build.weaponforge1, build.weapon) + '<br>' : ''}
+                                ${build.weaponforge2 ? createForgeDisplay(build.weaponforge2, build.weapon) + '<br>' : ''}
+                                ${build.weaponforge3 ? createForgeDisplay(build.weaponforge3, build.weapon) + '<br>' : ''}
                                 ${!build.weaponforge1 && !build.weaponforge2 && !build.weaponforge3 ? '<span style="color: #666;">None</span>' : ''}
                             </div>
                         </div>
@@ -895,6 +895,7 @@
     </script>
 </body>
 </html>
+
 
 
 
