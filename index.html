@@ -277,11 +277,11 @@
         }
 
         .action-btn.share-btn {
-            background-color: #3B82F6;
+            background-color: #232a2e;
         }
 
         .action-btn.share-btn:hover {
-            background-color: #2563EB;
+            background-color: #313537;
         }
 
         .modal-icon {
@@ -608,10 +608,9 @@
             `).join('');
         }
 
-        function openModalByFirebaseId(firebaseId) {
-            const index = builds.findIndex(b => b.firebaseId === firebaseId);
+       function openModalByFirebaseId(firebaseId) {
+            const index = window.builds.findIndex(b => b.firebaseId === firebaseId);
             if (index !== -1) {
-                // Update URL without reloading page
                 const newUrl = `${window.location.pathname}?build=${firebaseId}`;
                 window.history.pushState({buildId: firebaseId}, '', newUrl);
                 openModal(index);
@@ -772,6 +771,7 @@
     </script>
 </body>
 </html>
+
 
 
 
