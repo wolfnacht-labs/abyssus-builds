@@ -618,7 +618,7 @@
         }
 
         function openModal(index) {
-            const build = builds[index];
+            const build = window.builds[index];
             if (!build) {
                 console.error('Build not found at index:', index);
                 return;
@@ -774,6 +774,7 @@
     </script>
 </body>
 </html>
+
 
 
 
