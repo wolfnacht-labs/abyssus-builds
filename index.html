@@ -344,7 +344,7 @@
                 document.getElementById('buildGrid').innerHTML = '<div class="no-builds">Error loading builds. Please refresh the page.</div>';
             }
         }
-
+     setTimeout(loadData, 100);
     </script>
 </head>
 <body>
@@ -518,41 +518,6 @@
             'Productive': 'images/charms/Charm_Common_Icon.png'
         };
 
-        // Load builds from Firebase
-        async function loadData() {
-            try {
-                const querySnapshot = await window.firestore.getDocs(window.firestore.collection(window.db, 'builds'));
-                builds = [];
-                querySnapshot.forEach((doc) => {
-                    builds.push({
-                        firebaseId: doc.id,
-                        ...doc.data()
-                    });
-                });
-                
-                const savedLikes = localStorage.getItem('likedBuilds');
-                if (savedLikes) {
-                    likedBuilds = new Set(JSON.parse(savedLikes));
-                }
-
-                // Check if URL has build ID
-                const urlParams = new URLSearchParams(window.location.search);
-                const buildId = urlParams.get('build');
-                if (buildId) {
-                    const buildIndex = builds.findIndex(b => b.firebaseId === buildId);
-                    if (buildIndex !== -1) {
-                        displayBuilds();
-                        openModal(buildIndex);
-                        return;
-                    }
-                }
-                
-                displayBuilds();
-            } catch (error) {
-                console.error("Error loading builds:", error);
-                document.getElementById('buildGrid').innerHTML = '<div class="no-builds">Error loading builds. Please refresh the page.</div>';
-            }
-        }
 
         // Save liked builds to localStorage
         function saveLikes() {
@@ -806,5 +771,6 @@
     </script>
 </body>
 </html>
+
 
 
