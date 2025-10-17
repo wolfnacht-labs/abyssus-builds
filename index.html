@@ -15,7 +15,7 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #0f0f0f;
-            color: #c0c0c0;
+            color: white;
         }
 
         /* Navbar */
@@ -43,7 +43,7 @@
         }
 
         .nav-links a {
-            color: #b0b0b0;
+            color: white;
             text-decoration: none;
             padding: 0 40px;
             display: flex;
@@ -99,7 +99,7 @@
             cursor: pointer;
             transition: background-color 0.2s;
             font-size: 14px;
-            color: #a8a8a8;
+            color: white;
         }
 
         .filter-option img {
@@ -114,7 +114,7 @@
 
         .filter-option.active {
             background-color: #059669;
-            color: #ffffff;
+            color: #000;
         }
 
         /* Build Grid */
@@ -191,7 +191,7 @@
         }
 
         .build-info-value {
-            color: #c0c0c0;
+            color: white;
         }
 
         .build-card-footer {
@@ -255,12 +255,12 @@
         }
 
         .modal-close:hover {
-            color: #c0c0c0;
+            color: white;
         }
 
         .action-btn {
             background-color: #059669;
-            color: white;
+            color: #000;
             border: none;
             padding: 10px 20px;
             border-radius: 4px;
@@ -268,6 +268,7 @@
             font-size: 14px;
             margin-top: 20px;
             margin-right: 10px;
+            font-weight: bold;
         }
 
         .action-btn:hover {
@@ -276,10 +277,12 @@
 
         .action-btn.liked {
             background-color: #666;
+            color: white;
         }
 
         .action-btn.share-btn {
             background-color: #232a2e;
+            color: white;
         }
 
         .action-btn.share-btn:hover {
@@ -441,7 +444,6 @@
     </div>
 
     <script>
-		// These will be set by the module script
         let builds = window.builds || [];
 		let likedBuilds = window.likedBuilds || new Set();
         let currentSort = 'recent';
@@ -550,14 +552,11 @@
         };
 
 		const getPrimaryIcon = (weapon, primary) => {
-            // Weapon-specific Semi-automatic variants
             if (primary === 'Semi-automatic') {
                 if (weapon === 'Brine Revolver') return 'images/primaries/Semi-automatic_Revolver.png';
                 if (weapon === 'Shotgun') return 'images/primaries/Semi-automatic_Shotgun.png';
                 if (weapon === 'Plasma Launcher') return 'images/primaries/Semi-automatic.png';
             }
-            
-            // Fall back to primaryIcons object for everything else
             return primaryIcons[primary];
         };
 
@@ -593,12 +592,9 @@
         ];
 
         const getForgeIcon = (forge, weaponOrAbility) => {
-            // Shared ability forges
             if (sharedAbilityForges.includes(forge)) {
                 return 'images/forgeupgrades/Shared_Forge.png';
             }
-            
-            // Weapon forges
             const weaponForges = {
                 'Engine Rifle': 'images/forgeupgrades/Engine_Rifle_Forge.png',
                 'Shotgun': 'images/forgeupgrades/Shotgun_Forge.png',
@@ -609,8 +605,6 @@
                 'Plasma Launcher': 'images/forgeupgrades/Plasma_Launcher_Forge.png',
                 'Fish Deity': 'images/forgeupgrades/Fish_Deity_Forge.png'
             };
-            
-            // Ability forges
             const abilityForges = {
                 'Frag Grenade': 'images/forgeupgrades/Frag_Grenade_Forge.png',
                 'Anchor': 'images/forgeupgrades/Anchor_Forge.png',
@@ -618,16 +612,13 @@
                 'Brine Field': 'images/forgeupgrades/Brine_Field_Forge.png',
                 'Turret': 'images/forgeupgrades/Turret_Forge.png'
             };
-            
             return weaponForges[weaponOrAbility] || abilityForges[weaponOrAbility];
         };
 		
-        // Save liked builds to localStorage
         function saveLikes() {
             localStorage.setItem('likedBuilds', JSON.stringify([...likedBuilds]));
         }
 
-        // Filter options event listeners
         document.querySelectorAll('[data-sort]').forEach(option => {
             option.addEventListener('click', function() {
                 document.querySelectorAll('[data-sort]').forEach(o => o.classList.remove('active'));
@@ -657,33 +648,27 @@
 
         function filterBuilds() {
     		let filtered = [...(window.builds || [])];
-
             if (currentWeaponFilter !== 'all') {
                 filtered = filtered.filter(b => b.weapon === currentWeaponFilter);
             }
-
             if (currentAbilityFilter !== 'all') {
                 filtered = filtered.filter(b => b.ability === currentAbilityFilter);
             }
-
             if (currentSort === 'recent') {
                 filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
             } else if (currentSort === 'liked') {
                 filtered.sort((a, b) => b.likes - a.likes);
             }
-
             return filtered;
         }
 
         function displayBuilds() {
             const grid = document.getElementById('buildGrid');
             const filtered = filterBuilds();
-
             if (filtered.length === 0) {
                 grid.innerHTML = '<div class="no-builds">No builds match your filters.</div>';
                 return;
             }
-
             grid.innerHTML = filtered.map((build, index) => `
                 <div class="build-card" onclick="openModalByFirebaseId('${build.firebaseId}')">
                     <div class="build-card-content">
@@ -790,7 +775,7 @@
             details.innerHTML = `
                 <h2 style="color: #059669; margin-bottom: 10px;">${build.buildname}</h2>
                 <p style="color: #888; margin-bottom: 20px;">Created by @${build.author} on ${new Date(build.date).toLocaleDateString()}</p>
-                <p style="margin-bottom: 25px; line-height: 1.6;">${build.description}</p>
+                <p style="margin-bottom: 25px; line-height: 1.6; color: white;">${build.description}</p>
 
                 <h3 style="color: #059669; margin-bottom: 15px;">Loadout</h3>
                 
@@ -800,35 +785,35 @@
                         
                         <div style="margin-bottom: 15px;">
                             <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                                ${weaponIcon}<strong style="font-size: 18px;">${build.weapon || 'None'}</strong>
+                                ${weaponIcon}<strong style="font-size: 18px; color: white;">${build.weapon || 'None'}</strong>
                             </div>
                         </div>
 
                         <div style="display: flex; gap: 20px; margin-bottom: 15px;">
                             <div style="flex: 1;">
                                 <strong style="color: #888; font-size: 13px;">Primary:</strong><br>
-                                <span style="font-size: 15px;">${createPrimaryDisplay(build.primary, build.weapon)}</span>
+                                <span style="font-size: 15px; color: white;">${createPrimaryDisplay(build.primary, build.weapon)}</span>
                             </div>
                             <div style="flex: 1; border-left: 1px solid #2a2a2a; padding-left: 20px;">
                                 <strong style="color: #888; font-size: 13px;">Aspect:</strong><br>
-                                ${createAspectDisplay(build.aspect1)}
+                                <span style="color: white;">${createAspectDisplay(build.aspect1)}</span>
                             </div>
                         </div>
 
                         <div style="display: flex; gap: 20px; margin-bottom: 15px;">
                             <div style="flex: 1;">
                                 <strong style="color: #888; font-size: 13px;">Secondary:</strong><br>
-                                <span style="font-size: 15px;">${createSecondaryDisplay(build.secondary, build.weapon)}</span>
+                                <span style="font-size: 15px; color: white;">${createSecondaryDisplay(build.secondary, build.weapon)}</span>
                             </div>
                             <div style="flex: 1; border-left: 1px solid #2a2a2a; padding-left: 20px;">
                                 <strong style="color: #888; font-size: 13px;">Aspect:</strong><br>
-                                ${createAspectDisplay(build.aspect2)}
+                                <span style="color: white;">${createAspectDisplay(build.aspect2)}</span>
                             </div>
                         </div>
 
                         <div style="border-top: 1px solid #2a2a2a; padding-top: 15px; margin-top: 15px;">
                             <strong style="color: #888; font-size: 13px; display: block; margin-bottom: 8px;">Forge Upgrades:</strong>
-                            <div style="font-size: 14px; line-height: 2.5;">
+                            <div style="font-size: 14px; line-height: 2.5; color: white;">
                                 ${build.weaponforge1 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.weaponforge1, build.weapon) + '</div>' : ''}
                                 ${build.weaponforge2 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.weaponforge2, build.weapon) + '</div>' : ''}
                                 ${build.weaponforge3 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.weaponforge3, build.weapon) + '</div>' : ''}
@@ -842,17 +827,17 @@
                         
                         <div style="margin-bottom: 15px;">
                             <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                                ${abilityIcon}<strong style="font-size: 18px;">${build.ability || 'None'}</strong>
+                                ${abilityIcon}<strong style="font-size: 18px; color: white;">${build.ability || 'None'}</strong>
                             </div>
                         </div>
 						<div style="margin-bottom: 15px;">
                             <strong style="color: #888; font-size: 13px;">Aspect:</strong><br>
-                            <span style="font-size: 15px;">${createAspectDisplay(build.aspect3)}</span>
+                            <span style="font-size: 15px; color: white;">${createAspectDisplay(build.aspect3)}</span>
                         </div>
 
                         <div style="border-top: 1px solid #2a2a2a; padding-top: 15px; margin-top: 15px;">
                             <strong style="color: #888; font-size: 13px; display: block; margin-bottom: 8px;">Forge Upgrades:</strong>
-                            <div style="font-size: 14px; line-height: 2.5;">
+                            <div style="font-size: 14px; line-height: 2.5; color: white;">
                                 ${build.abilityforge1 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.abilityforge1, build.ability) + '</div>' : ''}
                                 ${build.abilityforge2 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.abilityforge2, build.ability) + '</div>' : ''}
                                 ${build.abilityforge3 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.abilityforge3, build.ability) + '</div>' : ''}
@@ -865,8 +850,8 @@
                 <div style="background-color: #0f0f0f; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
                     <h4 style="color: #888; margin-bottom: 15px; text-align: center; font-size: 16px;">CHARMS</h4>
                     <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 30px; width: 100%;">
-                        ${createCharmDisplay(build.charm1)}
-                        ${createCharmDisplay(build.charm2)}
+                        <span style="color: white;">${createCharmDisplay(build.charm1)}</span>
+                        <span style="color: white;">${createCharmDisplay(build.charm2)}</span>
                     </div>
                 </div>
 
@@ -901,7 +886,6 @@
             }
             saveLikes();
 
-            // Update Firebase
             updateBuildLikes(firebaseId, isLiking);
             
             button.classList.toggle('liked');
@@ -916,7 +900,6 @@
                     likes: window.firebaseModules.increment(change)
                 });
                 
-                // Update local build
                 const build = window.builds.find(b => b.firebaseId === firebaseId);
                 if (build) {
                     build.likes = Math.max(0, build.likes + change);
@@ -940,9 +923,6 @@
             });
         }
 
-        // Initialize the page
-
-        // Close modal when clicking outside of it
         window.addEventListener('click', function(event) {
             const modal = document.getElementById('buildModal');
             if (event.target === modal) {
