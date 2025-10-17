@@ -802,10 +802,10 @@
 
                         <div style="border-top: 1px solid #2a2a2a; padding-top: 15px; margin-top: 15px;">
                             <strong style="color: #888; font-size: 13px; display: block; margin-bottom: 8px;">Forge Upgrades:</strong>
-                            <div style="font-size: 14px; line-height: 1.8;">
-                                ${build.weaponforge1 ? createForgeDisplay(build.weaponforge1, build.weapon) + '<br>' : ''}
-                                ${build.weaponforge2 ? createForgeDisplay(build.weaponforge2, build.weapon) + '<br>' : ''}
-                                ${build.weaponforge3 ? createForgeDisplay(build.weaponforge3, build.weapon) + '<br>' : ''}
+                            <div style="font-size: 14px; line-height: 2.5;">
+                                ${build.weaponforge1 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.weaponforge1, build.weapon) + '</div>' : ''}
+                                ${build.weaponforge2 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.weaponforge2, build.weapon) + '</div>' : ''}
+                                ${build.weaponforge3 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.weaponforge3, build.weapon) + '</div>' : ''}
                                 ${!build.weaponforge1 && !build.weaponforge2 && !build.weaponforge3 ? '<span style="color: #666;">None</span>' : ''}
                             </div>
                         </div>
@@ -826,10 +826,10 @@
 
                         <div style="border-top: 1px solid #2a2a2a; padding-top: 15px; margin-top: 15px;">
                             <strong style="color: #888; font-size: 13px; display: block; margin-bottom: 8px;">Forge Upgrades:</strong>
-                            <div style="font-size: 14px; line-height: 1.8;">
-                                ${build.abilityforge1 ? '• ' + createForgeDisplay(build.abilityforge1, build.ability) + '<br>' : ''}
-                                ${build.abilityforge2 ? '• ' + createForgeDisplay(build.abilityforge2, build.ability) + '<br>' : ''}
-                                ${build.abilityforge3 ? '• ' + createForgeDisplay(build.abilityforge3, build.ability) + '<br>' : ''}
+                            <div style="font-size: 14px; line-height: 2.5;">
+                                ${build.abilityforge1 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.abilityforge1, build.ability) + '</div>' : ''}
+                                ${build.abilityforge2 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.abilityforge2, build.ability) + '</div>' : ''}
+                                ${build.abilityforge3 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.abilityforge3, build.ability) + '</div>' : ''}
                                 ${!build.abilityforge1 && !build.abilityforge2 && !build.abilityforge3 ? '<span style="color: #666;">None</span>' : ''}
                             </div>
                         </div>
@@ -895,6 +895,7 @@
     </script>
 </body>
 </html>
+
 
 
 
