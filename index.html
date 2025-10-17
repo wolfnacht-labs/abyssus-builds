@@ -183,7 +183,7 @@
         }
 
         .build-info-label {
-            color: #666;
+            color: #888;
             font-size: 12px;
             margin-bottom: 3px;
         }
@@ -203,7 +203,7 @@
         }
 
         .build-date {
-            color: #666;
+            color: #888;
         }
 
         .build-likes {
@@ -217,7 +217,7 @@
             grid-column: 1 / -1;
             text-align: center;
             padding: 60px;
-            color: #666;
+            color: #888;
             font-size: 18px;
         }
 
@@ -249,7 +249,7 @@
             right: 30px;
             font-size: 36px;
             cursor: pointer;
-            color: #666;
+            color: #888;
         }
 
         .modal-close:hover {
@@ -273,7 +273,7 @@
         }
 
         .action-btn.liked {
-            background-color: #666;
+            background-color: #888;
         }
 
         .action-btn.share-btn {
@@ -753,7 +753,7 @@
             const abilityIcon = build.ability && abilityIcons[build.ability] ? `<img src="${abilityIcons[build.ability]}" class="modal-icon" alt="${build.ability}">` : '';
 
             const createAspectDisplay = (aspect) => {
-                if (!aspect) return '<span style="color: #666;">None</span>';
+                if (!aspect) return '<span style="color: #888;">None</span>';
                 const icon = aspectIcons[aspect] ? `<img src="${aspectIcons[aspect]}" alt="${aspect}" style="width: 28px; height: 28px; vertical-align: middle; margin-right: 8px;">` : '';
                 return `${icon}${aspect}`;
             };
@@ -765,14 +765,14 @@
             };
 
             const createPrimaryDisplay = (primary, weapon) => {
-                if (!primary) return '<span style="color: #666;">None</span>';
+                if (!primary) return '<span style="color: #888;">None</span>';
                 const iconPath = getPrimaryIcon(weapon, primary);
                 const icon = iconPath ? `<img src="${iconPath}" alt="${primary}" style="width: 28px; height: 28px; vertical-align: middle; margin-right: 6px;">` : '';
                 return `${icon}${primary}`;
             };
 
 			const createSecondaryDisplay = (secondary, weapon) => {
-                if (!secondary) return '<span style="color: #666;">None</span>';
+                if (!secondary) return '<span style="color: #888;">None</span>';
                 const iconPath = secondaryIcons[secondary];
                 const icon = iconPath ? `<img src="${iconPath}" alt="${secondary}" style="width: 28px; height: 28px; vertical-align: middle; margin-right: 8px;">` : '';
                 return `${icon}${secondary}`;
@@ -830,7 +830,7 @@
                                 ${build.weaponforge1 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.weaponforge1, build.weapon) + '</div>' : ''}
                                 ${build.weaponforge2 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.weaponforge2, build.weapon) + '</div>' : ''}
                                 ${build.weaponforge3 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.weaponforge3, build.weapon) + '</div>' : ''}
-                                ${!build.weaponforge1 && !build.weaponforge2 && !build.weaponforge3 ? '<span style="color: #666;">None</span>' : ''}
+                                ${!build.weaponforge1 && !build.weaponforge2 && !build.weaponforge3 ? '<span style="color: #888;">None</span>' : ''}
                             </div>
                         </div>
                     </div>
@@ -854,7 +854,7 @@
                                 ${build.abilityforge1 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.abilityforge1, build.ability) + '</div>' : ''}
                                 ${build.abilityforge2 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.abilityforge2, build.ability) + '</div>' : ''}
                                 ${build.abilityforge3 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.abilityforge3, build.ability) + '</div>' : ''}
-                                ${!build.abilityforge1 && !build.abilityforge2 && !build.abilityforge3 ? '<span style="color: #666;">None</span>' : ''}
+                                ${!build.abilityforge1 && !build.abilityforge2 && !build.abilityforge3 ? '<span style="color: #888;">None</span>' : ''}
                             </div>
                         </div>
                     </div>
