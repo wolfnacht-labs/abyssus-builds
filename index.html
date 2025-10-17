@@ -692,22 +692,24 @@
                                 <div class="build-info-value">${build.weapon || 'None'}</div>
                             </div>
                             <div class="build-info-item">
-                                ${build.primary ? `<img src="${getPrimaryIcon(build.weapon, build.primary)}" alt="${build.primary}" style="width: 32px; height: 32px; object-fit: contain;">` : ''}
-                                <div class="build-info-label">Primary</div>
-                                <div class="build-info-value" style="font-size: 12px;">${build.primary || 'None'}</div>
-                                ${build.aspect1 ? `<div style="font-size: 10px; color: #888; margin-top: 2px;">${build.aspect1}</div>` : ''}
-                            </div>
-                            <div class="build-info-item">
-                                ${build.secondary && secondaryIcons[build.secondary] ? `<img src="${secondaryIcons[build.secondary]}" alt="${build.secondary}" style="width: 32px; height: 32px; object-fit: contain;">` : ''}
-                                <div class="build-info-label">Secondary</div>
-                                <div class="build-info-value" style="font-size: 12px;">${build.secondary || 'None'}</div>
-                                ${build.aspect2 ? `<div style="font-size: 10px; color: #888; margin-top: 2px;">${build.aspect2}</div>` : ''}
-                            </div>
-                            <div class="build-info-item">
                                 ${build.ability && abilityIcons[build.ability] ? `<img src="${abilityIcons[build.ability]}" alt="${build.ability}">` : ''}
                                 <div class="build-info-label">Ability</div>
                                 <div class="build-info-value">${build.ability || 'None'}</div>
-                                ${build.aspect3 ? `<div style="font-size: 10px; color: #888; margin-top: 2px;">${build.aspect3}</div>` : ''}
+                            </div>
+                            <div class="build-info-item">
+                                ${build.aspect1 ? `<img src="${aspectIcons[build.aspect1]}" alt="${build.aspect1}" style="width: 32px; height: 32px; object-fit: contain;">` : ''}
+                                <div class="build-info-label">Aspect</div>
+                                <div class="build-info-value" style="font-size: 12px;">${build.aspect1 || 'None'}</div>
+                            </div>
+                            <div class="build-info-item">
+                                ${build.aspect2 ? `<img src="${aspectIcons[build.aspect2]}" alt="${build.aspect2}" style="width: 32px; height: 32px; object-fit: contain;">` : ''}
+                                <div class="build-info-label">Aspect</div>
+                                <div class="build-info-value" style="font-size: 12px;">${build.aspect2 || 'None'}</div>
+                            </div>
+                            <div class="build-info-item">
+                                ${build.aspect3 ? `<img src="${aspectIcons[build.aspect3]}" alt="${build.aspect3}" style="width: 32px; height: 32px; object-fit: contain;">` : ''}
+                                <div class="build-info-label">Aspect</div>
+                                <div class="build-info-value" style="font-size: 12px;">${build.aspect3 || 'None'}</div>
                             </div>
                         </div>
                         <div style="font-size: 11px; margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
@@ -912,6 +914,7 @@
     </script>
 </body>
 </html>
+
 
 
 
