@@ -685,36 +685,36 @@
                     <div class="build-card-content">
                         <div class="build-title">${build.buildname}</div>
                         <div class="build-author">by @${build.author}</div>
-                        <div class="build-info">
-                            <div class="build-info-item">
-                                ${build.weapon && weaponIcons[build.weapon] ? `<img src="${weaponIcons[build.weapon]}" alt="${build.weapon}">` : ''}
+                        <div class="build-info" style="justify-content: center;">
+                            ${build.weapon ? `<div class="build-info-item">
+                                ${weaponIcons[build.weapon] ? `<img src="${weaponIcons[build.weapon]}" alt="${build.weapon}">` : ''}
                                 <div class="build-info-label">Weapon</div>
-                                <div class="build-info-value">${build.weapon || 'None'}</div>
-                            </div>
-                            <div class="build-info-item">
-                                ${build.ability && abilityIcons[build.ability] ? `<img src="${abilityIcons[build.ability]}" alt="${build.ability}">` : ''}
+                                <div class="build-info-value">${build.weapon}</div>
+                            </div>` : ''}
+                            ${build.ability ? `<div class="build-info-item">
+                                ${abilityIcons[build.ability] ? `<img src="${abilityIcons[build.ability]}" alt="${build.ability}">` : ''}
                                 <div class="build-info-label">Ability</div>
-                                <div class="build-info-value">${build.ability || 'None'}</div>
-                            </div>
-                            <div class="build-info-item">
-                                ${build.aspect1 ? `<img src="${aspectIcons[build.aspect1]}" alt="${build.aspect1}" style="width: 32px; height: 32px; object-fit: contain;">` : ''}
+                                <div class="build-info-value">${build.ability}</div>
+                            </div>` : ''}
+                            ${build.aspect1 ? `<div class="build-info-item">
+                                <img src="${aspectIcons[build.aspect1]}" alt="${build.aspect1}" style="width: 32px; height: 32px; object-fit: contain;">
                                 <div class="build-info-label">Aspect</div>
-                                <div class="build-info-value" style="font-size: 12px;">${build.aspect1 || 'None'}</div>
-                            </div>
-                            <div class="build-info-item">
-                                ${build.aspect2 ? `<img src="${aspectIcons[build.aspect2]}" alt="${build.aspect2}" style="width: 32px; height: 32px; object-fit: contain;">` : ''}
+                                <div class="build-info-value" style="font-size: 12px;">Primary</div>
+                            </div>` : ''}
+                            ${build.aspect2 ? `<div class="build-info-item">
+                                <img src="${aspectIcons[build.aspect2]}" alt="${build.aspect2}" style="width: 32px; height: 32px; object-fit: contain;">
                                 <div class="build-info-label">Aspect</div>
-                                <div class="build-info-value" style="font-size: 12px;">${build.aspect2 || 'None'}</div>
-                            </div>
-                            <div class="build-info-item">
-                                ${build.aspect3 ? `<img src="${aspectIcons[build.aspect3]}" alt="${build.aspect3}" style="width: 32px; height: 32px; object-fit: contain;">` : ''}
+                                <div class="build-info-value" style="font-size: 12px;">Secondary</div>
+                            </div>` : ''}
+                            ${build.aspect3 ? `<div class="build-info-item">
+                                <img src="${aspectIcons[build.aspect3]}" alt="${build.aspect3}" style="width: 32px; height: 32px; object-fit: contain;">
                                 <div class="build-info-label">Aspect</div>
-                                <div class="build-info-value" style="font-size: 12px;">${build.aspect3 || 'None'}</div>
-                            </div>
+                                <div class="build-info-value" style="font-size: 12px;">Ability</div>
+                            </div>` : ''}
                         </div>
-                        <div style="font-size: 11px; margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
-                            ${build.charm1 && charmIcons[build.charm1] ? `<div style="display: flex; align-items: center; gap: 4px;"><img src="${charmIcons[build.charm1]}" alt="${build.charm1}" style="width: 18px; height: 18px; object-fit: contain;"><span>${build.charm1}</span></div>` : ''}
-                            ${build.charm2 && charmIcons[build.charm2] ? `<div style="display: flex; align-items: center; gap: 4px;"><img src="${charmIcons[build.charm2]}" alt="${build.charm2}" style="width: 18px; height: 18px; object-fit: contain;"><span>${build.charm2}</span></div>` : ''}
+                        <div style="font-size: 16px; margin-top: 10px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+                            ${build.charm1 && charmIcons[build.charm1] ? `<div style="display: flex; align-items: center; gap: 6px;"><img src="${charmIcons[build.charm1]}" alt="${build.charm1}" style="width: 27px; height: 27px; object-fit: contain;"><span>${build.charm1}</span></div>` : ''}
+                            ${build.charm2 && charmIcons[build.charm2] ? `<div style="display: flex; align-items: center; gap: 6px;"><img src="${charmIcons[build.charm2]}" alt="${build.charm2}" style="width: 27px; height: 27px; object-fit: contain;"><span>${build.charm2}</span></div>` : ''}
                         </div>
                     </div>
                     <div class="build-card-footer">
@@ -914,6 +914,7 @@
     </script>
 </body>
 </html>
+
 
 
 
