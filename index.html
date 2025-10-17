@@ -689,13 +689,19 @@
                             <div class="build-info-item">
                                 ${build.weapon && weaponIcons[build.weapon] ? `<img src="${weaponIcons[build.weapon]}" alt="${build.weapon}">` : ''}
                                 <div class="build-info-label">Weapon</div>
-                                <div class="build-info-value">${build.weapon || 'None'}</div>
+                                <div class="build-info-value" style="font-size: 12px;">${build.weapon || 'None'}</div>
+                                ${build.aspect1 ? `<div style="font-size: 11px; color: #888; margin-top: 2px;">${build.aspect1}</div>` : ''}
                             </div>
                             <div class="build-info-item">
                                 ${build.ability && abilityIcons[build.ability] ? `<img src="${abilityIcons[build.ability]}" alt="${build.ability}">` : ''}
                                 <div class="build-info-label">Ability</div>
-                                <div class="build-info-value">${build.ability || 'None'}</div>
+                                <div class="build-info-value" style="font-size: 12px;">${build.ability || 'None'}</div>
+                                ${build.aspect3 ? `<div style="font-size: 11px; color: #888; margin-top: 2px;">${build.aspect3}</div>` : ''}
                             </div>
+                        </div>
+                        <div style="font-size: 11px; margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+                            ${build.charm1 && charmIcons[build.charm1] ? `<div style="display: flex; align-items: center; gap: 3px;"><img src="${charmIcons[build.charm1]}" alt="${build.charm1}" style="width: 16px; height: 16px;"><span>${build.charm1}</span></div>` : ''}
+                            ${build.charm2 && charmIcons[build.charm2] ? `<div style="display: flex; align-items: center; gap: 3px;"><img src="${charmIcons[build.charm2]}" alt="${build.charm2}" style="width: 16px; height: 16px;"><span>${build.charm2}</span></div>` : ''}
                         </div>
                     </div>
                     <div class="build-card-footer">
@@ -895,6 +901,7 @@
     </script>
 </body>
 </html>
+
 
 
 
