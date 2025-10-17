@@ -685,7 +685,7 @@
                     <div class="build-card-content">
                         <div class="build-title">${build.buildname}</div>
                         <div class="build-author">by @${build.author}</div>
-                        <div class="build-info" style="justify-content: center;">
+						<div class="build-info" style="justify-content: center;">
                             ${build.weapon ? `<div class="build-info-item">
                                 ${weaponIcons[build.weapon] ? `<img src="${weaponIcons[build.weapon]}" alt="${build.weapon}">` : ''}
                                 <div class="build-info-label">Weapon</div>
@@ -699,17 +699,20 @@
                             ${build.aspect1 ? `<div class="build-info-item">
                                 <img src="${aspectIcons[build.aspect1]}" alt="${build.aspect1}" style="width: 32px; height: 32px; object-fit: contain;">
                                 <div class="build-info-label">Aspect</div>
-                                <div class="build-info-value" style="font-size: 12px;">Primary</div>
+                                <div class="build-info-value">${build.aspect1}</div>
+                                <div class="build-info-label" style="margin-top: 3px;">Primary</div>
                             </div>` : ''}
                             ${build.aspect2 ? `<div class="build-info-item">
                                 <img src="${aspectIcons[build.aspect2]}" alt="${build.aspect2}" style="width: 32px; height: 32px; object-fit: contain;">
                                 <div class="build-info-label">Aspect</div>
-                                <div class="build-info-value" style="font-size: 12px;">Secondary</div>
+                                <div class="build-info-value">${build.aspect2}</div>
+                                <div class="build-info-label" style="margin-top: 3px;">Secondary</div>
                             </div>` : ''}
                             ${build.aspect3 ? `<div class="build-info-item">
                                 <img src="${aspectIcons[build.aspect3]}" alt="${build.aspect3}" style="width: 32px; height: 32px; object-fit: contain;">
                                 <div class="build-info-label">Aspect</div>
-                                <div class="build-info-value" style="font-size: 12px;">Ability</div>
+                                <div class="build-info-value">${build.aspect3}</div>
+                                <div class="build-info-label" style="margin-top: 3px;">Ability</div>
                             </div>` : ''}
                         </div>
                         <div style="font-size: 16px; margin-top: 10px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
@@ -914,6 +917,7 @@
     </script>
 </body>
 </html>
+
 
 
 
