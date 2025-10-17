@@ -132,7 +132,7 @@
             padding: 0;
             cursor: pointer;
             transition: transform 0.2s, border-color 0.2s;
-            height: 290px;
+            height: 300px;
             display: flex;
             flex-direction: column;
         }
@@ -295,7 +295,9 @@
     <script type="module">
         // Firebase imports
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getFirestore, collection, getDocs } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+        import { getFirestore, collection, getDocs, doc, updateDoc, increment } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+        window.firebaseModules = { doc, updateDoc, increment };
 
         // Firebase configuration
         const firebaseConfig = {
@@ -885,14 +887,45 @@
         }
 
         function toggleLike(firebaseId, button) {
-            if (likedBuilds.has(firebaseId)) {
-                likedBuilds.delete(firebaseId);
-            } else {
+            const build = window.builds.find(b => b.firebaseId === firebaseId);
+            if (!build) return;
+
+            const isLiking = !likedBuilds.has(firebaseId);
+            
+            if (isLiking) {
                 likedBuilds.add(firebaseId);
+            } else {
+                likedBuilds.delete(firebaseId);
             }
             saveLikes();
+
+            // Update Firebase
+            updateBuildLikes(firebaseId, isLiking);
+            
             button.classList.toggle('liked');
-            button.textContent = likedBuilds.has(firebaseId) ? '❤️ Liked' : '🤍 Like';
+            button.textContent = isLiking ? '❤️ Liked' : '🤍 Like';
+        }
+
+        async function updateBuildLikes(firebaseId, isLiking) {
+            try {
+                const buildRef = window.firebaseModules.doc(window.db, 'builds', firebaseId);
+                const change = isLiking ? 1 : -1;
+                await window.firebaseModules.updateDoc(buildRef, {
+                    likes: window.firebaseModules.increment(change)
+                });
+                
+                // Update local build
+                const build = window.builds.find(b => b.firebaseId === firebaseId);
+                if (build) {
+                    build.likes = Math.max(0, build.likes + change);
+                    const likeSpan = document.querySelector(`[data-build-id="${firebaseId}"]`);
+                    if (likeSpan) {
+                        likeSpan.textContent = `❤️ ${build.likes}`;
+                    }
+                }
+            } catch (error) {
+                console.error('Error updating likes:', error);
+            }
         }
 
         function shareBuild(firebaseId) {
@@ -917,6 +950,7 @@
     </script>
 </body>
 </html>
+
 
 
 
