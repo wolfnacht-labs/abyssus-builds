@@ -82,7 +82,7 @@
         }
 
         .filter-section h3 {
-            color: #888;
+            color: #999;
             font-size: 14px;
             margin-bottom: 10px;
             text-transform: uppercase;
@@ -157,7 +157,7 @@
         }
 
         .build-author {
-            color: #888;
+            color: #999;
             font-size: 14px;
             margin-bottom: 15px;
         }
@@ -183,7 +183,7 @@
         }
 
         .build-info-label {
-            color: #888;
+            color: #999;
             font-size: 12px;
             margin-bottom: 3px;
         }
@@ -203,7 +203,7 @@
         }
 
         .build-date {
-            color: #888;
+            color: #999;
         }
 
         .build-likes {
@@ -217,7 +217,7 @@
             grid-column: 1 / -1;
             text-align: center;
             padding: 60px;
-            color: #888;
+            color: #999;
             font-size: 18px;
         }
 
@@ -249,7 +249,7 @@
             right: 30px;
             font-size: 36px;
             cursor: pointer;
-            color: #888;
+            color: #999;
         }
 
         .modal-close:hover {
@@ -273,7 +273,7 @@
         }
 
         .action-btn.liked {
-            background-color: #888;
+            background-color: #999;
         }
 
         .action-btn.share-btn {
@@ -753,7 +753,7 @@
             const abilityIcon = build.ability && abilityIcons[build.ability] ? `<img src="${abilityIcons[build.ability]}" class="modal-icon" alt="${build.ability}">` : '';
 
             const createAspectDisplay = (aspect) => {
-                if (!aspect) return '<span style="color: #888;">None</span>';
+                if (!aspect) return '<span style="color: #999;">None</span>';
                 const icon = aspectIcons[aspect] ? `<img src="${aspectIcons[aspect]}" alt="${aspect}" style="width: 28px; height: 28px; vertical-align: middle; margin-right: 8px;">` : '';
                 return `${icon}${aspect}`;
             };
@@ -765,14 +765,14 @@
             };
 
             const createPrimaryDisplay = (primary, weapon) => {
-                if (!primary) return '<span style="color: #888;">None</span>';
+                if (!primary) return '<span style="color: #999;">None</span>';
                 const iconPath = getPrimaryIcon(weapon, primary);
                 const icon = iconPath ? `<img src="${iconPath}" alt="${primary}" style="width: 28px; height: 28px; vertical-align: middle; margin-right: 6px;">` : '';
                 return `${icon}${primary}`;
             };
 
 			const createSecondaryDisplay = (secondary, weapon) => {
-                if (!secondary) return '<span style="color: #888;">None</span>';
+                if (!secondary) return '<span style="color: #999;">None</span>';
                 const iconPath = secondaryIcons[secondary];
                 const icon = iconPath ? `<img src="${iconPath}" alt="${secondary}" style="width: 28px; height: 28px; vertical-align: middle; margin-right: 8px;">` : '';
                 return `${icon}${secondary}`;
@@ -787,14 +787,14 @@
 
             details.innerHTML = `
                 <h2 style="color: #059669; margin-bottom: 10px;">${build.buildname}</h2>
-                <p style="color: #888; margin-bottom: 20px;">Created by @${build.author} on ${new Date(build.date).toLocaleDateString()}</p>
+                <p style="color: #999; margin-bottom: 20px;">Created by @${build.author} on ${new Date(build.date).toLocaleDateString()}</p>
                 <p style="margin-bottom: 25px; line-height: 1.6;">${build.description}</p>
 
                 <h3 style="color: #059669; margin-bottom: 15px;">Loadout</h3>
                 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px;">
                     <div style="background-color: #0b0c0d; padding: 20px; border-radius: 8px;">
-                        <h4 style="color: #888; margin-bottom: 15px; text-align: center; font-size: 16px;">WEAPON</h4>
+                        <h4 style="color: #999; margin-bottom: 15px; text-align: center; font-size: 16px;">WEAPON</h4>
                         
                         <div style="margin-bottom: 15px;">
                             <div style="display: flex; align-items: center; margin-bottom: 8px;">
@@ -804,39 +804,39 @@
 
                         <div style="display: flex; gap: 20px; margin-bottom: 15px;">
                             <div style="flex: 1;">
-                                <strong style="color: #888; font-size: 13px;">Primary:</strong><br>
+                                <strong style="color: #999; font-size: 13px;">Primary:</strong><br>
                                 <span style="font-size: 15px;">${createPrimaryDisplay(build.primary, build.weapon)}</span>
                             </div>
                             <div style="flex: 1; border-left: 1px solid #7e7568; padding-left: 20px;">
-                                <strong style="color: #888; font-size: 13px;">Aspect:</strong><br>
+                                <strong style="color: #999; font-size: 13px;">Aspect:</strong><br>
                                 ${createAspectDisplay(build.aspect1)}
                             </div>
                         </div>
 
                         <div style="display: flex; gap: 20px; margin-bottom: 15px;">
                             <div style="flex: 1;">
-                                <strong style="color: #888; font-size: 13px;">Secondary:</strong><br>
+                                <strong style="color: #999; font-size: 13px;">Secondary:</strong><br>
                                 <span style="font-size: 15px;">${createSecondaryDisplay(build.secondary, build.weapon)}</span>
                             </div>
                             <div style="flex: 1; border-left: 1px solid #7e7568; padding-left: 20px;">
-                                <strong style="color: #888; font-size: 13px;">Aspect:</strong><br>
+                                <strong style="color: #999; font-size: 13px;">Aspect:</strong><br>
                                 ${createAspectDisplay(build.aspect2)}
                             </div>
                         </div>
 
                         <div style="border-top: 1px solid #7e7568; padding-top: 15px; margin-top: 15px;">
-                            <strong style="color: #888; font-size: 13px; display: block; margin-bottom: 8px;">Forge Upgrades:</strong>
+                            <strong style="color: #999; font-size: 13px; display: block; margin-bottom: 8px;">Forge Upgrades:</strong>
                             <div style="font-size: 14px; line-height: 2.5;">
                                 ${build.weaponforge1 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.weaponforge1, build.weapon) + '</div>' : ''}
                                 ${build.weaponforge2 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.weaponforge2, build.weapon) + '</div>' : ''}
                                 ${build.weaponforge3 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.weaponforge3, build.weapon) + '</div>' : ''}
-                                ${!build.weaponforge1 && !build.weaponforge2 && !build.weaponforge3 ? '<span style="color: #888;">None</span>' : ''}
+                                ${!build.weaponforge1 && !build.weaponforge2 && !build.weaponforge3 ? '<span style="color: #999;">None</span>' : ''}
                             </div>
                         </div>
                     </div>
 
                     <div style="background-color: #0b0c0d; padding: 20px; border-radius: 8px;">
-                        <h4 style="color: #888; margin-bottom: 15px; text-align: center; font-size: 16px;">ABILITY</h4>
+                        <h4 style="color: #999; margin-bottom: 15px; text-align: center; font-size: 16px;">ABILITY</h4>
                         
                         <div style="margin-bottom: 15px;">
                             <div style="display: flex; align-items: center; margin-bottom: 8px;">
@@ -844,24 +844,24 @@
                             </div>
                         </div>
 						<div style="margin-bottom: 15px;">
-                            <strong style="color: #888; font-size: 13px;">Aspect:</strong><br>
+                            <strong style="color: #999; font-size: 13px;">Aspect:</strong><br>
                             <span style="font-size: 15px;">${createAspectDisplay(build.aspect3)}</span>
                         </div>
 
                         <div style="border-top: 1px solid #7e7568; padding-top: 15px; margin-top: 15px;">
-                            <strong style="color: #888; font-size: 13px; display: block; margin-bottom: 8px;">Forge Upgrades:</strong>
+                            <strong style="color: #999; font-size: 13px; display: block; margin-bottom: 8px;">Forge Upgrades:</strong>
                             <div style="font-size: 14px; line-height: 2.5;">
                                 ${build.abilityforge1 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.abilityforge1, build.ability) + '</div>' : ''}
                                 ${build.abilityforge2 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.abilityforge2, build.ability) + '</div>' : ''}
                                 ${build.abilityforge3 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.abilityforge3, build.ability) + '</div>' : ''}
-                                ${!build.abilityforge1 && !build.abilityforge2 && !build.abilityforge3 ? '<span style="color: #888;">None</span>' : ''}
+                                ${!build.abilityforge1 && !build.abilityforge2 && !build.abilityforge3 ? '<span style="color: #999;">None</span>' : ''}
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div style="background-color: #0b0c0d; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
-                    <h4 style="color: #888; margin-bottom: 15px; text-align: center; font-size: 16px;">CHARMS</h4>
+                    <h4 style="color: #999; margin-bottom: 15px; text-align: center; font-size: 16px;">CHARMS</h4>
                     <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 30px; width: 100%;">
                         ${createCharmDisplay(build.charm1)}
                         ${createCharmDisplay(build.charm2)}
@@ -950,3 +950,4 @@
     </script>
 </body>
 </html>
+
