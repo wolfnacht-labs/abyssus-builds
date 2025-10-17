@@ -14,7 +14,7 @@
 
         body {
             font-family: Arial, sans-serif;
-            background-color: #0f0f0f;
+            background-color: #0d0d0d;
             color: white;
         }
 
@@ -66,9 +66,9 @@
         /* Sidebar */
         .sidebar {
             width: 250px;
-            background-color: #1a1a1a;
+            background-color: #131313;
             padding: 20px;
-            border-right: 2px solid #2a2a2a;
+            border-right: 2px solid #222;
         }
 
         .sidebar h2 {
@@ -94,7 +94,7 @@
             gap: 8px;
             padding: 8px 12px;
             margin-bottom: 5px;
-            background-color: #2a3335;
+            background-color: #1f1f1f;
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.2s;
@@ -109,12 +109,13 @@
         }
 
         .filter-option:hover {
-            background-color: #323939;
+            background-color: #2a2a2a;
         }
 
         .filter-option.active {
             background-color: #059669;
             color: white;
+            font-weight: bold;
         }
 
         /* Build Grid */
@@ -125,11 +126,12 @@
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 20px;
             align-content: start;
+            background-color: #0d0d0d;
         }
 
         .build-card {
-            background-color: #1a1a1a;
-            border: 2px solid #5a5a5a;
+            background-color: #151515;
+            border: 1px solid #2a2a2a;
             border-radius: 8px;
             padding: 0;
             cursor: pointer;
@@ -141,7 +143,7 @@
 
         .build-card:hover {
             transform: translateY(-5px);
-            border-color: #8b7355;
+            border-color: #3a3a3a;
         }
 
         .build-card-content {
@@ -196,8 +198,8 @@
 
         .build-card-footer {
             padding: 12px 20px;
-            background-color: #0f0f0f;
-            border-top: 1px solid #2a2a2a;
+            background-color: #0d0d0d;
+            border-top: 1px solid #222;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -231,19 +233,19 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.95);
             z-index: 1000;
             overflow-y: auto;
         }
 
         .modal-content {
-            background-color: #1a1a1a;
+            background-color: #151515;
             margin: 50px auto;
             padding: 30px;
             max-width: 900px;
             border-radius: 8px;
             position: relative;
-            border: 2px solid #5a5a5a;
+            border: 1px solid #2a2a2a;
         }
 
         .modal-close {
@@ -282,12 +284,12 @@
         }
 
         .action-btn.share-btn {
-            background-color: #2a3335;
+            background-color: #1f1f1f;
             color: white;
         }
 
         .action-btn.share-btn:hover {
-            background-color: #323939;
+            background-color: #2a2a2a;
         }
 
         .modal-icon {
@@ -781,7 +783,7 @@
                 <h3 style="color: #059669; margin-bottom: 15px;">Loadout</h3>
                 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px;">
-                    <div style="background-color: #0f0f0f; padding: 20px; border-radius: 8px;">
+                    <div style="background-color: #0d0d0d; padding: 20px; border-radius: 8px;">
                         <h4 style="color: #888; margin-bottom: 15px; text-align: center; font-size: 16px;">WEAPON</h4>
                         
                         <div style="margin-bottom: 15px;">
@@ -795,7 +797,7 @@
                                 <strong style="color: #888; font-size: 13px;">Primary:</strong><br>
                                 <span style="font-size: 15px; color: white;">${createPrimaryDisplay(build.primary, build.weapon)}</span>
                             </div>
-                            <div style="flex: 1; border-left: 1px solid #2a2a2a; padding-left: 20px;">
+                            <div style="flex: 1; border-left: 1px solid #222; padding-left: 20px;">
                                 <strong style="color: #888; font-size: 13px;">Aspect:</strong><br>
                                 <span style="color: white;">${createAspectDisplay(build.aspect1)}</span>
                             </div>
@@ -806,13 +808,13 @@
                                 <strong style="color: #888; font-size: 13px;">Secondary:</strong><br>
                                 <span style="font-size: 15px; color: white;">${createSecondaryDisplay(build.secondary, build.weapon)}</span>
                             </div>
-                            <div style="flex: 1; border-left: 1px solid #2a2a2a; padding-left: 20px;">
+                            <div style="flex: 1; border-left: 1px solid #222; padding-left: 20px;">
                                 <strong style="color: #888; font-size: 13px;">Aspect:</strong><br>
                                 <span style="color: white;">${createAspectDisplay(build.aspect2)}</span>
                             </div>
                         </div>
 
-                        <div style="border-top: 1px solid #2a2a2a; padding-top: 15px; margin-top: 15px;">
+                        <div style="border-top: 1px solid #222; padding-top: 15px; margin-top: 15px;">
                             <strong style="color: #888; font-size: 13px; display: block; margin-bottom: 8px;">Forge Upgrades:</strong>
                             <div style="font-size: 14px; line-height: 2.5; color: white;">
                                 ${build.weaponforge1 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.weaponforge1, build.weapon) + '</div>' : ''}
@@ -823,7 +825,7 @@
                         </div>
                     </div>
 
-                    <div style="background-color: #0f0f0f; padding: 20px; border-radius: 8px;">
+                    <div style="background-color: #0d0d0d; padding: 20px; border-radius: 8px;">
                         <h4 style="color: #888; margin-bottom: 15px; text-align: center; font-size: 16px;">ABILITY</h4>
                         
                         <div style="margin-bottom: 15px;">
@@ -836,7 +838,7 @@
                             <span style="font-size: 15px; color: white;">${createAspectDisplay(build.aspect3)}</span>
                         </div>
 
-                        <div style="border-top: 1px solid #2a2a2a; padding-top: 15px; margin-top: 15px;">
+                        <div style="border-top: 1px solid #222; padding-top: 15px; margin-top: 15px;">
                             <strong style="color: #888; font-size: 13px; display: block; margin-bottom: 8px;">Forge Upgrades:</strong>
                             <div style="font-size: 14px; line-height: 2.5; color: white;">
                                 ${build.abilityforge1 ? '<div style="margin-bottom: 10px;">' + createForgeDisplay(build.abilityforge1, build.ability) + '</div>' : ''}
@@ -848,7 +850,7 @@
                     </div>
                 </div>
 
-                <div style="background-color: #0f0f0f; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                <div style="background-color: #0d0d0d; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
                     <h4 style="color: #888; margin-bottom: 15px; text-align: center; font-size: 16px;">CHARMS</h4>
                     <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 30px; width: 100%;">
                         <span style="color: white;">${createCharmDisplay(build.charm1)}</span>
