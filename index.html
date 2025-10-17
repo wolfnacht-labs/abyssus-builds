@@ -132,7 +132,7 @@
             padding: 0;
             cursor: pointer;
             transition: transform 0.2s, border-color 0.2s;
-            height: 280px;
+            height: 290px;
             display: flex;
             flex-direction: column;
         }
@@ -722,7 +722,7 @@
                     </div>
                     <div class="build-card-footer">
                         <span class="build-date">${new Date(build.date).toLocaleDateString()}</span>
-                        <span class="build-likes">❤️ ${build.likes}</span>
+                        <span class="build-likes" data-build-id="${build.firebaseId}">❤️ ${build.likes}</span>
                     </div>
                 </div>
             `).join('');
@@ -917,6 +917,7 @@
     </script>
 </body>
 </html>
+
 
 
 
