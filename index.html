@@ -193,9 +193,10 @@
         .build-info-value {
             color: #fff;
             text-align: center;
-            max-width: 95px;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 70px;
         }
 
         .build-card-footer {
@@ -933,6 +934,7 @@
     </script>
 </body>
 </html>
+
 
 
 
