@@ -1009,7 +1009,7 @@ function adjustBuildInfoSpacing() {
                 parent.appendChild(toast);
                 
                 toast.style.left = button.offsetWidth + 10 + 'px';
-                toast.style.top = '0px';
+                toast.style.top = (button.offsetHeight / 2 - toast.offsetHeight / 2) + 'px';
                 
                 setTimeout(() => {
                     toast.remove();
@@ -1031,6 +1031,7 @@ function adjustBuildInfoSpacing() {
     </script>
 </body>
 </html>
+
 
 
 
