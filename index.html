@@ -778,7 +778,7 @@ function adjustBuildInfoSpacing() {
             const createAspectDisplay = (aspect) => {
                 if (!aspect) return '<span style="color: #999;">None</span>';
                 const icon = aspectIcons[aspect] ? `<img src="${aspectIcons[aspect]}" alt="${aspect}" style="width: 28px; height: 28px; vertical-align: middle; margin-right: 8px;">` : '';
-                return `${icon}${aspect}`;
+                return `<div style="display: flex; flex-wrap: wrap;"><div>${icon}</div><div>${aspect}</div></div>`;
             };
 
             const createCharmDisplay = (charm) => {
@@ -791,14 +791,14 @@ function adjustBuildInfoSpacing() {
                 if (!primary) return '<span style="color: #999;">None</span>';
                 const iconPath = getPrimaryIcon(weapon, primary);
                 const icon = iconPath ? `<img src="${iconPath}" alt="${primary}" style="width: 28px; height: 28px; vertical-align: middle; margin-right: 6px;">` : '';
-                return `${icon}${primary}`;
+                return `<div style="display: flex; flex-wrap: wrap;"><div>${icon}</div><div>${primary}</div></div>`;
             };
 
 			const createSecondaryDisplay = (secondary, weapon) => {
                 if (!secondary) return '<span style="color: #999;">None</span>';
                 const iconPath = secondaryIcons[secondary];
                 const icon = iconPath ? `<img src="${iconPath}" alt="${secondary}" style="width: 28px; height: 28px; vertical-align: middle; margin-right: 8px;">` : '';
-                return `${icon}${secondary}`;
+                return `<div style="display: flex; flex-wrap: wrap;"><div>${icon}</div><div>${secondary}</div></div>`;
             };
 
 			const createForgeDisplay = (forge, weaponOrAbility) => {
@@ -989,6 +989,7 @@ function adjustBuildInfoSpacing() {
     </script>
 </body>
 </html>
+
 
 
 
