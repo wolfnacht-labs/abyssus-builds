@@ -882,8 +882,8 @@ function adjustBuildInfoSpacing() {
                 </div>
 
                 <div style="display: flex; gap: 10px;">
-                    <button class="action-btn ${isLiked ? 'liked' : ''}" onclick="toggleLike('${build.firebaseId}', this)" style="background-color: ${isLiked ? '#dc2626' : '#059669'};">
-                        ${isLiked ? '❤️ Liked' : '🤍 Like'}
+				<button class="action-btn" onclick="toggleLike('${build.firebaseId}', this)">
+                        ${isLiked ? '❤️ Liked!' : '🤍 Like'}
                     </button>
                     <button class="action-btn share-btn" onclick="shareBuild('${build.firebaseId}')">
                         📋 Copy Link
@@ -969,6 +969,7 @@ function adjustBuildInfoSpacing() {
     </script>
 </body>
 </html>
+
 
 
 
