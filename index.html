@@ -214,7 +214,7 @@
         }
 
         .build-likes {
-            color: white;
+            color: #059669;
             display: flex;
             align-items: center;
             gap: 5px;
@@ -629,7 +629,6 @@
         };
 		
         // Save liked builds to localStorage
-        // Save liked builds to localStorage
         function getBrowserFingerprint() {
             return btoa(navigator.userAgent + navigator.language + screen.width + screen.height);
         }
@@ -883,8 +882,8 @@ function adjustBuildInfoSpacing() {
                 </div>
 
                 <div style="display: flex; gap: 10px;">
-				<button class="action-btn ${isLiked ? 'liked' : ''}" onclick="toggleLike('${build.firebaseId}', this)">
-                        ${isLiked ? '❤️ Liked!' : '🤍 Like'}
+                    <button class="action-btn ${isLiked ? 'liked' : ''}" onclick="toggleLike('${build.firebaseId}', this)">
+                        ${isLiked ? '❤️ Liked' : '🤍 Like'}
                     </button>
                     <button class="action-btn share-btn" onclick="shareBuild('${build.firebaseId}')">
                         📋 Copy Link
@@ -900,7 +899,7 @@ function adjustBuildInfoSpacing() {
             window.history.pushState({}, '', window.location.pathname);
         }
 
-       function toggleLike(firebaseId, button) {
+        function toggleLike(firebaseId, button) {
             if (!validateFingerprint()) {
                 alert("You've already liked this build.");
                 return;
@@ -922,7 +921,7 @@ function adjustBuildInfoSpacing() {
             updateBuildLikes(firebaseId, isLiking);
             
             button.classList.toggle('liked');
-            button.textContent = isLiking ? '❤️ Liked!' : '🤍 Like';
+            button.textContent = isLiking ? '❤️ Liked' : '🤍 Like';
         }
 
         async function updateBuildLikes(firebaseId, isLiking) {
@@ -970,15 +969,6 @@ function adjustBuildInfoSpacing() {
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
 
 
 
