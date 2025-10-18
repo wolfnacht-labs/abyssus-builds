@@ -673,7 +673,7 @@
             });
         });
 
-function adjustBuildInfoSpacing() {
+        function adjustBuildInfoSpacing() {
             document.querySelectorAll('.build-info').forEach(buildInfo => {
                 const itemCount = buildInfo.querySelectorAll('.build-info-item').length;
                 if (itemCount <= 2) {
@@ -723,7 +723,8 @@ function adjustBuildInfoSpacing() {
                         <div class="build-title">${build.buildname}</div>
                         <div class="build-author">by @${build.author}</div>
 						<div class="build-info">
-                            ${build.weapon ? `<div class="build-info-item"><img src="${weaponIcons[build.weapon]}" alt="${build.weapon}"><div class="build-info-label">Weapon</div><div class="build-info-value">${build.weapon}</div></div>` : ''}
+                            ${build.weapon ? `<div class="build-info-item"><img src="${weaponIcons[build.weapon]
+																					   ${build.weapon ? `<div class="build-info-item"><img src="${weaponIcons[build.weapon]}" alt="${build.weapon}"><div class="build-info-label">Weapon</div><div class="build-info-value">${build.weapon}</div></div>` : ''}
                             ${build.ability ? `<div class="build-info-item"><img src="${abilityIcons[build.ability]}" alt="${build.ability}"><div class="build-info-label">Ability</div><div class="build-info-value">${build.ability}</div></div>` : ''}
                             ${build.aspect1 ? `<div class="build-info-item"><img src="${aspectIcons[build.aspect1]}" alt="${build.aspect1}" style="width: 32px; height: 32px; object-fit: contain;"><div class="build-info-label">Aspect</div><div class="build-info-value">${build.aspect1}</div><div class="build-info-label" style="margin-top: 3px;">Primary</div></div>` : ''}
                             ${build.aspect2 ? `<div class="build-info-item"><img src="${aspectIcons[build.aspect2]}" alt="${build.aspect2}" style="width: 32px; height: 32px; object-fit: contain;"><div class="build-info-label">Aspect</div><div class="build-info-value">${build.aspect2}</div><div class="build-info-label" style="margin-top: 3px;">Secondary</div></div>` : ''}
@@ -969,22 +970,3 @@ function adjustBuildInfoSpacing() {
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
