@@ -629,8 +629,21 @@
         };
 		
         // Save liked builds to localStorage
+        // Save liked builds to localStorage
+        function getBrowserFingerprint() {
+            return btoa(navigator.userAgent + navigator.language + screen.width + screen.height);
+        }
+
         function saveLikes() {
+            const fingerprint = getBrowserFingerprint();
             localStorage.setItem('likedBuilds', JSON.stringify([...likedBuilds]));
+            localStorage.setItem('browserFingerprint', fingerprint);
+        }
+
+        function validateFingerprint() {
+            const savedFingerprint = localStorage.getItem('browserFingerprint');
+            const currentFingerprint = getBrowserFingerprint();
+            return savedFingerprint === currentFingerprint;
         }
 
         // Filter options event listeners
@@ -887,7 +900,12 @@ function adjustBuildInfoSpacing() {
             window.history.pushState({}, '', window.location.pathname);
         }
 
-        function toggleLike(firebaseId, button) {
+       function toggleLike(firebaseId, button) {
+            if (!validateFingerprint()) {
+                alert("You've already liked this build.");
+                return;
+            }
+
             const build = window.builds.find(b => b.firebaseId === firebaseId);
             if (!build) return;
 
@@ -904,7 +922,7 @@ function adjustBuildInfoSpacing() {
             updateBuildLikes(firebaseId, isLiking);
             
             button.classList.toggle('liked');
-            button.textContent = isLiking ? '❤️ Liked' : '🤍 Like';
+            button.textContent = isLiking ? '❤️ Liked!' : '🤍 Like';
         }
 
         async function updateBuildLikes(firebaseId, isLiking) {
@@ -952,6 +970,7 @@ function adjustBuildInfoSpacing() {
     </script>
 </body>
 </html>
+
 
 
 
