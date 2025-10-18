@@ -454,6 +454,16 @@
         let currentWeaponFilter = 'all';
         let currentAbilityFilter = 'all';
 
+		// Ensure likedBuilds is populated from localStorage
+        if (window.likedBuilds) {
+            likedBuilds = window.likedBuilds;
+        } else {
+            const savedLikes = localStorage.getItem('likedBuilds');
+            if (savedLikes) {
+                likedBuilds = new Set(JSON.parse(savedLikes));
+            }
+        }
+		
         const weaponIcons = {
             'Engine Rifle': 'images/weapons/Engine_Rifle_Icon.png',
             'Shotgun': 'images/weapons/Shotgun_Icon.png',
@@ -979,5 +989,6 @@ function adjustBuildInfoSpacing() {
     </script>
 </body>
 </html>
+
 
 
