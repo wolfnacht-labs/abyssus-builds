@@ -304,9 +304,6 @@
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
         import { getFirestore, collection, getDocs, doc, updateDoc, increment } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
-       	window.firebaseModules = { doc, updateDoc, increment };
-        window.db = db;
-
         // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyCBpZluc0v2dxu1GhgQv8SucSKwmM2ESdU",
@@ -321,6 +318,9 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
+		window.firebaseModules = { doc, updateDoc, increment };
+        window.db = db;
+		
         // Load builds from Firebase
         async function loadData() {
             try {
@@ -952,6 +952,7 @@ function adjustBuildInfoSpacing() {
     </script>
 </body>
 </html>
+
 
 
 
