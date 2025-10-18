@@ -918,12 +918,6 @@ function adjustBuildInfoSpacing() {
                 alert("You've already liked this build.");
                 return;
             }
-            
-            // If same browser and already liked this build, prevent re-liking
-            if (likedBuilds.has(firebaseId)) {
-                alert("You've already liked this build.");
-                return;
-            }
 
             const build = window.builds.find(b => b.firebaseId === firebaseId);
             if (!build) return;
@@ -989,6 +983,7 @@ function adjustBuildInfoSpacing() {
     </script>
 </body>
 </html>
+
 
 
 
