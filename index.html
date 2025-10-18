@@ -900,7 +900,7 @@ function adjustBuildInfoSpacing() {
         }
 
         function toggleLike(firebaseId, button) {
-            if (!validateFingerprint() && likedBuilds.has(firebaseId)) {
+            if (validateFingerprint() && likedBuilds.has(firebaseId)) {
                 alert("You've already liked this build.");
                 return;
             }
@@ -968,6 +968,7 @@ function adjustBuildInfoSpacing() {
     </script>
 </body>
 </html>
+
 
 
 
