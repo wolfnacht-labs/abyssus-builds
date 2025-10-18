@@ -900,7 +900,11 @@ function adjustBuildInfoSpacing() {
         }
 
         function toggleLike(firebaseId, button) {
-            if (!validateFingerprint()) {
+            const savedFingerprint = localStorage.getItem('browserFingerprint');
+            const currentFingerprint = getBrowserFingerprint();
+            
+            // If fingerprints exist and don't match, user is on a different browser
+            if (savedFingerprint && savedFingerprint !== currentFingerprint) {
                 alert("You've already liked this build.");
                 return;
             }
@@ -921,7 +925,7 @@ function adjustBuildInfoSpacing() {
             updateBuildLikes(firebaseId, isLiking);
             
             button.classList.toggle('liked');
-            button.textContent = isLiking ? '❤️ Liked' : '🤍 Like';
+            button.textContent = isLiking ? '❤️ Liked!' : '🤍 Like';
         }
 
         async function updateBuildLikes(firebaseId, isLiking) {
@@ -969,3 +973,4 @@ function adjustBuildInfoSpacing() {
     </script>
 </body>
 </html>
+
