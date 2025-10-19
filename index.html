@@ -149,18 +149,28 @@
             flex-direction: column;
         }
 
-        .build-title {
-            font-size: 22px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #059669;
-        }
-
         .build-author {
-            color: #999;
-            font-size: 14px;
-            margin-bottom: 15px;
-        }
+    	color: #999;
+    	font-size: 14px;
+    	margin-bottom: 15px;
+    	overflow: hidden;
+    	text-overflow: ellipsis;
+    	white-space: nowrap;
+    	max-width: 100%;
+		}
+
+		.build-title {
+    	font-size: 22px;
+    	font-weight: bold;
+    	margin-bottom: 10px;
+    	color: #059669;
+    	overflow: hidden;
+    	text-overflow: ellipsis;
+    	display: -webkit-box;
+    	-webkit-line-clamp: 1;
+    	-webkit-box-orient: vertical;
+    	word-break: break-word;
+		}
 
         .build-info {
             display: flex;
@@ -819,7 +829,7 @@ function adjustBuildInfoSpacing() {
                 <div class="build-card" onclick="openModalByFirebaseId('${build.firebaseId}')">
                     <div class="build-card-content">
                         <div class="build-title">${build.buildname}</div>
-                        <div class="build-author">by @${build.author}</div>
+                        <div class="build-author">by @${parseMarkdown(build.author)}</div>
 						<div class="build-info">
                             ${build.weapon ? `<div class="build-info-item"><img src="${weaponIcons[build.weapon]}" alt="${build.weapon}"><div class="build-info-label">Weapon</div><div class="build-info-value">${build.weapon}</div></div>` : ''}
                             ${build.ability ? `<div class="build-info-item"><img src="${abilityIcons[build.ability]}" alt="${build.ability}"><div class="build-info-label">Ability</div><div class="build-info-value">${build.ability}</div></div>` : ''}
@@ -1103,6 +1113,7 @@ function adjustBuildInfoSpacing() {
     </script>
 </body>
 </html>
+
 
 
 
