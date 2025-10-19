@@ -500,7 +500,6 @@
         let currentSort = 'recent';
         let currentWeaponFilter = 'all';
         let currentAbilityFilter = 'all';
-		let currentTagFilter = 'all';
 
 		// Ensure likedBuilds is populated from localStorage
         if (window.likedBuilds) {
@@ -731,11 +730,36 @@
             });
         });
 
+		let selectedTags = new Set();
+
 		document.querySelectorAll('[data-tag]').forEach(option => {
             option.addEventListener('click', function() {
-                document.querySelectorAll('[data-tag]').forEach(o => o.classList.remove('active'));
-                this.classList.add('active');
-                currentTagFilter = this.dataset.tag;
+                const tag = this.dataset.tag;
+                
+                if (tag === 'all') {
+                    // Clicking "All Tags" deselects everything
+                    selectedTags.clear();
+                    document.querySelectorAll('[data-tag]').forEach(o => o.classList.remove('active'));
+                    this.classList.add('active');
+                } else {
+                    // Clicking "All Tags" when other tags are selected should deselect all
+                    if (this.classList.contains('active')) {
+                        // Deselect this tag
+                        selectedTags.delete(tag);
+                        this.classList.remove('active');
+                    } else {
+                        // Select this tag and remove "All Tags" active state
+                        selectedTags.add(tag);
+                        this.classList.add('active');
+                        document.querySelector('[data-tag="all"]').classList.remove('active');
+                    }
+                    
+                    // If no tags selected, activate "All Tags"
+                    if (selectedTags.size === 0) {
+                        document.querySelector('[data-tag="all"]').classList.add('active');
+                    }
+                }
+                
                 displayBuilds();
             });
         });
@@ -766,8 +790,8 @@ function adjustBuildInfoSpacing() {
                 filtered = filtered.filter(b => b.ability === currentAbilityFilter);
             }
 
-            if (currentTagFilter !== 'all') {
-                filtered = filtered.filter(b => b.tags && b.tags.includes(currentTagFilter));
+            if (selectedTags.size > 0) {
+                filtered = filtered.filter(b => b.tags && b.tags.some(tag => selectedTags.has(tag)));
             }
 
             if (currentSort === 'recent') {
@@ -1059,6 +1083,7 @@ function adjustBuildInfoSpacing() {
     </script>
 </body>
 </html>
+
 
 
 
