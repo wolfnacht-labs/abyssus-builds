@@ -446,7 +446,7 @@
                 </div>
             </div>
 
-            <div class="filter-section">
+			<div class="filter-section">
                 <h3>Ability</h3>
                 <div class="filter-option active" data-ability="all">All Abilities</div>
                 <div class="filter-option" data-ability="Frag Grenade">
@@ -465,6 +465,18 @@
                     <img src="images/abilities/Turret_Icon.png" alt=""> Turret
                 </div>
             </div>
+
+            <div class="filter-section">
+                <h3>Tags</h3>
+                <div class="filter-option active" data-tag="all">All Tags</div>
+                <div class="filter-option" data-tag="All-rounder">All-rounder</div>
+                <div class="filter-option" data-tag="Anti-Boss">Anti-Boss</div>
+                <div class="filter-option" data-tag="Deep Water 30">Deep Water 30</div>
+                <div class="filter-option" data-tag="Bottomless Chasm">Bottomless Chasm</div>
+                <div class="filter-option" data-tag="Speedrun">Speedrun</div>
+                <div class="filter-option" data-tag="Support">Support</div>
+            </div>
+			
         </aside>
 
         <!-- Build Grid -->
@@ -488,6 +500,7 @@
         let currentSort = 'recent';
         let currentWeaponFilter = 'all';
         let currentAbilityFilter = 'all';
+		let currentTagFilter = 'all';
 
 		// Ensure likedBuilds is populated from localStorage
         if (window.likedBuilds) {
@@ -718,6 +731,15 @@
             });
         });
 
+		document.querySelectorAll('[data-tag]').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('[data-tag]').forEach(o => o.classList.remove('active'));
+                this.classList.add('active');
+                currentTagFilter = this.dataset.tag;
+                displayBuilds();
+            });
+        });
+
 function adjustBuildInfoSpacing() {
             document.querySelectorAll('.build-info').forEach(buildInfo => {
                 const itemCount = buildInfo.querySelectorAll('.build-info-item').length;
@@ -742,6 +764,10 @@ function adjustBuildInfoSpacing() {
 
             if (currentAbilityFilter !== 'all') {
                 filtered = filtered.filter(b => b.ability === currentAbilityFilter);
+            }
+
+            if (currentTagFilter !== 'all') {
+                filtered = filtered.filter(b => b.tags && b.tags.includes(currentTagFilter));
             }
 
             if (currentSort === 'recent') {
@@ -926,6 +952,15 @@ function adjustBuildInfoSpacing() {
                     </div>
                 </div>
 
+                ${build.tags && build.tags.length > 0 ? `
+                <div style="background-color: #0b0c0d; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                    <h4 style="color: #999; margin-bottom: 15px; text-align: center; font-size: 16px;">TAGS</h4>
+                    <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; width: 100%;">
+                        ${build.tags.map(tag => `<span style="background-color: #059669; padding: 6px 12px; border-radius: 16px; font-size: 13px;">${tag}</span>`).join('')}
+                    </div>
+                </div>
+                ` : ''}
+
                 <div style="display: flex; gap: 10px;">
                     <button class="action-btn ${isLiked ? 'liked' : ''}" onclick="toggleLike('${build.firebaseId}', this)">
                         ${isLiked ? '❤️ Liked' : '🤍 Like'}
@@ -1024,6 +1059,7 @@ function adjustBuildInfoSpacing() {
     </script>
 </body>
 </html>
+
 
 
 
