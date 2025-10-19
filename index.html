@@ -1085,7 +1085,7 @@ function adjustBuildInfoSpacing() {
         });
 
   	// Text conversion
-		function parseMarkdown(text) {
+	function parseMarkdown(text) {
     if (!text) return '';
     
     // Convert **bold** to <strong>
@@ -1095,15 +1095,12 @@ function adjustBuildInfoSpacing() {
     // Convert line breaks
     text = text.replace(/\n/g, '<br>');
     
-    // Convert bullet points
-    text = text.replace(/^- (.*?)$/gm, '<li>$1</li>');
-    text = text.replace(/(<li>.*?<\/li>)/s, '<ul>$1</ul>');
-    
     return text;
 }
     </script>
 </body>
 </html>
+
 
 
 
