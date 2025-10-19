@@ -898,7 +898,7 @@ function adjustBuildInfoSpacing() {
 
             details.innerHTML = `
                 <h2 style="color: #059669; margin-bottom: 10px;">${build.buildname}</h2>
-                <p style="color: #999; margin-bottom: 20px;">Created by @${build.author} on ${new Date(build.date).toLocaleDateString()}</p>
+                <p style="color: #999; margin-bottom: 20px;">Created by @${parseMarkdown(build.author)} on ${new Date(build.date).toLocaleDateString()}</p>
                 <p style="margin-bottom: 25px; line-height: 1.6;">${parseMarkdown(build.description)}</p>
 
                 <h3 style="color: #059669; margin-bottom: 15px;">Loadout</h3>
@@ -1088,6 +1088,9 @@ function adjustBuildInfoSpacing() {
 	function parseMarkdown(text) {
     if (!text) return '';
     
+    // Convert [link text](url) to <a> tags
+    text = text.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" style="color: #059669; text-decoration: none;">$1</a>');
+    
     // Convert **bold** to <strong>
     text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
     text = text.replace(/__(.*?)__/g, '<strong>$1</strong>');
@@ -1100,6 +1103,7 @@ function adjustBuildInfoSpacing() {
     </script>
 </body>
 </html>
+
 
 
 
