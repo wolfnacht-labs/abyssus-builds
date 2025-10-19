@@ -158,8 +158,10 @@
     	margin-bottom: 15px;
     	overflow: hidden;
     	text-overflow: ellipsis;
-    	white-space: nowrap;
-    	max-width: 100%;
+   	 	display: -webkit-box;
+    	-webkit-line-clamp: 1;
+    	-webkit-box-orient: vertical;
+    	word-break: break-word;
 		}
 
 		.build-title {
@@ -170,7 +172,7 @@
     	overflow: hidden;
     	text-overflow: ellipsis;
     	display: -webkit-box;
-    	-webkit-line-clamp: 1;
+    	-webkit-line-clamp: 2;
     	-webkit-box-orient: vertical;
     	word-break: break-word;
 		}
@@ -1116,6 +1118,7 @@ function adjustBuildInfoSpacing() {
     </script>
 </body>
 </html>
+
 
 
 
