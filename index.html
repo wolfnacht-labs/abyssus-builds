@@ -180,10 +180,10 @@
       .build-info {
     display: flex;
     margin-bottom: 10px;
-    font-size: 12px;
+    font-size: 13px;
     justify-content: center;
     flex-wrap: nowrap;
-    gap: 8px;
+    gap: 10px;
     overflow: hidden;
 }
 
@@ -192,19 +192,20 @@
     flex-direction: column;
     align-items: center;
     flex: 0 1 auto;
-    min-height: 70px;
+    min-height: 75px;
+    min-width: 0;
 }
 
 .build-info-item img {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     object-fit: contain;
-    margin-bottom: 3px;
+    margin-bottom: 4px;
 }
 
 .build-info-label {
     color: #999;
-    font-size: 10px;
+    font-size: 11px;
     margin-bottom: 2px;
 }
 
@@ -212,9 +213,9 @@
     color: #fff;
     text-align: center;
     word-break: break-word;
-    max-width: 55px;
-    line-height: 1.1;
-    font-size: 10px;
+    max-width: 65px;
+    line-height: 1.2;
+    font-size: 11px;
 }
 
         .build-card-footer {
@@ -845,10 +846,10 @@ function adjustBuildInfoSpacing() {
                             ${build.aspect2 ? `<div class="build-info-item"><img src="${aspectIcons[build.aspect2]}" alt="${build.aspect2}" style="width: 32px; height: 32px; object-fit: contain;"><div class="build-info-label">Aspect</div><div class="build-info-value">${build.aspect2}</div><div class="build-info-label" style="margin-top: 3px;">Secondary</div></div>` : ''}
                             ${build.aspect3 ? `<div class="build-info-item"><img src="${aspectIcons[build.aspect3]}" alt="${build.aspect3}" style="width: 32px; height: 32px; object-fit: contain;"><div class="build-info-label">Aspect</div><div class="build-info-value">${build.aspect3}</div><div class="build-info-label" style="margin-top: 3px;">Ability</div></div>` : ''}
                         </div>
-                        <div style="font-size: 16px; margin-top: 10px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-                            ${build.charm1 && charmIcons[build.charm1] ? `<div style="display: flex; align-items: center; gap: 6px;"><img src="${charmIcons[build.charm1]}" alt="${build.charm1}" style="width: 27px; height: 27px; object-fit: contain;"><span>${build.charm1}</span></div>` : ''}
-                            ${build.charm2 && charmIcons[build.charm2] ? `<div style="display: flex; align-items: center; gap: 6px;"><img src="${charmIcons[build.charm2]}" alt="${build.charm2}" style="width: 27px; height: 27px; object-fit: contain;"><span>${build.charm2}</span></div>` : ''}
-                        </div>
+                        <div style="font-size: 14px; margin-top: 10px; display: flex; gap: 10px; flex-wrap: nowrap; overflow: hidden; justify-content: center;">
+    					${build.charm1 && charmIcons[build.charm1] ? `<div style="display: flex; align-items: center; gap: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><img src="${charmIcons[build.charm1]}" alt="${build.charm1}" style="width: 27px; height: 27px; object-fit: contain; flex-shrink: 0;"><span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${build.charm1}</span></div>` : ''}
+    					${build.charm2 && charmIcons[build.charm2] ? `<div style="display: flex; align-items: center; gap: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><img src="${charmIcons[build.charm2]}" alt="${build.charm2}" style="width: 27px; height: 27px; object-fit: contain; flex-shrink: 0;"><span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${build.charm2}</span></div>` : ''}
+						</div>
                     </div>
                     <div class="build-card-footer">
                         <span class="build-date">${new Date(build.date).toLocaleDateString()}</span>
@@ -1126,6 +1127,7 @@ function adjustBuildInfoSpacing() {
     </script>
 </body>
 </html>
+
 
 
 
