@@ -284,10 +284,11 @@
     <div class="creator-container">
         <h1>Create Build</h1>
 
-        <div style="background-color: #141516; border: 2px solid #7e7568; border-radius: 8px; padding: 20px; position: fixed; right: 30px; top: 400px; width: 250px; z-index: 50;">
+        <!-- Tags Guide -->
+        <div style="background-color: #141516; border: 2px solid #7e7568; border-radius: 8px; padding: 20px; position: fixed; right: 30px; top: 350px; width: 320px; max-height: 400px; z-index: 50; overflow: hidden;">
     <div style="color: #059669; margin-bottom: 20px; font-size: 14px; text-transform: uppercase; font-weight: bold;">Tags Guide</div>
     
-    <div style="display: flex; flex-direction: column; gap: 15px;">
+    <div style="display: flex; flex-direction: column; gap: 15px; overflow-y: auto; max-height: 350px; padding-right: 8px;">
         <div>
             <div style="color: #059669; font-weight: bold; font-size: 13px; margin-bottom: 4px;">Support</div>
             <div style="color: #999; font-size: 12px; line-height: 1.5;">Provides strong team utility.</div>
@@ -319,6 +320,8 @@
         </div>
     </div>
 </div>
+
+        <!-- End of Tags Guide -->
         
         <div id="successMessage" class="success-message">
             Build created successfully! <a href="index.html" style="color: white; text-decoration: underline;">View all builds</a>
@@ -1245,6 +1248,7 @@
         </script>
     </body>
 </html>
+
 
 
 
