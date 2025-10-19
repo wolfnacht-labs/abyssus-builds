@@ -791,7 +791,7 @@ function adjustBuildInfoSpacing() {
             }
 
             if (selectedTags.size > 0) {
-                filtered = filtered.filter(b => b.tags && b.tags.some(tag => selectedTags.has(tag)));
+                filtered = filtered.filter(b => b.tags && [...selectedTags].every(tag => b.tags.includes(tag)));
             }
 
             if (currentSort === 'recent') {
@@ -1083,6 +1083,7 @@ function adjustBuildInfoSpacing() {
     </script>
 </body>
 </html>
+
 
 
 
