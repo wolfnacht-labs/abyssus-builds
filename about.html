@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Abyssus Builds</title>
+    <link rel="icon" type="image/png" href="favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0b0c0d;
+            color: white;
+        }
+        .navbar {
+            background-color: #000;
+            border-bottom: 3px solid #059669;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            height: 80px;
+        }
+        .logo {
+            padding: 0 30px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #059669;
+        }
+        .nav-links {
+            display: flex;
+            gap: 0;
+            height: 100%;
+            margin-left: 20px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            height: 100%;
+            transition: background-color 0.3s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            background-color: #141516;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        h1 {
+            color: #059669;
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+        h2 {
+            color: #059669;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+        .faq-item {
+            margin-bottom: 30px;
+        }
+        .faq-question {
+            background-color: #141516;
+            padding: 15px;
+            border-radius: 4px;
+            border-left: 3px solid #059669;
+            color: #059669;
+            font-weight: bold;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .faq-answer {
+            background-color: #0b0c0d;
+            padding: 15px;
+            border-radius: 4px;
+            line-height: 1.6;
+            color: #ddd;
+        }
+        .discord-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #059669;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .discord-link:hover {
+            text-decoration: underline;
+        }
+        .discord-link img {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="abyssus_builds.png" alt="Abyssus Builds" style="height: 50px;">
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Builds</a>
+            <a href="creator.html">Build Creator</a>
+            <a href="about.html" class="active">About</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>About Abyssus Builds</h1>
+        
+        <p>Welcome to Abyssus Builds, a community builds database. It features a diverse collection of build archetypes that cover various playstyles and approaches to help you find the perfect loadout for your Expeditions.</p>
+        
+        <p>You can browse through the extensive build library, like builds you find interesting, share them with others, and even create your own builds to contribute to the community. If you have any questions, please refer to the FAQ section below.</p>
+
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+            <div class="faq-question">Why doesn't the website use an account system?</div>
+            <div class="faq-answer">
+                I intentionally chose not to implement user accounts to prioritize privacy and security. By avoiding account systems, I eliminate concerns about data breaches, email leaks, and the need to handle sensitive user information. This approach keeps the site simple, secure, and focused on what matters most: the builds themselves.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Why is the website using fingerprinting?</div>
+            <div class="faq-answer">
+                Fingerprinting is a safe and industry-standard practice used to identify browsers without storing personal data. Since the website doesn't use accounts, it instead uses browser fingerprinting to track likes and prevent abuse. This method stores only a hash of your browser characteristics locally - no sensitive information is collected or stored on our servers.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How can I edit my build?</div>
+            <div class="faq-answer">
+                Due to the website's account-free system, direct editing of builds is not currently available. If you need to make changes to a build you've created, please join the Abyssus Wiki Discord server and visit the <strong>#edit-requests</strong> channel to request an edit.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How can I suggest changes?</div>
+            <div class="faq-answer">
+                Join the Abyssus Wiki Discord server and head to the <strong>#builds-general</strong> channel to share your ideas and discuss builds with other community members.
+            </div>
+        </div>
+
+        <p style="margin-top: 40px; text-align: center;">
+            Have more questions? Join <a href="https://discord.com/invite/rYHpyHeUzw" class="discord-link"><img src="images/Discord_Icon.png" alt="Discord">Abyssus Wiki</a>
+        </p>
+    </div>
+</body>
+</html>
