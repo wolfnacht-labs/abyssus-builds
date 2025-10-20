@@ -188,7 +188,7 @@
     align-items: center;
     flex: 0 1 auto;
     min-height: 75px;
-    min-width: 0;
+    min-width: 75px;
 }
 
 .build-info-item img {
@@ -204,12 +204,12 @@
     margin-bottom: 2px;
 }
 
-
 .build-info-value {
     color: #fff;
     text-align: center;
-    word-break: break-word;
-    max-width: 90px;
+    word-break: normal;
+    overflow-wrap: break-word;
+    max-width: 70px;
     line-height: 1.15;
     font-size: 12px;
 }
@@ -1142,6 +1142,7 @@ function adjustBuildInfoSpacing() {
     </script>
 </body>
 </html>
+
 
 
 
