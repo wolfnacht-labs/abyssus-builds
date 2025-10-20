@@ -286,7 +286,7 @@
 
         <!-- Tags Guide -->
 
-        <div style="position: absolute; right: 30px; top: 880px; background-color: #141516; border: 2px solid #7e7568; border-radius: 8px; padding: 20px; width: 320px; max-height: 500px;">
+        <div style="position: absolute; right: 30px; top: 875px; background-color: #141516; border: 2px solid #7e7568; border-radius: 8px; padding: 20px; width: 320px; max-height: 500px;">
     <div style="color: #059669; margin-bottom: 20px; font-size: 14px; text-transform: uppercase; font-weight: bold;">Tags Guide</div>
     
     <div style="display: flex; flex-direction: column; gap: 15px; max-height: 420px; overflow-y: auto; padding-right: 8px;">
@@ -631,7 +631,7 @@
             </div>
         </div>
 
-        <button class="submit-btn" id="submitBtn" onclick="addBuild()">Add Build</button>
+        <button class="submit-btn" id="submitBtn" onclick="validateAndAddBuild()">Add Build</button>
         
     </div>
 
@@ -1181,75 +1181,119 @@
             return Array.from(document.querySelectorAll('.tag-btn.selected')).map(btn => btn.dataset.tag);
         }
         
-        async function addBuild() {
-            const submitBtn = document.getElementById('submitBtn');
-            const errorMsg = document.getElementById('errorMessage');
-            
-            try {
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Creating...';
-                errorMsg.style.display = 'none';
+        function validateAndAddBuild() {
+    const errorMsg = document.getElementById('errorMessage');
+    const missingItems = [];
 
-                const buildName = document.getElementById('buildName').value || 'Untitled Build';
-                const authorName = document.getElementById('authorName').value || 'Anonymous';
-                const weapon = document.getElementById('weaponSelect').value;
-                const ability = document.getElementById('abilitySelect').value;
-                const primary = document.getElementById('primarySelect').value;
-                const secondary = document.getElementById('secondarySelect').value;
-                const aspect1 = document.getElementById('aspect1').value;
-                const aspect2 = document.getElementById('aspect2').value;
-                const aspect3 = document.getElementById('aspect3').value;
-                const weaponForge1 = document.getElementById('weaponForge1').value;
-                const weaponForge2 = document.getElementById('weaponForge2').value;
-                const weaponForge3 = document.getElementById('weaponForge3').value;
-                const abilityForge1 = document.getElementById('abilityForge1').value;
-                const abilityForge2 = document.getElementById('abilityForge2').value;
-                const abilityForge3 = document.getElementById('abilityForge3').value;
-                const charm1 = document.getElementById('charm1').value;
-                const charm2 = document.getElementById('charm2').value;
-                const description = document.getElementById('description').value || 'No description provided.';
+    // Check build name and author name
+    const buildName = document.getElementById('buildName').value.trim();
+    const authorName = document.getElementById('authorName').value.trim();
+    
+    if (!buildName) {
+        missingItems.push('Build Name');
+    }
+    if (!authorName) {
+        missingItems.push('Author Name');
+    }
 
-                const build = {
-                    buildname: buildName,
-                    author: authorName,
-                    weapon: weapon,
-                    ability: ability,
-                    primary: primary,
-                    secondary: secondary,
-                    aspect1: aspect1,
-                    aspect2: aspect2,
-                    aspect3: aspect3,
-                    weaponforge1: weaponForge1,
-                    weaponforge2: weaponForge2,
-                    weaponforge3: weaponForge3,
-                    abilityforge1: abilityForge1,
-                    abilityforge2: abilityForge2,
-                    abilityforge3: abilityForge3,
-                    charm1: charm1,
-                    charm2: charm2,
-                    description: description,
-                    tags: getSelectedTags(),
-                    date: new Date().toISOString(),
-                    likes: 0
-                };
+    // Check weapon or ability
+    const weapon = document.getElementById('weaponSelect').value;
+    const ability = document.getElementById('abilitySelect').value;
+    
+    if (!weapon && !ability) {
+        missingItems.push('at least one Weapon or Ability');
+    }
 
-                await window.firestore.addDoc(window.firestore.collection(window.db, 'builds'), build);
+    // Check aspect
+    const aspect1 = document.getElementById('aspect1').value;
+    const aspect2 = document.getElementById('aspect2').value;
+    const aspect3 = document.getElementById('aspect3').value;
+    
+    if (!aspect1 && !aspect2 && !aspect3) {
+        missingItems.push('at least one Aspect');
+    }
 
-                document.getElementById('successMessage').style.display = 'block';
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 1500);
-            } catch (error) {
-                console.error('Error adding build:', error);
-                errorMsg.textContent = 'Error creating build: ' + error.message;
-                errorMsg.style.display = 'block';
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Add Build';
-            }
-        }
+    // If there are missing items, show error
+    if (missingItems.length > 0) {
+        errorMsg.textContent = 'You need to fill in: ' + missingItems.join('; ');
+        errorMsg.style.display = 'block';
+        return;
+    }
+
+    // If validation passes, proceed to add build
+    addBuild();
+}
+
+async function addBuild() {
+    const submitBtn = document.getElementById('submitBtn');
+    const errorMsg = document.getElementById('errorMessage');
+    
+    try {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Creating...';
+        errorMsg.style.display = 'none';
+
+        const buildName = document.getElementById('buildName').value.trim();
+        const authorName = document.getElementById('authorName').value.trim();
+        const weapon = document.getElementById('weaponSelect').value;
+        const ability = document.getElementById('abilitySelect').value;
+        const primary = document.getElementById('primarySelect').value;
+        const secondary = document.getElementById('secondarySelect').value;
+        const aspect1 = document.getElementById('aspect1').value;
+        const aspect2 = document.getElementById('aspect2').value;
+        const aspect3 = document.getElementById('aspect3').value;
+        const weaponForge1 = document.getElementById('weaponForge1').value;
+        const weaponForge2 = document.getElementById('weaponForge2').value;
+        const weaponForge3 = document.getElementById('weaponForge3').value;
+        const abilityForge1 = document.getElementById('abilityForge1').value;
+        const abilityForge2 = document.getElementById('abilityForge2').value;
+        const abilityForge3 = document.getElementById('abilityForge3').value;
+        const charm1 = document.getElementById('charm1').value;
+        const charm2 = document.getElementById('charm2').value;
+        const description = document.getElementById('description').value || 'No description provided.';
+
+        const build = {
+            buildname: buildName,
+            author: authorName,
+            weapon: weapon,
+            ability: ability,
+            primary: primary,
+            secondary: secondary,
+            aspect1: aspect1,
+            aspect2: aspect2,
+            aspect3: aspect3,
+            weaponforge1: weaponForge1,
+            weaponforge2: weaponForge2,
+            weaponforge3: weaponForge3,
+            abilityforge1: abilityForge1,
+            abilityforge2: abilityForge2,
+            abilityforge3: abilityForge3,
+            charm1: charm1,
+            charm2: charm2,
+            description: description,
+            tags: getSelectedTags(),
+            date: new Date().toISOString(),
+            likes: 0
+        };
+
+        await window.firestore.addDoc(window.firestore.collection(window.db, 'builds'), build);
+
+        document.getElementById('successMessage').style.display = 'block';
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 1500);
+    } catch (error) {
+        console.error('Error adding build:', error);
+        errorMsg.textContent = 'Error creating build: ' + error.message;
+        errorMsg.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Add Build';
+    }
+}
         </script>
     </body>
 </html>
+
 
 
 
