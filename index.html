@@ -427,6 +427,12 @@
     <div class="container">
         <!-- Sidebar Filters -->
         <aside class="sidebar">
+			
+			<div class="filter-section" style="margin-bottom: 30px;">
+    		<input type="text" id="searchInput" placeholder="Search builds..." 
+            style="width: 100%; padding: 10px; background-color: #232a2e; border: 1px solid #7e7568; border-radius: 4px; color: white;">
+			</div>
+			
             <h2>Filters</h2>
             
             <div class="filter-section">
@@ -518,6 +524,7 @@
         let currentSort = 'recent';
         let currentWeaponFilter = 'all';
         let currentAbilityFilter = 'all';
+		let currentSearchQuery = '';
 
 		// Ensure likedBuilds is populated from localStorage
         if (window.likedBuilds) {
@@ -796,6 +803,11 @@ function adjustBuildInfoSpacing() {
                 }
             });
         }
+
+		document.getElementById('searchInput').addEventListener('input', function() {
+    currentSearchQuery = this.value.toLowerCase();
+    displayBuilds();
+});
 		
         function filterBuilds() {
     		let filtered = [...(window.builds || [])];
@@ -812,6 +824,13 @@ function adjustBuildInfoSpacing() {
                 filtered = filtered.filter(b => b.tags && [...selectedTags].every(tag => b.tags.includes(tag)));
             }
 
+			if (currentSearchQuery) {
+    		filtered = filtered.filter(b => 
+        	b.buildname.toLowerCase().includes(currentSearchQuery) || 
+       	 	b.author.toLowerCase().includes(currentSearchQuery)
+    		);
+			}
+			
             if (currentSort === 'recent') {
                 filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
             } else if (currentSort === 'liked') {
@@ -1123,6 +1142,7 @@ function adjustBuildInfoSpacing() {
     </script>
 </body>
 </html>
+
 
 
 
