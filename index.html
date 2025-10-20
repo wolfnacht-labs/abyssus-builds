@@ -209,7 +209,7 @@
     color: #fff;
     text-align: center;
     word-break: break-word;
-    max-width: 65px;
+    max-width: 75px;
     line-height: 1.15;
     font-size: 12px;
 }
@@ -861,7 +861,7 @@ function adjustBuildInfoSpacing() {
                             ${build.aspect2 ? `<div class="build-info-item"><img src="${aspectIcons[build.aspect2]}" alt="${build.aspect2}" style="width: 32px; height: 32px; object-fit: contain;"><div class="build-info-label">Aspect</div><div class="build-info-value">${build.aspect2}</div><div class="build-info-label" style="margin-top: 3px;">Secondary</div></div>` : ''}
                             ${build.aspect3 ? `<div class="build-info-item"><img src="${aspectIcons[build.aspect3]}" alt="${build.aspect3}" style="width: 32px; height: 32px; object-fit: contain;"><div class="build-info-label">Aspect</div><div class="build-info-value">${build.aspect3}</div><div class="build-info-label" style="margin-top: 3px;">Ability</div></div>` : ''}
                         </div>
-                        <div style="font-size: 14px; margin-top: 10px; display: flex; gap: 10px; flex-wrap: nowrap; overflow: hidden; justify-content: center;">
+                        <div style="font-size: 14px; margin-top: auto; display: flex; gap: 10px; flex-wrap: nowrap; overflow: hidden; justify-content: center;">
     					${build.charm1 && charmIcons[build.charm1] ? `<div style="display: flex; align-items: center; gap: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><img src="${charmIcons[build.charm1]}" alt="${build.charm1}" style="width: 27px; height: 27px; object-fit: contain; flex-shrink: 0;"><span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${build.charm1}</span></div>` : ''}
     					${build.charm2 && charmIcons[build.charm2] ? `<div style="display: flex; align-items: center; gap: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><img src="${charmIcons[build.charm2]}" alt="${build.charm2}" style="width: 27px; height: 27px; object-fit: contain; flex-shrink: 0;"><span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${build.charm2}</span></div>` : ''}
 						</div>
@@ -1142,6 +1142,7 @@ function adjustBuildInfoSpacing() {
     </script>
 </body>
 </html>
+
 
 
 
