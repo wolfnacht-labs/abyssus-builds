@@ -53,6 +53,28 @@
             transition: background-color 0.3s;
         }
 
+		.discord-link {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 30px;
+    color: #059669;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: opacity 0.3s;
+}
+
+.discord-link:hover {
+    opacity: 0.8;
+}
+
+.discord-link img {
+    width: 24px;
+    height: 24px;
+}
+
         .nav-links a:hover, .nav-links a.active {
             background-color: #141516;
         }
@@ -423,6 +445,10 @@
             <a href="creator.html">Build Creator</a>
 			<a href="about.html">About</a>
         </div>
+		<a href="https://discord.com/invite/rYHpyHeUzw" class="discord-link" target="_blank" rel="noopener noreferrer">
+    Join our Discord!
+			<img src="images/Discord_Icon.png" alt="Discord">
+</a>
     </nav>
 
     <!-- Main Container -->
@@ -1151,6 +1177,7 @@ window.addEventListener('keydown', function(event) {
     </script>
 </body>
 </html>
+
 
 
 
