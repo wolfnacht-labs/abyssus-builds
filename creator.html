@@ -323,55 +323,63 @@
         margin-bottom: 20px;
     }
 
+/* Make creator container a flex container to reorder elements */
+    .creator-container {
+        display: flex;
+        flex-direction: column;
+    }
 
-    /* Make creator container a flex container to reorder elements */
-.creator-container {
-    display: flex;
-    flex-direction: column;
-}
+    .creator-container h1 {
+        order: 1;
+    }
 
-.creator-container h1 {
-    order: 1;
-}
+    /* Success and error messages */
+    #successMessage {
+        order: 2;
+    }
 
-/* Build Name and Author Name section */
-.creator-container > .form-section:nth-of-type(1) {
-    order: 2;
-}
+    #errorMessage {
+        order: 2;
+    }
 
-/* Weapon and Ability section */
-    .creator-container > .form-section:nth-of-type(2) {
+    /* Build Name and Author Name section */
+    .creator-container > .form-section:nth-of-type(1) {
         order: 3;
+    }
+
+    /* Weapon and Ability section */
+    .creator-container > .form-section:nth-of-type(2) {
+        order: 4;
     }
 
     /* Charms section */
     .creator-container > .form-section:nth-of-type(3) {
-        order: 4;
+        order: 5;
     }
 
     /* Description section */
     .creator-container > .form-section:nth-of-type(4) {
-        order: 5;
+        order: 6;
     }
 
     /* Tags section */
     .creator-container > .form-section:nth-of-type(5) {
-        order: 6;
-    }
-
-    .submit-btn {
         order: 7;
     }
 
-/* Tags Guide - move to bottom */
+    .submit-btn {
+        order: 8;
+    }
+
+    /* Tags Guide - move to bottom */
     .creator-container > div[style*="position: absolute"] {
         position: static !important;
         width: 100% !important;
         max-height: none !important;
         margin-top: 20px;
         margin-bottom: 20px;
-        order: 8;
-    }
+        order: 9;
+    }    
 
     /* Input Group - Stack vertically */
     .input-group {
@@ -1578,6 +1586,7 @@ async function addBuild() {
         </script>
     </body>
 </html>
+
 
 
 
