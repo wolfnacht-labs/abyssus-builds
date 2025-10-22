@@ -588,6 +588,28 @@
         padding: 8px 12px;
     }
 }		
+
+.loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.loading-spinner {
+    width: 24px;
+    height: 24px;
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
+}
 		
     </style>
     <script type="module">
@@ -751,7 +773,12 @@
 
         <!-- Build Grid -->
         <main class="build-grid" id="buildGrid">
-            <div class="no-builds">Loading builds...</div>
+            <div class="no-builds">
+    <div class="loading-container">
+        <span>Loading builds...</span>
+        <img src="images/propeller.png" class="loading-spinner" alt="Loading">
+    </div>
+</div>
         </main>
     </div>
 
@@ -1395,3 +1422,4 @@ window.addEventListener('keydown', function(event) {
     </script>
 </body>
 </html>
+
