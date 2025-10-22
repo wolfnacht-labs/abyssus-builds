@@ -127,6 +127,101 @@
     width: 24px;
     height: 24px;
 }
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+    /* Navbar - Stack vertically */
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 15px 0;
+    }
+
+    .logo {
+        padding: 10px 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .logo img {
+        height: 40px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        margin-left: 0;
+        gap: 0;
+    }
+
+    .nav-links a {
+        padding: 15px 20px;
+        justify-content: center;
+        width: 100%;
+        border-bottom: 1px solid #7e7568;
+    }
+
+    .discord-link {
+        width: 100%;
+        justify-content: center;
+        padding: 15px 20px;
+        margin-left: 0;
+        border-top: 2px solid #059669;
+    }
+
+    /* Container */
+    .container {
+        padding: 30px 20px;
+    }
+
+    h1 {
+        font-size: 26px;
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 20px;
+        margin-top: 30px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .faq-question {
+        font-size: 15px;
+        padding: 12px;
+    }
+
+    .faq-answer {
+        font-size: 15px;
+        padding: 12px;
+    }
+}
+
+/* Extra small devices */
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+
+    .faq-question {
+        font-size: 14px;
+    }
+
+    .faq-answer {
+        font-size: 14px;
+    }
+}
+		
     </style>
 </head>
 <body>
