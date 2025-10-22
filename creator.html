@@ -375,7 +375,7 @@
     }
 
     /* Tags Guide - move to bottom */
-    .creator-container > div[style*="position: absolute"] {
+    .creator-container > .tags-guide {
         position: static !important;
         width: 100% !important;
         max-height: none !important;
@@ -582,7 +582,7 @@
 
         <!-- Tags Guide -->
 
-        <div style="position: absolute; right: 30px; top: 872.5px; background-color: #141516; border: 2px solid #7e7568; border-radius: 8px; padding: 20px; width: 320px; max-height: 500px;">
+        <div class="tags-guide" style="position: absolute; right: 30px; top: 872.5px; background-color: #141516; border: 2px solid #7e7568; border-radius: 8px; padding: 20px; width: 320px; max-height: 500px;">
     <div style="color: #059669; margin-bottom: 20px; font-size: 14px; text-transform: uppercase; font-weight: bold;">Tags Guide</div>
     
     <div style="display: flex; flex-direction: column; gap: 15px; max-height: 420px; overflow-y: auto; padding-right: 8px;">
@@ -1589,6 +1589,7 @@ async function addBuild() {
         </script>
     </body>
 </html>
+
 
 
 
