@@ -371,6 +371,224 @@
                 transform: translateX(-10px);
             }
         }
+
+		/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+    /* Navbar - Stack vertically */
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 15px 0;
+    }
+
+    .logo {
+        padding: 10px 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .logo img {
+        height: 40px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        margin-left: 0;
+        gap: 0;
+    }
+
+    .nav-links a {
+        padding: 15px 20px;
+        justify-content: center;
+        width: 100%;
+        border-bottom: 1px solid #7e7568;
+    }
+
+    .discord-link {
+        width: 100%;
+        justify-content: center;
+        padding: 15px 20px;
+        margin-left: 0;
+        border-top: 2px solid #059669;
+    }
+
+    /* Container - Stack vertically */
+    .container {
+        flex-direction: column;
+    }
+
+    /* Sidebar - Full width */
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px solid #7e7568;
+        padding: 15px;
+    }
+
+    .sidebar h2 {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .filter-section {
+        margin-bottom: 20px;
+    }
+
+    .filter-section h3 {
+        font-size: 13px;
+    }
+
+    .filter-option {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .filter-option img {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Search input */
+    #searchInput {
+        font-size: 14px;
+    }
+
+    /* Build Grid - Single column */
+    .build-grid {
+        padding: 15px;
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    /* Build Cards */
+    .build-card {
+        height: auto;
+        min-height: 280px;
+    }
+
+    .build-card-content {
+        padding: 12px;
+    }
+
+    .build-title {
+        font-size: 20px;
+    }
+
+    .build-author {
+        font-size: 13px;
+    }
+
+    .build-info {
+        font-size: 13px;
+        gap: 8px;
+    }
+
+    .build-info-item img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .build-info-value {
+        font-size: 11px;
+        max-width: 55px;
+    }
+
+    .build-info-label {
+        font-size: 11px;
+    }
+
+    .build-card-footer {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    /* Modal */
+    .modal-content {
+        margin: 20px;
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    .modal-close {
+        top: 10px;
+        right: 15px;
+        font-size: 30px;
+    }
+
+    /* Modal - Stack weapon and ability vertically */
+    .modal-content h2 {
+        font-size: 22px;
+    }
+
+    .modal-content h3 {
+        font-size: 18px;
+    }
+
+    .modal-content > div > div[style*="grid-template-columns"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px !important;
+    }
+
+    .modal-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .action-btn {
+        font-size: 13px;
+        padding: 10px 15px;
+    }
+
+    /* No builds message */
+    .no-builds {
+        padding: 40px 20px;
+        font-size: 16px;
+    }
+}
+
+/* Extra small devices */
+@media screen and (max-width: 480px) {
+    .build-title {
+        font-size: 18px;
+    }
+
+    .build-info {
+        gap: 6px;
+    }
+
+    .build-info-item img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .build-info-value {
+        font-size: 10px;
+        max-width: 50px;
+    }
+
+    .modal-content {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .modal-content h2 {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+
+    .modal-content h3,
+    .modal-content h4 {
+        font-size: 16px;
+    }
+
+    .action-btn {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+}		
+		
     </style>
     <script type="module">
 
@@ -1177,6 +1395,7 @@ window.addEventListener('keydown', function(event) {
     </script>
 </body>
 </html>
+
 
 
 
