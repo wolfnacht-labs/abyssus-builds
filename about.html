@@ -91,7 +91,7 @@
             line-height: 1.6;
             color: #ddd;
         }
-        .discord-link {
+        .discord-link-bottom {
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -99,13 +99,34 @@
             text-decoration: none;
             font-weight: bold;
         }
-        .discord-link:hover {
+        .discord-link-bottom:hover {
             text-decoration: underline;
         }
-        .discord-link img {
+        .discord-link-bottom img {
             width: 20px;
             height: 20px;
         }
+        .discord-link {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 30px;
+    color: #059669;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: opacity 0.3s;
+}
+
+.discord-link:hover {
+    opacity: 0.8;
+}
+
+.discord-link img {
+    width: 24px;
+    height: 24px;
+}
     </style>
 </head>
 <body>
@@ -118,6 +139,10 @@
             <a href="creator.html">Build Creator</a>
             <a href="about.html" class="active">About</a>
         </div>
+        <a href="https://discord.com/invite/rYHpyHeUzw" class="discord-link" target="_blank" rel="noopener noreferrer">
+    Join our Discord!
+			<img src="images/Discord_Icon.png" alt="Discord">
+</a>
     </nav>
 
     <div class="container">
@@ -169,7 +194,7 @@
         </div>
 
         <p style="margin-top: 40px; text-align: center;">
-            Have more questions? Join <a href="https://discord.com/invite/rYHpyHeUzw" class="discord-link"><img src="images/Discord_Icon.png" alt="Discord">Abyssus Wiki</a>
+            Have more questions? Join <a href="https://discord.com/invite/rYHpyHeUzw" class="discord-link-bottom"><img src="images/Discord_Icon.png" alt="Discord">Abyssus Wiki</a>
         </p>
     </div>
 </body>
