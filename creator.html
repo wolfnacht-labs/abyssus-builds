@@ -248,6 +248,28 @@
             background-color: #059669;
             border-color: #059669;
         }
+
+        .discord-link {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 30px;
+    color: #059669;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: opacity 0.3s;
+}
+
+.discord-link:hover {
+    opacity: 0.8;
+}
+
+.discord-link img {
+    width: 24px;
+    height: 24px;
+}
     </style>
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
@@ -279,6 +301,10 @@
             <a href="creator.html" class="active">Build Creator</a>
             <a href="about.html">About</a>
         </div>
+        <a href="https://discord.com/invite/rYHpyHeUzw" class="discord-link" target="_blank" rel="noopener noreferrer">
+    Join our Discord!
+			<img src="images/Discord_Icon.png" alt="Discord">
+</a>
     </nav>
 
     <div class="creator-container">
@@ -1293,6 +1319,7 @@ async function addBuild() {
         </script>
     </body>
 </html>
+
 
 
 
