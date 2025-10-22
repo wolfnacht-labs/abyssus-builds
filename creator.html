@@ -329,16 +329,18 @@
         flex-direction: column;
     }
 
-    .creator-container h1 {
+    /* Create Build title */
+    .creator-container > h1 {
         order: 1;
     }
 
-    /* Success and error messages */
-    #successMessage {
+    /* Success message */
+    .creator-container > .success-message {
         order: 2;
     }
 
-    #errorMessage {
+    /* Error message */
+    .creator-container > .error-message {
         order: 2;
     }
 
@@ -367,7 +369,8 @@
         order: 7;
     }
 
-    .submit-btn {
+    /* Submit button */
+    .creator-container > .submit-btn {
         order: 8;
     }
 
@@ -1586,6 +1589,7 @@ async function addBuild() {
         </script>
     </body>
 </html>
+
 
 
 
