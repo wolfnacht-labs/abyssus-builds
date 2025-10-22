@@ -323,15 +323,6 @@
         margin-bottom: 20px;
     }
 
-    /* Hide Tags Guide on mobile - will be moved to bottom */
-    .creator-container > div[style*="position: absolute"] {
-        position: static !important;
-        width: 100% !important;
-        max-height: none !important;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        order: 100;
-    }
 
     /* Make creator container a flex container to reorder elements */
 .creator-container {
@@ -349,33 +340,38 @@
 }
 
 /* Weapon and Ability section */
-.creator-container > .form-section:nth-of-type(2) {
-    order: 3;
-}
+    .creator-container > .form-section:nth-of-type(2) {
+        order: 3;
+    }
 
-/* Charms section */
-.creator-container > .form-section:nth-of-type(3) {
-    order: 4;
-}
+    /* Charms section */
+    .creator-container > .form-section:nth-of-type(3) {
+        order: 4;
+    }
 
-/* Description section */
-.creator-container > .form-section:nth-of-type(4) {
-    order: 5;
-}
+    /* Description section */
+    .creator-container > .form-section:nth-of-type(4) {
+        order: 5;
+    }
 
-/* Tags section */
-.creator-container > .form-section:nth-of-type(5) {
-    order: 6;
-}
+    /* Tags section */
+    .creator-container > .form-section:nth-of-type(5) {
+        order: 6;
+    }
 
-.submit-btn {
-    order: 7;
-}
+    .submit-btn {
+        order: 7;
+    }
 
 /* Tags Guide - move to bottom */
-.creator-container > div[style*="position: absolute"] {
-    order: 8;
-}
+    .creator-container > div[style*="position: absolute"] {
+        position: static !important;
+        width: 100% !important;
+        max-height: none !important;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        order: 8;
+    }
 
     /* Input Group - Stack vertically */
     .input-group {
@@ -1582,6 +1578,7 @@ async function addBuild() {
         </script>
     </body>
 </html>
+
 
 
 
