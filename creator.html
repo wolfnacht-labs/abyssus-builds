@@ -270,6 +270,259 @@
     width: 24px;
     height: 24px;
 }
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+    /* Navbar - Stack vertically */
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 15px 0;
+    }
+
+    .logo {
+        padding: 10px 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .logo img {
+        height: 40px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        margin-left: 0;
+        gap: 0;
+    }
+
+    .nav-links a {
+        padding: 15px 20px;
+        justify-content: center;
+        width: 100%;
+        border-bottom: 1px solid #7e7568;
+    }
+
+    .discord-link {
+        width: 100%;
+        justify-content: center;
+        padding: 15px 20px;
+        margin-left: 0;
+        border-top: 2px solid #059669;
+    }
+
+    /* Creator Container */
+    .creator-container {
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    /* Hide Tags Guide on mobile - will be moved to bottom */
+    .creator-container > div[style*="position: absolute"] {
+        position: static !important;
+        width: 100% !important;
+        max-height: none !important;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        order: 100;
+    }
+
+    /* Make creator container a flex container to reorder elements */
+    .creator-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .creator-container h1 {
+        order: 1;
+    }
+
+    .creator-container > .form-section:nth-of-type(1) {
+        order: 2;
+    }
+
+    .creator-container > .form-section:nth-of-type(2) {
+        order: 3;
+    }
+
+    .creator-container > .form-section:nth-of-type(3) {
+        order: 4;
+    }
+
+    .creator-container > .form-section:nth-of-type(4) {
+        order: 5;
+    }
+
+    .creator-container > .form-section:nth-of-type(5) {
+        order: 6;
+    }
+
+    .submit-btn {
+        order: 7;
+    }
+
+    /* Input Group - Stack vertically */
+    .input-group {
+        flex-direction: column;
+        margin-bottom: 0;
+    }
+
+    .input-group input[type="text"] {
+        width: 100% !important;
+    }
+
+    .input-group span {
+        display: none;
+    }
+
+    /* Build Content - Stack weapon and ability vertically */
+    .build-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .weapon-column,
+    .ability-column {
+        flex: 1;
+    }
+
+    /* Remove the spacer div in ability column */
+    .ability-column > div[style*="height: 75px"] {
+        display: none;
+    }
+
+    /* Form sections */
+    .form-section {
+        padding: 15px;
+    }
+
+    .section-header {
+        font-size: 15px;
+        padding: 8px;
+    }
+
+    /* Form rows - Stack vertically */
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    /* Charms row - Stack vertically */
+    .charms-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .charms-row .select-with-icon {
+        margin-right: 0 !important;
+    }
+
+    /* Inputs and selects */
+    input[type="text"],
+    select,
+    textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 10px 12px;
+    }
+
+    .select-with-icon select {
+        padding-left: 38px;
+    }
+
+    textarea {
+        height: 100px;
+        font-size: 15px;
+    }
+
+    /* Tags */
+    .tag-btn {
+        font-size: 13px;
+        padding: 8px 14px;
+    }
+
+    /* Submit button */
+    .submit-btn {
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    /* Success and error messages */
+    .success-message,
+    .error-message {
+        font-size: 14px;
+        padding: 12px;
+        margin: 15px 0;
+    }
+
+    /* Form labels */
+    .form-col label {
+        font-size: 14px;
+    }
+
+    /* Forge sections */
+    .forge-section {
+        margin-top: 15px;
+    }
+
+    .forge-item {
+        margin-bottom: 10px;
+    }
+
+    /* Icons */
+    .selected-icon {
+        width: 18px;
+        height: 18px;
+        left: 8px;
+    }
+
+    .select-with-icon select {
+        padding-left: 34px;
+    }
+}
+
+/* Extra small devices */
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 22px;
+    }
+
+    .section-header {
+        font-size: 14px;
+    }
+
+    .form-section {
+        padding: 12px;
+    }
+
+    input[type="text"],
+    select,
+    textarea {
+        font-size: 15px;
+        padding: 8px 10px;
+    }
+
+    .select-with-icon select {
+        padding-left: 32px;
+    }
+
+    .tag-btn {
+        font-size: 12px;
+        padding: 7px 12px;
+    }
+
+    .submit-btn {
+        font-size: 15px;
+        padding: 12px;
+    }
+}
+		
     </style>
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
@@ -1319,6 +1572,7 @@ async function addBuild() {
         </script>
     </body>
 </html>
+
 
 
 
