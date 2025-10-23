@@ -1205,10 +1205,9 @@ function adjustBuildInfoSpacing() {
 
             details.innerHTML = `
                 <h2 style="color: #059669; margin-bottom: 10px;">${build.buildname}</h2>
-                <p style="color: #999; margin-bottom: 20px;">Created by @${build.author} on ${new Date(build.date).toLocaleDateString()}</p>
-                <div style="margin-bottom: 25px;">${parseMarkdown(build.description)}</div>
+<p style="color: #999; margin-bottom: 20px;">Created by @${build.author} on ${new Date(build.date).toLocaleDateString()}</p>
 
-                <h3 style="color: #059669; margin-bottom: 15px;">Loadout</h3>
+<h3 style="color: #059669; margin-bottom: 15px;">Loadout</h3>
                 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px;">
                     <div style="background-color: #0b0c0d; padding: 20px; border-radius: 8px;">
@@ -1295,6 +1294,10 @@ function adjustBuildInfoSpacing() {
                 </div>
                 ` : ''}
 
+                <div style="background-color: #0b0c0d; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                    ${parseMarkdown(build.description)}
+                </div>
+
                 <div style="display: flex; gap: 10px;">
                     <button class="action-btn ${isLiked ? 'liked' : ''}" onclick="toggleLike('${build.firebaseId}', this)">
                         ${isLiked ? '❤️ Liked' : '🤍 Like'}
@@ -1306,6 +1309,7 @@ function adjustBuildInfoSpacing() {
             `;
 
             modal.style.display = 'block';
+			modal.scrollTop = 0;
         }
 
         function closeModal() {
@@ -1422,4 +1426,5 @@ window.addEventListener('keydown', function(event) {
     </script>
 </body>
 </html>
+
 
