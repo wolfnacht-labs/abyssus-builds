@@ -46,9 +46,14 @@
             height: 100%;
             transition: background-color 0.3s;
         }
-        .nav-links a:hover, .nav-links a.active {
+        .nav-links a:hover {
             background-color: #141516;
+			text-decoration: underline;
         }
+		
+		.nav-links a.active {
+		background-color: #141516;
+		}
         .container {
             max-width: 900px;
             margin: 0 auto;
@@ -227,8 +232,10 @@
 <body>
     <nav class="navbar">
         <div class="logo">
-            <img src="abyssus_builds.png" alt="Abyssus Builds" style="height: 50px;">
-        </div>
+    <a href="index.html">
+        <img src="abyssus_builds.png" alt="Abyssus Builds" style="height: 50px;">
+    </a>
+</div>
         <div class="nav-links">
             <a href="index.html">Builds</a>
             <a href="creator.html">Build Creator</a>
