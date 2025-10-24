@@ -798,6 +798,8 @@
         let currentWeaponFilter = 'all';
         let currentAbilityFilter = 'all';
 		let currentSearchQuery = '';
+let displayedBuildsCount = 0;
+const BUILDS_PER_PAGE = 20;
 
 		// Ensure likedBuilds is populated from localStorage
         if (window.likedBuilds) {
@@ -1113,40 +1115,84 @@ function adjustBuildInfoSpacing() {
             return filtered;
         }
 
-        function displayBuilds() {
-            const grid = document.getElementById('buildGrid');
-            const filtered = filterBuilds();
+        function displayBuilds(append = false) {
+    const grid = document.getElementById('buildGrid');
+    const filtered = filterBuilds();
 
-            if (filtered.length === 0) {
-                grid.innerHTML = '<div class="no-builds">No builds match your filters.</div>';
-                return;
-            }
+    if (filtered.length === 0) {
+        grid.innerHTML = '<div class="no-builds">No builds match your filters.</div>';
+        displayedBuildsCount = 0;
+        return;
+    }
 
-            grid.innerHTML = filtered.map((build, index) => `
-                <div class="build-card" onclick="openModalByFirebaseId('${build.firebaseId}')">
-                    <div class="build-card-content">
-                        <div class="build-title">${build.buildname}</div>
-                        <div class="build-author">by @${build.author}</div>
-						<div class="build-info">
-                            ${build.weapon ? `<div class="build-info-item"><img src="${weaponIcons[build.weapon]}" alt="${build.weapon}"><div class="build-info-label">Weapon</div><div class="build-info-value">${build.weapon}</div></div>` : ''}
-                            ${build.ability ? `<div class="build-info-item"><img src="${abilityIcons[build.ability]}" alt="${build.ability}"><div class="build-info-label">Ability</div><div class="build-info-value">${build.ability}</div></div>` : ''}
-                            ${build.aspect1 ? `<div class="build-info-item"><img src="${aspectIcons[build.aspect1]}" alt="${build.aspect1}" style="width: 32px; height: 32px; object-fit: contain;"><div class="build-info-label">Aspect</div><div class="build-info-value">${build.aspect1}</div><div class="build-info-label" style="margin-top: 3px;">Primary</div></div>` : ''}
-                            ${build.aspect2 ? `<div class="build-info-item"><img src="${aspectIcons[build.aspect2]}" alt="${build.aspect2}" style="width: 32px; height: 32px; object-fit: contain;"><div class="build-info-label">Aspect</div><div class="build-info-value">${build.aspect2}</div><div class="build-info-label" style="margin-top: 3px;">Secondary</div></div>` : ''}
-                            ${build.aspect3 ? `<div class="build-info-item"><img src="${aspectIcons[build.aspect3]}" alt="${build.aspect3}" style="width: 32px; height: 32px; object-fit: contain;"><div class="build-info-label">Aspect</div><div class="build-info-value">${build.aspect3}</div><div class="build-info-label" style="margin-top: 3px;">Ability</div></div>` : ''}
-                        </div>
-                        <div style="font-size: 14px; margin-top: auto; display: flex; gap: 10px; flex-wrap: nowrap; overflow: hidden; justify-content: center;">
-    					${build.charm1 && charmIcons[build.charm1] ? `<div style="display: flex; align-items: center; gap: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><img src="${charmIcons[build.charm1]}" alt="${build.charm1}" style="width: 27px; height: 27px; object-fit: contain; flex-shrink: 0;"><span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${build.charm1}</span></div>` : ''}
-    					${build.charm2 && charmIcons[build.charm2] ? `<div style="display: flex; align-items: center; gap: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><img src="${charmIcons[build.charm2]}" alt="${build.charm2}" style="width: 27px; height: 27px; object-fit: contain; flex-shrink: 0;"><span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${build.charm2}</span></div>` : ''}
-						</div>
-                    </div>
-                    <div class="build-card-footer">
-                        <span class="build-date">${new Date(build.date).toLocaleDateString()}</span>
-                        <span class="build-likes" data-build-id="${build.firebaseId}">❤️ ${build.likes}</span>
-                    </div>
+    // Reset count if not appending
+    if (!append) {
+        displayedBuildsCount = 0;
+        grid.innerHTML = '';
+    }
+
+    // Calculate which builds to show
+    const startIndex = displayedBuildsCount;
+    const endIndex = Math.min(startIndex + BUILDS_PER_PAGE, filtered.length);
+    const buildsToShow = filtered.slice(startIndex, endIndex);
+
+    // Generate HTML for new builds
+    const buildsHTML = buildsToShow.map((build) => `
+        <div class="build-card" onclick="openModalByFirebaseId('${build.firebaseId}')">
+            <div class="build-card-content">
+                <div class="build-title">${build.buildname}</div>
+                <div class="build-author">by @${build.author}</div>
+                <div class="build-info">
+                    ${build.weapon ? `<div class="build-info-item"><img src="${weaponIcons[build.weapon]}" alt="${build.weapon}"><div class="build-info-label">Weapon</div><div class="build-info-value">${build.weapon}</div></div>` : ''}
+                    ${build.ability ? `<div class="build-info-item"><img src="${abilityIcons[build.ability]}" alt="${build.ability}"><div class="build-info-label">Ability</div><div class="build-info-value">${build.ability}</div></div>` : ''}
+                    ${build.aspect1 ? `<div class="build-info-item"><img src="${aspectIcons[build.aspect1]}" alt="${build.aspect1}" style="width: 32px; height: 32px; object-fit: contain;"><div class="build-info-label">Aspect</div><div class="build-info-value">${build.aspect1}</div><div class="build-info-label" style="margin-top: 3px;">Primary</div></div>` : ''}
+                    ${build.aspect2 ? `<div class="build-info-item"><img src="${aspectIcons[build.aspect2]}" alt="${build.aspect2}" style="width: 32px; height: 32px; object-fit: contain;"><div class="build-info-label">Aspect</div><div class="build-info-value">${build.aspect2}</div><div class="build-info-label" style="margin-top: 3px;">Secondary</div></div>` : ''}
+                    ${build.aspect3 ? `<div class="build-info-item"><img src="${aspectIcons[build.aspect3]}" alt="${build.aspect3}" style="width: 32px; height: 32px; object-fit: contain;"><div class="build-info-label">Aspect</div><div class="build-info-value">${build.aspect3}</div><div class="build-info-label" style="margin-top: 3px;">Ability</div></div>` : ''}
                 </div>
-            `).join('');
-			adjustBuildInfoSpacing();
+                <div style="font-size: 14px; margin-top: auto; display: flex; gap: 10px; flex-wrap: nowrap; overflow: hidden; justify-content: center;">
+                    ${build.charm1 && charmIcons[build.charm1] ? `<div style="display: flex; align-items: center; gap: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><img src="${charmIcons[build.charm1]}" alt="${build.charm1}" style="width: 27px; height: 27px; object-fit: contain; flex-shrink: 0;"><span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${build.charm1}</span></div>` : ''}
+                    ${build.charm2 && charmIcons[build.charm2] ? `<div style="display: flex; align-items: center; gap: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><img src="${charmIcons[build.charm2]}" alt="${build.charm2}" style="width: 27px; height: 27px; object-fit: contain; flex-shrink: 0;"><span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${build.charm2}</span></div>` : ''}
+                </div>
+            </div>
+            <div class="build-card-footer">
+                <span class="build-date">${new Date(build.date).toLocaleDateString()}</span>
+                <span class="build-likes" data-build-id="${build.firebaseId}">❤️ ${build.likes}</span>
+            </div>
+        </div>
+    `).join('');
+
+    // Append or set HTML
+    if (append) {
+        grid.insertAdjacentHTML('beforeend', buildsHTML);
+    } else {
+        grid.innerHTML = buildsHTML;
+    }
+
+    displayedBuildsCount = endIndex;
+    adjustBuildInfoSpacing();
+
+    // Add "Load More" indicator if there are more builds
+    if (displayedBuildsCount < filtered.length) {
+        const existingIndicator = document.getElementById('loadMoreIndicator');
+        if (!existingIndicator) {
+            const indicator = document.createElement('div');
+            indicator.id = 'loadMoreIndicator';
+            indicator.className = 'no-builds';
+            indicator.style.padding = '20px';
+            indicator.style.fontSize = '14px';
+            indicator.textContent = `Showing ${displayedBuildsCount} of ${filtered.length} builds`;
+            grid.appendChild(indicator);
+        } else {
+            existingIndicator.textContent = `Showing ${displayedBuildsCount} of ${filtered.length} builds`;
         }
+    } else {
+        // Remove indicator if all builds are shown
+        const existingIndicator = document.getElementById('loadMoreIndicator');
+        if (existingIndicator) {
+            existingIndicator.remove();
+        }
+    }
+}
 
        function openModalByFirebaseId(firebaseId) {
             const index = window.builds.findIndex(b => b.firebaseId === firebaseId);
@@ -1423,8 +1469,29 @@ window.addEventListener('keydown', function(event) {
     
     return text;
 }
+		// Infinite scroll
+let isLoadingMore = false;
+window.addEventListener('scroll', function() {
+    if (isLoadingMore) return;
+    
+    const scrollPosition = window.innerHeight + window.scrollY;
+    const pageHeight = document.documentElement.scrollHeight;
+    
+    // Load more when user is 500px from bottom
+    if (scrollPosition >= pageHeight - 500) {
+        const filtered = filterBuilds();
+        if (displayedBuildsCount < filtered.length) {
+            isLoadingMore = true;
+            displayBuilds(true);
+            setTimeout(() => {
+                isLoadingMore = false;
+            }, 300);
+        }
+    }
+});
     </script>
 </body>
 </html>
+
 
 
