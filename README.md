@@ -1,3 +1,4 @@
+# About
 Abyssus Builds is a community builds database. It features a diverse collection of build archetypes that cover various playstyles and approaches to help you find the perfect loadout for your Expeditions.
 
 You can browse through the extensive build library, like builds you find interesting, share them with others, and even create your own builds to contribute to the community. If you have any questions, please refer to the FAQ section below.
@@ -6,7 +7,7 @@ This site is not endorsed by or affiliated with neither DoubleMoose Games nor Th
 
 Created by @Wolfnacht
 
-FAQ
+# FAQ
 * Why doesn't the website use an account system? <br>
   I intentionally chose not to implement user accounts to prioritize privacy and security. By avoiding account systems, I eliminate concerns about data breaches, email leaks, and the need to handle sensitive user     information. This approach keeps the site simple, secure, and focused on what matters most: the builds themselves.
 * Why is the website using fingerprinting?<br>
@@ -17,5 +18,5 @@ FAQ
   No. It’s ad-free and maintained using free-tier infrastructure and open web services.
   <br>
 
-  
-  Have more questions? Join us at Abyssus Wiki Discord: https://discord.gg/K6nbCvuPbm
+# Additional information
+Have more questions? Join us at Abyssus Wiki Discord: https://discord.gg/K6nbCvuPbm
