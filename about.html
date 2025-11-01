@@ -111,28 +111,33 @@
             width: 20px;
             height: 20px;
         }
-        .discord-link {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 0 30px;
-    color: #059669;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 500;
-    transition: opacity 0.3s;
-}
+		
+      .discord-link {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            margin-right: 30px;
+            color: white;
+            background-color: #5865F2;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
 
 .discord-link:hover {
-    opacity: 0.8;
-	text-decoration: underline;
-
-}
+            background-color: #4752C4;
+        }
 
 .discord-link img {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
 }
 
 /* Mobile Responsive Styles */
@@ -168,13 +173,12 @@
         border-bottom: 1px solid #7e7568;
     }
 
-    .discord-link {
-        width: 100%;
-        justify-content: center;
-        padding: 15px 20px;
-        margin-left: 0;
-        border-top: 2px solid #059669;
-    }
+   .discord-link {
+                width: 100%;
+                justify-content: center;
+                padding: 15px 20px;
+                margin: 10px 0 0 0;
+            }
 
     /* Container */
     .container {
@@ -244,8 +248,8 @@
             <a href="about.html" class="active">About</a>
         </div>
         <a href="https://discord.gg/K6nbCvuPbm" class="discord-link" target="_blank" rel="noopener noreferrer">
-    Join our Discord!
-			<img src="images/Discord_Icon.png" alt="Discord">
+    <img src="images/Discord_Icon.png" alt="Discord">
+    Discord	
 </a>
     </nav>
 
