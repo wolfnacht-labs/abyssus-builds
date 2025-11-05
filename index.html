@@ -1375,33 +1375,24 @@ function adjustBuildInfoSpacing() {
         }
 
         function toggleLike(firebaseId, button) {
-            const savedFingerprint = localStorage.getItem('browserFingerprint');
-            const currentFingerprint = getBrowserFingerprint();
-            
-            // If fingerprints exist and don't match, user is on a different browser
-            if (savedFingerprint && savedFingerprint !== currentFingerprint) {
-                alert("You've already liked this build.");
-                return;
-            }
+    const build = window.builds.find(b => b.firebaseId === firebaseId);
+    if (!build) return;
 
-            const build = window.builds.find(b => b.firebaseId === firebaseId);
-            if (!build) return;
+    const isLiking = !likedBuilds.has(firebaseId);
+    
+    if (isLiking) {
+        likedBuilds.add(firebaseId);
+    } else {
+        likedBuilds.delete(firebaseId);
+    }
+    saveLikes();
 
-            const isLiking = !likedBuilds.has(firebaseId);
-            
-            if (isLiking) {
-                likedBuilds.add(firebaseId);
-            } else {
-                likedBuilds.delete(firebaseId);
-            }
-            saveLikes();
-
-            // Update Firebase
-            updateBuildLikes(firebaseId, isLiking);
-            
-            button.classList.toggle('liked');
-            button.textContent = isLiking ? '❤️ Liked' : '🤍 Like';
-        }
+    // Update Firebase
+    updateBuildLikes(firebaseId, isLiking);
+    
+    button.classList.toggle('liked');
+    button.textContent = isLiking ? '❤️ Liked' : '🤍 Like';
+}
 
         async function updateBuildLikes(firebaseId, isLiking) {
             try {
@@ -1503,6 +1494,7 @@ window.addEventListener('scroll', function() {
     </script>
 </body>
 </html>
+
 
 
 
