@@ -747,6 +747,9 @@
                 <div class="filter-option" data-weapon="Fish Deity">
                     <img src="images/weapons/Fish_Deity_Icon.png" alt=""> Fish Deity
                 </div>
+                <div class="filter-option" data-weapon="Harpoon Gun">
+                    <img src="images/weapons/Harpoon_Gun_Icon.png" alt=""> Harpoon Gun
+                </div>
             </div>
 
 			<div class="filter-section">
@@ -757,6 +760,9 @@
                 </div>
                 <div class="filter-option" data-ability="Anchor">
                     <img src="images/abilities/Anchor_Icon.png" alt=""> Anchor
+                </div>
+                <div class="filter-option" data-ability="Smiting Spear">
+                    <img src="images/abilities/Smiting_Spear_Icon.png" alt=""> Smiting Spear
                 </div>
                 <div class="filter-option" data-ability="Ancient Core">
                     <img src="images/abilities/Ancient_Core_Icon.png" alt=""> Ancient Core
@@ -830,12 +836,14 @@ const BUILDS_PER_PAGE = 20;
             'Disc Thrower': 'images/weapons/Disc_Thrower_Icon.png',
             'Combat Bow': 'images/weapons/Combat_Bow_Icon.png',
             'Plasma Launcher': 'images/weapons/Plasma_Launcher_Icon.png',
-            'Fish Deity': 'images/weapons/Fish_Deity_Icon.png'
+            'Fish Deity': 'images/weapons/Fish_Deity_Icon.png',
+            'Harpoon Gun': 'images/weapons/Harpoon_Gun_Icon.png'
         };
 
         const abilityIcons = {
             'Frag Grenade': 'images/abilities/Frag_Grenade_Icon.png',
             'Anchor': 'images/abilities/Anchor_Icon.png',
+            'Smiting Spear': 'images/abilities/Smiting_Spear_Icon.png',
             'Ancient Core': 'images/abilities/Ancient_Core_Icon.png',
             'Brine Field': 'images/abilities/Brine_Field_Icon.png',
             'Turret': 'images/abilities/Turret_Icon.png'
@@ -920,7 +928,10 @@ const BUILDS_PER_PAGE = 20;
             'Semi-automatic': 'images/primaries/Semi-automatic_Revolver.png',
             'Semi-automatic': 'images/primaries/Semi-automatic_Shotgun.png',
             'Superheavy Slug': 'images/primaries/Superheavy_Slug.png',
-            'Unstable Coil': 'images/primaries/Unstable_Coil.png'
+            'Unstable Coil': 'images/primaries/Unstable_Coil.png',
+            'Piercing Harpoons': 'images/primaries/Piercing_Harpoons.png',
+            'Ricocheting Harpoons': 'images/primaries/Ricocheting_Harpoons.png',
+            'Pinning Harpoons': 'images/primaries/Pinning_Harpoons.png'
         };
 
 		const getPrimaryIcon = (weapon, primary) => {
@@ -959,7 +970,10 @@ const BUILDS_PER_PAGE = 20;
             'Steady Scope': 'images/secondaries/Steady_Scope.png',
             'Unload': 'images/secondaries/Unload.png',
             'Void Infusion': 'images/secondaries/Void_Infusion.png',
-            'Wide Stab': 'images/secondaries/Wide_Stab.png'
+            'Wide Stab': 'images/secondaries/Wide_Stab.png',
+            'Barbed Harpoons': 'images/secondaries/Barbed_Harpoons.png',
+            'Binding Harpoons': 'images/secondaries/Binding_Harpoons.png',
+            'Brine-Powered Harpoons': 'images/secondaries/Brine-Powered_Harpoons.png'
         };
 
 		const sharedAbilityForges = [
@@ -981,13 +995,15 @@ const BUILDS_PER_PAGE = 20;
                 'Disc Thrower': 'images/forgeupgrades/Disc_Thrower_Forge.png',
                 'Combat Bow': 'images/forgeupgrades/Combat_Bow_Forge.png',
                 'Plasma Launcher': 'images/forgeupgrades/Plasma_Launcher_Forge.png',
-                'Fish Deity': 'images/forgeupgrades/Fish_Deity_Forge.png'
+                'Fish Deity': 'images/forgeupgrades/Fish_Deity_Forge.png',
+                'Harpoon Gun': 'images/forgeupgrades/Harpoon_Gun_Forge.png'
             };
             
             // Ability forges
             const abilityForges = {
                 'Frag Grenade': 'images/forgeupgrades/Frag_Grenade_Forge.png',
                 'Anchor': 'images/forgeupgrades/Anchor_Forge.png',
+                'Smiting Spear': 'images/forgeupgrades/Smiting_Spear_Forge.png',
                 'Ancient Core': 'images/forgeupgrades/Ancient_Core_Forge.png',
                 'Brine Field': 'images/forgeupgrades/Brine_Field_Forge.png',
                 'Turret': 'images/forgeupgrades/Turret_Forge.png'
@@ -1494,6 +1510,7 @@ window.addEventListener('scroll', function() {
     </script>
 </body>
 </html>
+
 
 
 
