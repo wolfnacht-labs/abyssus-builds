@@ -662,6 +662,7 @@
                             <option value="Combat Bow">Combat Bow</option>
                             <option value="Plasma Launcher">Plasma Launcher</option>
                             <option value="Fish Deity">Fish Deity</option>
+                            <option value="Harpoon Gun">Harpoon Gun</option>
                         </select>
                     </div>
 
@@ -764,6 +765,7 @@
                             <option value="">Select Ability</option>
                             <option value="Frag Grenade">Frag Grenade</option>
                             <option value="Anchor">Anchor</option>
+                            <option value="Smiting Spear">Smiting Spear</option>
                             <option value="Ancient Core">Ancient Core</option>
                             <option value="Brine Field">Brine Field</option>
                             <option value="Turret">Turret</option>
@@ -952,12 +954,14 @@
             'Disc Thrower': 'images/weapons/Disc_Thrower_Icon.png',
             'Combat Bow': 'images/weapons/Combat_Bow_Icon.png',
             'Plasma Launcher': 'images/weapons/Plasma_Launcher_Icon.png',
-            'Fish Deity': 'images/weapons/Fish_Deity_Icon.png'
+            'Fish Deity': 'images/weapons/Fish_Deity_Icon.png',
+            'Harpoon Gun': 'images/weapons/Harpoon_Gun_Icon.png'
         };
 
         const abilityIcons = {
             'Frag Grenade': 'images/abilities/Frag_Grenade_Icon.png',
             'Anchor': 'images/abilities/Anchor_Icon.png',
+            'Smiting Spear': 'images/abilities/Smiting_Spear_Icon.png',
             'Ancient Core': 'images/abilities/Ancient_Core_Icon.png',
             'Brine Field': 'images/abilities/Brine_Field_Icon.png',
             'Turret': 'images/abilities/Turret_Icon.png'
@@ -1040,7 +1044,10 @@
             'Seekers': 'images/primaries/Seekers.png',
             'Rapid Goo': 'images/primaries/Rapid_Goo.png',
             'Fish Spit': 'images/primaries/Fish_Spit.png',
-            'Hazardous Goo': 'images/primaries/Hazardous_Goo.png'
+            'Hazardous Goo': 'images/primaries/Hazardous_Goo.png',
+            'Piercing Harpoons': 'images/primaries/Piercing_Harpoons.png',
+            'Ricocheting Harpoons': 'images/primaries/Ricocheting_Harpoons.png',
+            'Pinning Harpoons': 'images/primaries/Pinning_Harpoons.png'
         };
 
         const getPrimaryIcon = (weapon, primary) => {
@@ -1078,7 +1085,10 @@
             'Adhesive Compound': 'images/secondaries/Adhesive_Compound.png',
             'Piercing Stab': 'images/secondaries/Piercing_Stab.png',
             'Wide Stab': 'images/secondaries/Wide_Stab.png',
-            'Chainsaw': 'images/secondaries/Chainsaw.png'
+            'Chainsaw': 'images/secondaries/Chainsaw.png',
+            'Barbed Harpoons': 'images/secondaries/Barbed_Harpoons.png',
+            'Binding Harpoons': 'images/secondaries/Binding_Harpoons.png',
+            'Brine-Powered Harpoons': 'images/secondaries/Brine-Powered_Harpoons.png'
         };
 
         const weaponPrimaries = {
@@ -1089,7 +1099,8 @@
             'Disc Thrower': ['Automatic', 'Fan Fire', 'Dynamo'],
             'Combat Bow': ['Precision Shot', 'Pierce', 'Return Arrow'],
             'Plasma Launcher': ['Semi-automatic', 'Flak Cannon', 'Seekers'],
-            'Fish Deity': ['Rapid Goo', 'Fish Spit', 'Hazardous Goo']
+            'Fish Deity': ['Rapid Goo', 'Fish Spit', 'Hazardous Goo'],
+            'Harpoon Gun': ['Piercing Harpoons', 'Ricocheting Harpoons', 'Pinning Harpoons']
         };
 
         const weaponSecondaries = {
@@ -1100,7 +1111,8 @@
             'Disc Thrower': ['Inferno Discs', 'Electron Conductors', 'Search and Destroy'],
             'Combat Bow': ['Multi-Shot', 'Smart Arrow', 'Exploding Arrow'],
             'Plasma Launcher': ['Disintegration Beam', 'Void Infusion', 'Adhesive Compound'],
-            'Fish Deity': ['Piercing Stab', 'Wide Stab', 'Chainsaw']
+            'Fish Deity': ['Piercing Stab', 'Wide Stab', 'Chainsaw'],
+            'Harpoon Gun': ['Barbed Harpoons', 'Binding Harpoons', 'Brine-Powered Harpoons']
         };
 
         const sharedAbilityForges = [
@@ -1117,6 +1129,11 @@
                 ...sharedAbilityForges,
                 'Self-sustaining', 'The Thrill', 'Grenanchor', 'Brine', 'Bulwark',
                 'Fearless', 'Anchored', 'Bonebreaker', 'Mighty', 'Geyser', 'Death Slam'
+            ],
+            'Smiting Spear': [
+                ...sharedAbilityForges,
+                'Shockwave', 'Chain Pulse', 'Charmed Spear', 'Sticking Spear', 'Weakspot Spear',
+                'Fragmenting Spear', 'Spear Grid', 'Split Spear', 'Enduring Spear', 'Environmental Spear', 'Charged Spear'
             ],
             'Ancient Core': [
                 ...sharedAbilityForges,
@@ -1142,6 +1159,7 @@
             const abilityIconMap = {
                 'Frag Grenade': 'images/forgeupgrades/Frag_Grenade_Forge.png',
                 'Anchor': 'images/forgeupgrades/Anchor_Forge.png',
+                'Smiting Spear': 'images/forgeupgrades/Smiting_Spear_Forge.png',
                 'Ancient Core': 'images/forgeupgrades/Ancient_Core_Forge.png',
                 'Brine Field': 'images/forgeupgrades/Brine_Field_Forge.png',
                 'Turret': 'images/forgeupgrades/Turret_Forge.png'
@@ -1181,6 +1199,10 @@
             'Fish Deity': [
                 'Discharging Reload', 'Elastic Goo', 'Softening Acid', 'Weakening Jabs',
                 'Repeating Jabs', 'Pursuing Horn', 'Long Horn', 'Stunning Strike'
+            ],
+            'Harpoon Gun': [
+                'Increased Combo', 'Plentiful Combo', 'Precise Combo', 'Charged Harpoons',
+                'Rapid Harpoons', 'Splitting Harpoons', 'Blessed Harpoons', 'Charmed Harpoons'
             ]
         };
 
@@ -1193,7 +1215,8 @@
                 'Disc Thrower': 'images/forgeupgrades/Disc_Thrower_Forge.png',
                 'Combat Bow': 'images/forgeupgrades/Combat_Bow_Forge.png',
                 'Plasma Launcher': 'images/forgeupgrades/Plasma_Launcher_Forge.png',
-                'Fish Deity': 'images/forgeupgrades/Fish_Deity_Forge.png'
+                'Fish Deity': 'images/forgeupgrades/Fish_Deity_Forge.png',
+                'Harpoon Gun': 'images/forgeupgrades/Harpoon_Gun_Forge.png'
             };
             return weaponIconMap[weapon];
         };
@@ -1600,7 +1623,6 @@ async function addBuild() {
         </script>
     </body>
 </html>
-
 
 
 
