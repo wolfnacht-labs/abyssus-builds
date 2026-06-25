@@ -619,7 +619,34 @@
         transform: rotate(-360deg);
     }
 }
-		
+
+.skeleton-card {
+    background-color: #141516;
+    border: 3px solid #7e7568;
+    border-radius: 8px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.skeleton-card-content {
+    padding: 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.skeleton-bar {
+    border-radius: 4px;
+    background: linear-gradient(90deg, #1e2021 25%, #2a3330 50%, #1e2021 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s infinite;
+}
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
     </style>
     <script type="module">
 
@@ -789,15 +816,7 @@
         </aside>
 
         <!-- Build Grid -->
-        <main class="build-grid" id="buildGrid">
-            <div class="no-builds">
-    <div class="loading-container">
-        <span>Loading builds...</span>
-        <img src="images/propeller.png" class="loading-spinner" alt="Loading">
-    </div>
-</div>
-        </main>
-    </div>
+<main class="build-grid" id="buildGrid"></main>
 
     <!-- Modal for Build Details -->
     <div class="modal" id="buildModal">
@@ -808,6 +827,46 @@
     </div>
 
     <script>
+        // Skeleton loaders
+
+function showSkeletons() {
+    const grid = document.getElementById('buildGrid');
+    
+    const cardWidth = 350 + 20; // minmax + gap
+    const cardHeight = 300 + 20;
+    const cols = Math.max(1, Math.floor((window.innerWidth - 250) / cardWidth)); // subtract sidebar
+    const rows = Math.ceil(window.innerHeight / cardHeight);
+    const count = cols * rows;
+
+    const skeletonHTML = `
+        <div class="skeleton-card">
+            <div class="skeleton-card-content">
+                <div class="skeleton-bar" style="height:22px;width:65%;margin-bottom:2px"></div>
+                <div class="skeleton-bar" style="height:13px;width:40%"></div>
+                <div style="display:flex;gap:12px;justify-content:center;flex:1;align-items:center">
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div class="skeleton-bar" style="width:38px;height:38px"></div><div class="skeleton-bar" style="height:10px;width:40px"></div><div class="skeleton-bar" style="height:10px;width:50px"></div></div>
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div class="skeleton-bar" style="width:38px;height:38px"></div><div class="skeleton-bar" style="height:10px;width:40px"></div><div class="skeleton-bar" style="height:10px;width:50px"></div></div>
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div class="skeleton-bar" style="width:38px;height:38px"></div><div class="skeleton-bar" style="height:10px;width:40px"></div><div class="skeleton-bar" style="height:10px;width:50px"></div></div>
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div class="skeleton-bar" style="width:38px;height:38px"></div><div class="skeleton-bar" style="height:10px;width:40px"></div><div class="skeleton-bar" style="height:10px;width:50px"></div></div>
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div class="skeleton-bar" style="width:38px;height:38px"></div><div class="skeleton-bar" style="height:10px;width:40px"></div><div class="skeleton-bar" style="height:10px;width:50px"></div></div>
+                </div>
+                <div style="display:flex;gap:14px;justify-content:center;margin-top:auto">
+                    <div style="display:flex;align-items:center;gap:6px"><div class="skeleton-bar" style="width:27px;height:27px"></div><div class="skeleton-bar" style="height:12px;width:70px"></div></div>
+                    <div style="display:flex;align-items:center;gap:6px"><div class="skeleton-bar" style="width:27px;height:27px"></div><div class="skeleton-bar" style="height:12px;width:70px"></div></div>
+                </div>
+            </div>
+            <div style="padding:10px 16px;background:#0b0c0d;border-top:1px solid #7e7568;display:flex;justify-content:space-between">
+                <div class="skeleton-bar" style="height:12px;width:70px"></div>
+                <div class="skeleton-bar" style="height:12px;width:40px"></div>
+            </div>
+        </div>
+    `;
+
+    grid.innerHTML = skeletonHTML.repeat(count);
+}
+
+showSkeletons();
+
 		// These will be set by the module script
         let builds = window.builds || [];
 		let likedBuilds = window.likedBuilds || new Set();
@@ -859,7 +918,8 @@ const BUILDS_PER_PAGE = 20;
             'Shadows': 'images/aspects/Shadows_Icon.png',
             'Tentacles': 'images/aspects/Tentacles_Icon.png',
             'Spirit': 'images/aspects/Spirit_Icon.png',
-            'Windburst': 'images/aspects/Windburst_Icon.png'
+            'Windburst': 'images/aspects/Windburst_Icon.png',
+            'Brine': 'images/aspects/Brine_Icon.png',
         };
 
         const charmIcons = {
@@ -1198,27 +1258,6 @@ function adjustBuildInfoSpacing() {
     displayedBuildsCount = endIndex;
     adjustBuildInfoSpacing();
 
-    // Add "Load More" indicator if there are more builds
-    if (displayedBuildsCount < filtered.length) {
-        const existingIndicator = document.getElementById('loadMoreIndicator');
-        if (!existingIndicator) {
-            const indicator = document.createElement('div');
-            indicator.id = 'loadMoreIndicator';
-            indicator.className = 'no-builds';
-            indicator.style.padding = '20px';
-            indicator.style.fontSize = '14px';
-            indicator.textContent = `Showing ${displayedBuildsCount} of ${filtered.length} builds`;
-            grid.appendChild(indicator);
-        } else {
-            existingIndicator.textContent = `Showing ${displayedBuildsCount} of ${filtered.length} builds`;
-        }
-    } else {
-        // Remove indicator if all builds are shown
-        const existingIndicator = document.getElementById('loadMoreIndicator');
-        if (existingIndicator) {
-            existingIndicator.remove();
-        }
-    }
 }
 
        function openModalByFirebaseId(firebaseId) {
