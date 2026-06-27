@@ -654,7 +654,6 @@
 		
         // Firebase imports
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getFirestore, collection, getDocs, doc, updateDoc, increment } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
         // Firebase configuration
         const firebaseConfig = {
@@ -667,23 +666,34 @@
         };
 
         // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
+        import { getFirestore, collection, getDocs, doc, updateDoc, increment, enableIndexedDbPersistence } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+enableIndexedDbPersistence(db).catch((err) => {
+    console.warn('Offline persistence unavailable:', err.code);
+});
 
 		window.firebaseModules = { doc, updateDoc, increment };
         window.db = db;
 		
         // Load builds from Firebase
         async function loadData() {
-            try {
-                const querySnapshot = await getDocs(collection(db, 'builds'));
-                window.builds = [];
-                querySnapshot.forEach((doc) => {
-                    window.builds.push({
-                        firebaseId: doc.id,
-                        ...doc.data()
-                    });
+    try {
+        const cached = sessionStorage.getItem('buildsCache');
+        if (cached) {
+            window.builds = JSON.parse(cached);
+        } else {
+            const querySnapshot = await getDocs(collection(db, 'builds'));
+            window.builds = [];
+            querySnapshot.forEach((doc) => {
+                window.builds.push({
+                    firebaseId: doc.id,
+                    ...doc.data()
                 });
+            });
+            sessionStorage.setItem('buildsCache', JSON.stringify(window.builds));
+        }
                 
                 const savedLikes = localStorage.getItem('likedBuilds');
                 if (savedLikes) {
@@ -1201,6 +1211,12 @@ function adjustBuildInfoSpacing() {
 
             return filtered;
         }
+		
+		function sanitize(str) {
+    const div = document.createElement('div');
+    div.textContent = str || '';
+    return div.innerHTML;
+}
 
         function displayBuilds(append = false) {
     const grid = document.getElementById('buildGrid');
@@ -1227,8 +1243,8 @@ function adjustBuildInfoSpacing() {
     const buildsHTML = buildsToShow.map((build) => `
         <div class="build-card" onclick="openModalByFirebaseId('${build.firebaseId}')">
             <div class="build-card-content">
-                <div class="build-title">${build.buildname}</div>
-                <div class="build-author">by @${build.author}</div>
+                <div class="build-title">${sanitize(build.buildname)}</div>
+                <div class="build-author">by @${sanitize(build.author)}</div>
                 <div class="build-info">
                     ${build.weapon ? `<div class="build-info-item"><img src="${weaponIcons[build.weapon]}" alt="${build.weapon}"><div class="build-info-label">Weapon</div><div class="build-info-value">${build.weapon}</div></div>` : ''}
                     ${build.ability ? `<div class="build-info-item"><img src="${abilityIcons[build.ability]}" alt="${build.ability}"><div class="build-info-label">Ability</div><div class="build-info-value">${build.ability}</div></div>` : ''}
@@ -1285,7 +1301,7 @@ function adjustBuildInfoSpacing() {
             const createCharmDisplay = (charm) => {
                 if (!charm) return '';
                 const icon = charmIcons[charm] ? `<img src="${charmIcons[charm]}" alt="${charm}" style="width: 28px; height: 28px; object-fit: contain; vertical-align: middle; margin-right: 8px;">` : '';
-                return `<div style="display: inline-flex; align-items: center; white-space: nowrap;">${icon}${charm}</div>`;
+                return `<div style="display: inline-flex; align-items: center; white-space: nowrap;">${icon}${sanitize(charm)}</div>`;
             };
 
             const createPrimaryDisplay = (primary, weapon) => {
@@ -1312,12 +1328,12 @@ function adjustBuildInfoSpacing() {
                 if (!forge) return '';
                 const iconPath = getForgeIcon(forge, weaponOrAbility);
                 const icon = iconPath ? `<img src="${iconPath}" alt="${forge}" style="width: 28px; height: 28px; vertical-align: middle; margin-right: 6px;">` : '';
-                return `${icon}${forge}`;
+                return `${icon}${sanitize(forge)}`;
             };
 
             details.innerHTML = `
-                <h2 style="color: #059669; margin-bottom: 10px;">${build.buildname}</h2>
-<p style="color: #999; margin-bottom: 20px;">Created by @${build.author} on ${new Date(build.date).toLocaleDateString()}</p>
+                <h2 style="color: #059669; margin-bottom: 10px;">${sanitize(build.buildname)}</h2>
+<p style="color: #999; margin-bottom: 20px;">Created by @${sanitize(build.author)} on ${new Date(build.date).toLocaleDateString()}</p>
 
 <h3 style="color: #059669; margin-bottom: 15px;">Loadout</h3>
                 
@@ -1327,7 +1343,7 @@ function adjustBuildInfoSpacing() {
                         
                         <div style="margin-bottom: 15px;">
                             <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                                ${weaponIcon}<strong style="font-size: 18px;">${build.weapon || 'None'}</strong>
+                                ${weaponIcon}<strong style="font-size: 18px;">${sanitize(build.weapon) || 'None'}</strong>
                             </div>
                         </div>
 
@@ -1369,7 +1385,7 @@ function adjustBuildInfoSpacing() {
                         
                         <div style="margin-bottom: 15px;">
                             <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                                ${abilityIcon}<strong style="font-size: 18px;">${build.ability || 'None'}</strong>
+                                ${abilityIcon}<strong style="font-size: 18px;">${sanitize(build.ability) || 'None'}</strong>
                             </div>
                         </div>
 						<div style="margin-bottom: 15px;">
@@ -1401,7 +1417,7 @@ function adjustBuildInfoSpacing() {
                 <div style="background-color: #0b0c0d; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
                     <h4 style="color: #999; margin-bottom: 15px; text-align: center; font-size: 16px;">TAGS</h4>
                     <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; width: 100%;">
-                        ${build.tags.map(tag => `<span style="background-color: #059669; padding: 6px 12px; border-radius: 16px; font-size: 13px;">${tag}</span>`).join('')}
+                        ${build.tags.map(tag => `<span style="background-color: #059669; padding: 6px 12px; border-radius: 16px; font-size: 13px;">${sanitize(tag)}</span>`).join('')}
                     </div>
                 </div>
                 ` : ''}
@@ -1508,6 +1524,7 @@ window.addEventListener('keydown', function(event) {
   	// Text conversion
 	function parseMarkdown(text) {
     if (!text) return '';
+    text = sanitize(text);
     
     // Convert double line breaks to paragraphs
     text = text.split('\n\n').map(paragraph => {
