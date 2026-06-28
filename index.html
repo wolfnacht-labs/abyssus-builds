@@ -666,7 +666,7 @@
         };
 
         // Initialize Firebase
-        import { getFirestore, collection, getDocs, doc, updateDoc, increment, enableIndexedDbPersistence } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+        import { getFirestore, collection, getDocs, getDoc, doc, updateDoc, increment, enableIndexedDbPersistence } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -678,28 +678,31 @@ enableIndexedDbPersistence(db).catch((err) => {
         window.db = db;
 		
         // Load builds from Firebase
-        async function loadData() {
-    try {
-        const cached = sessionStorage.getItem('buildsCache');
-        if (cached) {
-            window.builds = JSON.parse(cached);
-        } else {
-            const querySnapshot = await getDocs(collection(db, 'builds'));
-            window.builds = [];
-            querySnapshot.forEach((doc) => {
-                window.builds.push({
-                    firebaseId: doc.id,
-                    ...doc.data()
-                });
-            });
-            sessionStorage.setItem('buildsCache', JSON.stringify(window.builds));
-        }
-                
-                const savedLikes = localStorage.getItem('likedBuilds');
-                if (savedLikes) {
-                    window.likedBuilds = new Set(JSON.parse(savedLikes));
-                }
+const CACHE_KEY = 'buildsCache';
+const CACHE_TTL_MS = 10 * 60 * 1000; // 10 minutes
 
+async function loadFullCollection() {
+    const querySnapshot = await getDocs(collection(db, 'builds'));
+    window.builds = querySnapshot.docs.map(d => ({ firebaseId: d.id, ...d.data() }));
+    localStorage.setItem(CACHE_KEY, JSON.stringify({
+        timestamp: Date.now(),
+        data: window.builds
+    }));
+}
+
+async function loadData() {
+    try {
+        const savedLikes = localStorage.getItem('likedBuilds');
+        if (savedLikes) {
+            window.likedBuilds = new Set(JSON.parse(savedLikes));
+        }
+
+        // Check localStorage cache with TTL
+        const raw = localStorage.getItem(CACHE_KEY);
+        if (raw) {
+            const { timestamp, data } = JSON.parse(raw);
+            if (Date.now() - timestamp < CACHE_TTL_MS) {
+                window.builds = data;
                 const urlParams = new URLSearchParams(window.location.search);
                 const buildId = urlParams.get('build');
                 if (buildId) {
@@ -710,13 +713,33 @@ enableIndexedDbPersistence(db).catch((err) => {
                         return;
                     }
                 }
-                
                 window.displayBuilds();
-            } catch (error) {
-                console.error("Error loading builds:", error);
-                document.getElementById('buildGrid').innerHTML = '<div class="no-builds">Error loading builds. Please refresh the page.</div>';
+                return;
             }
         }
+
+        // Shared link fast-path: fetch just the one doc, load rest in background
+        const urlParams = new URLSearchParams(window.location.search);
+        const buildId = urlParams.get('build');
+        if (buildId) {
+            const singleSnap = await getDoc(doc(db, 'builds', buildId));
+            if (singleSnap.exists()) {
+                window.builds = [{ firebaseId: singleSnap.id, ...singleSnap.data() }];
+                window.displayBuilds();
+                window.openModal(0);
+                loadFullCollection(); // hydrate the rest silently
+                return;
+            }
+        }
+
+        await loadFullCollection();
+        window.displayBuilds();
+
+    } catch (error) {
+        console.error("Error loading builds:", error);
+        document.getElementById('buildGrid').innerHTML = '<div class="no-builds">Error loading builds. Please refresh the page.</div>';
+    }
+}
      setTimeout(loadData, 100);
     </script>
 </head>
