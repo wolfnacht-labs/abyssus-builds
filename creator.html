@@ -1611,6 +1611,7 @@ async function addBuild() {
         };
 
         await window.firestore.addDoc(window.firestore.collection(window.db, 'builds'), build);
+localStorage.removeItem('buildsCache'); // force fresh fetch so new build appears
 
         document.getElementById('successMessage').style.display = 'block';
         setTimeout(() => {
