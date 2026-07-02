@@ -692,8 +692,8 @@ const CACHE_KEY = 'buildsCache';
 const CACHE_TTL_MS = 10 * 60 * 1000; // 10 minutes
 
 async function loadFullCollection() {
-    const querySnapshot = await getDocs(collection(db, 'builds'));
-    window.builds = querySnapshot.docs.map(d => ({ firebaseId: d.id, ...d.data() }));
+    const res = await fetch('/api/builds');
+    window.builds = await res.json();
     localStorage.setItem(CACHE_KEY, JSON.stringify({
         timestamp: Date.now(),
         data: window.builds
