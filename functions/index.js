@@ -3,13 +3,12 @@ export async function onRequest(context) {
   const url = new URL(request.url);
   const buildId = url.searchParams.get('build');
 
-  // Get the normal static index.html first
   const response = await env.ASSETS.fetch(request);
   let html = await response.text();
 
   if (buildId) {
     try {
-      const firestoreUrl = `https://firestore.googleapis.com/v1/projects/abyssus-builds/databases/(default)/documents/builds/${buildId}`;
+      const firestoreUrl = `https://firestore.googleapis.com/v1/projects/abyssus-builds/databases/(default)/documents/builds/${buildId}?key=AIzaSyCBpZluc0v2dxu1GhgQv8SucSKwmM2ESdU`;
       const res = await fetch(firestoreUrl);
 
       if (res.ok) {
@@ -29,7 +28,6 @@ export async function onRequest(context) {
       }
     } catch (err) {
       console.error('OG tag fetch failed:', err);
-      // Falls through and just serves the default HTML
     }
   }
 
