@@ -1,9 +1,10 @@
 export async function onRequest(context) {
   const kv = context.env.BUILDS_KV;
-  const cacheKeyName = 'builds-data';
+  const cacheKey = 'builds-data';
+  const fallbackKey = 'builds-data-fallback';
 
-  // KV first
-  const cached = await kv.get(cacheKeyName, { type: 'json' });
+  // fresh cache
+  const cached = await kv.get(cacheKey, { type: 'json' });
   if (cached) {
     return new Response(JSON.stringify(cached), {
       headers: {
@@ -25,6 +26,18 @@ export async function onRequest(context) {
       const data = await res.json();
 
       if (!res.ok) {
+        // permanent fallback copy in case of firebase failure/exceeding quota
+        const fallback = await kv.get(fallbackKey, { type: 'json' });
+        if (fallback) {
+          return new Response(JSON.stringify(fallback), {
+            headers: {
+              'Content-Type': 'application/json',
+              'Cache-Control': 'no-cache',
+              'X-Data-Source': 'stale-fallback'
+            }
+          });
+        }
+        // no fallback, return error
         return new Response(JSON.stringify({ error: data.error }), {
           status: res.status,
           headers: { 'Content-Type': 'application/json' }
@@ -35,6 +48,17 @@ export async function onRequest(context) {
       pageToken = data.nextPageToken || '';
     } while (pageToken);
   } catch (err) {
+    // network failure
+    const fallback = await kv.get(fallbackKey, { type: 'json' });
+    if (fallback) {
+      return new Response(JSON.stringify(fallback), {
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-cache',
+          'X-Data-Source': 'stale-fallback'
+        }
+      });
+    }
     return new Response(JSON.stringify({ error: err.message }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
@@ -43,10 +67,9 @@ export async function onRequest(context) {
 
   const builds = allDocs.map(docToBuild);
 
-  // Store in KV, 5 min expiration time
-  context.waitUntil(
-    kv.put(cacheKeyName, JSON.stringify(builds), { expirationTtl: 300 })
-  );
+  // success, update both
+  context.waitUntil(kv.put(cacheKey, JSON.stringify(builds), { expirationTtl: 300 }));
+  context.waitUntil(kv.put(fallbackKey, JSON.stringify(builds))); // no expiration
 
   return new Response(JSON.stringify(builds), {
     headers: {
