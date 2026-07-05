@@ -57,6 +57,7 @@
             padding: 0 40px;
             display: flex;
             align-items: center;
+			gap: 10px;
             font-size: 18px;
             height: 100%;
             transition: background-color 0.3s;
@@ -311,7 +312,13 @@
     opacity: 1;
     visibility: visible;
 }
-
+		
+		.nav-links a img {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
+		
        .discord-link {
             margin-left: auto;
             display: flex;
@@ -641,9 +648,9 @@
     </a>
 </div>
         <div class="nav-links">
-            <a href="index.html">Builds</a>
-            <a href="creator.html" class="active">Build Creator</a>
-            <a href="about.html">About</a>
+            <a href="index.html"><img src="icons/icon_browse.svg" alt=""> Builds</a>
+            <a href="creator.html" class="active"><img src="icons/icon_build_creator.svg" alt=""> Build Creator</a>
+			<a href="about.html"><img src="icons/icon_about.svg" alt=""> About</a>
         </div>
         <a href="https://discord.gg/K6nbCvuPbm" class="discord-link" target="_blank" rel="noopener noreferrer">
     <img src="images/Discord_Icon.png" alt="Discord">
