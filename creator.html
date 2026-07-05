@@ -1360,8 +1360,10 @@
         function updateWeaponForgeIcons() {
             const weapon = document.getElementById('weaponSelect').value;
             ['weaponForge1', 'weaponForge2', 'weaponForge3'].forEach(id => {
-                const forge = document.getElementById(id).value;
+                const select = document.getElementById(id);
+                const forge = select.value;
                 const icon = document.getElementById(id + 'Icon');
+                select.title = (forge && weaponForgeDescriptions[forge]) || '';
                 if (forge && weapon) {
                     const iconPath = getWeaponForgeIcon(weapon);
                     if (iconPath) {
@@ -1396,7 +1398,8 @@
 
         function updatePrimaryIcon() {
             const weapon = document.getElementById('weaponSelect').value;
-            const primary = document.getElementById('primarySelect').value;
+            const primarySelect = document.getElementById('primarySelect');
+            const primary = primarySelect.value;
             const icon = document.getElementById('primaryIcon');
             if (primary) {
                 const iconPath = getPrimaryIcon(weapon, primary);
@@ -1409,10 +1412,12 @@
             } else {
                 icon.style.display = 'none';
             }
+            primarySelect.title = (primary && primaryDescriptions[weapon] && primaryDescriptions[weapon][primary]) || '';
         }
 
         function updateSecondaryIcon() {
-            const secondary = document.getElementById('secondarySelect').value;
+            const secondarySelect = document.getElementById('secondarySelect');
+            const secondary = secondarySelect.value;
             const icon = document.getElementById('secondaryIcon');
             if (secondary && secondaryIcons[secondary]) {
                 icon.src = secondaryIcons[secondary];
@@ -1420,6 +1425,7 @@
             } else {
                 icon.style.display = 'none';
             }
+            secondarySelect.title = (secondary && secondaryDescriptions[secondary]) || '';
         }
 
         function updateAbilityIcon() {
@@ -1454,8 +1460,10 @@
         function updateAbilityForgeIcons() {
             const ability = document.getElementById('abilitySelect').value;
             ['abilityForge1', 'abilityForge2', 'abilityForge3'].forEach(id => {
-                const forge = document.getElementById(id).value;
+                const select = document.getElementById(id);
+                const forge = select.value;
                 const icon = document.getElementById(id + 'Icon');
+                select.title = (forge && abilityForgeDescriptions[forge]) || '';
                 if (forge && ability) {
                     const iconPath = getAbilityForgeIcon(ability, forge);
                     if (iconPath) {
@@ -1526,7 +1534,8 @@
 
         function updateCharmIcons() {
             ['charm1', 'charm2'].forEach(id => {
-                const charm = document.getElementById(id).value;
+                const select = document.getElementById(id);
+                const charm = select.value;
                 const icon = document.getElementById(id + 'Icon');
                 if (charm && charmIcons[charm]) {
                     icon.src = charmIcons[charm];
@@ -1534,6 +1543,7 @@
                 } else {
                     icon.style.display = 'none';
                 }
+                select.title = (charm && charmDescriptions[charm]) || '';
             });
         }
 
