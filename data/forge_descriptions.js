@@ -132,7 +132,7 @@ const abilityForgeDescriptions = {
     'Implosive Force': 'Grenade explosions pull enemies in and stun them for 1 sec.',
     'Bouncy Bomb': 'Grenades explode each time they bounce and are no longer destroyed on impact with enemies. Bounce explosions have halved range and damage.',
     'Compact Grenade': 'Grenades deal triple damage, but the number of ability stacks is halved (rounded up).',
-    'Gas Grenade': 'Grenades leave behind a cloud of gas that deals {Damage}% grenade damage continuously.',
+    'Gas Grenade': 'Grenades leave behind a cloud of gas that deals 50% grenade damage continuously.',
     'Gashing Shell': 'Grenades deal 50% more damage to enemies suffering from status effects or that are Stunned, Slowed or Frozen.',
     'Shrapnel': 'Enemies hit by grenades take 25% grenade damage continuously for 3 sec.',
     'Sharp Shell': 'Weakspot hits with grenades make the explosions deal 25% more damage and restores 25% of the cooldown.',
