@@ -245,24 +245,72 @@
         }
 
         .tag-btn {
-            background-color: #232a2e;
-            color: white;
-            border: 2px solid #7e7568;
-            padding: 10px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.2s;
-        }
+    background-color: #232a2e;
+    color: white;
+    border: 2px solid #7e7568;
+    padding: 10px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+    position: relative;
+}
 
-        .tag-btn:hover {
-            border-color: #059669;
-        }
+.tags-guide {
+    display: none;
+}
 
-        .tag-btn.selected {
-            background-color: #059669;
-            border-color: #059669;
-        }
+.tag-btn:hover {
+    border-color: #059669;
+}
+
+.tag-btn.selected {
+    background-color: #059669;
+    border-color: #059669;
+}
+
+.tag-btn::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #141516;
+    border: 2px solid #7e7568;
+    color: #999;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 10px 14px;
+    border-radius: 8px;
+    width: 200px;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s, visibility 0.2s;
+    z-index: 10;
+    white-space: normal;
+}
+
+.tag-btn::after {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #7e7568;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+    z-index: 10;
+}
+
+.tag-btn:hover::before,
+.tag-btn:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
 
        .discord-link {
             margin-left: auto;
@@ -395,6 +443,7 @@
 
     /* Tags Guide - move to bottom */
     .creator-container > .tags-guide {
+        display: block !important;
         position: static !important;
         width: 100% !important;
         max-height: none !important;
@@ -481,6 +530,10 @@
         font-size: 13px;
         padding: 8px 14px;
     }
+
+    .tags-guide {
+    display: none;
+}
 
     /* Submit button */
     .submit-btn {
@@ -944,19 +997,21 @@
         <div class="form-section">
             <div class="section-header">Tags</div>
             <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
-                <div class="tag-btn" data-tag="All-rounder">All-rounder</div>
-                <div class="tag-btn" data-tag="Anti-Boss">Anti-Boss</div>
-                <div class="tag-btn" data-tag="Deep Water 30">Deep Water 30</div>
-                <div class="tag-btn" data-tag="Bottomless Chasm">Bottomless Chasm</div>
-                <div class="tag-btn" data-tag="Support">Support</div>
-                <div class="tag-btn" data-tag="Speedrun">Speedrun</div>
+                <div class="tag-btn" data-tag="All-rounder" data-tooltip="Balanced build effective across most encounters.">All-rounder</div>
+                <div class="tag-btn" data-tag="Anti-Boss" data-tooltip="Deals high damage to Elites and Bosses.">Anti-Boss</div>
+                <div class="tag-btn" data-tag="Deep Water 30" data-tooltip="Optimized for Deep Water Level runs up to level 30.">Deep Water 30</div>
+                <div class="tag-btn" data-tag="Bottomless Chasm" data-tooltip="Scales effectively in infinite mode.">Bottomless Chasm</div>
+                <div class="tag-btn" data-tag="Support" data-tooltip="Provides strong team utility.">Support</div>
+                <div class="tag-btn" data-tag="Speedrun" data-tooltip="Designed for speedrunning.">Speedrun</div>
             </div>
         </div>
 
         <button class="submit-btn" id="submitBtn" onclick="validateAndAddBuild()">Add Build</button>
         
     </div>
-
+    <script src="data/forge_descriptions.js"></script>
+    <script src="data/weapon_descriptions.js"></script>
+    <script src="data/charm_descriptions.js"></script>
     <script>
         // Icon mappings
         const weaponIcons = {
@@ -1129,9 +1184,12 @@
             'Harpoon Gun': ['Barbed Harpoons', 'Binding Harpoons', 'Brine-Powered Harpoons']
         };
 
+
+
         const sharedAbilityForges = [
             'Extra Pockets', 'Increased Efficiency', 'Rich Get Richer', 'Investment', 'Double Trouble'
         ];
+
 
         const abilityForgeUpgrades = {
             'Frag Grenade': [
@@ -1219,6 +1277,8 @@
                 'Rapid Harpoons', 'Splitting Harpoons', 'Blessed Harpoons', 'Charmed Harpoons'
             ]
         };
+        
+        
 
         const getWeaponForgeIcon = (weapon) => {
             const weaponIconMap = {
@@ -1255,6 +1315,7 @@
                     const option = document.createElement('option');
                     option.value = primary;
                     option.textContent = primary;
+                    option.title = (primaryDescriptions[weapon] && primaryDescriptions[weapon][primary]) || '';
                     primarySelect.appendChild(option);
                 });
             }
@@ -1269,6 +1330,7 @@
                     const option = document.createElement('option');
                     option.value = secondary;
                     option.textContent = secondary;
+                    option.title = secondaryDescriptions[secondary] || '';
                     secondarySelect.appendChild(option);
                 });
             }
@@ -1282,13 +1344,14 @@
                 icon.style.display = 'none';
 
                 if (weapon && weaponForgeUpgrades[weapon]) {
-                    weaponForgeUpgrades[weapon].forEach(forge => {
-                        const option = document.createElement('option');
-                        option.value = forge;
-                        option.textContent = forge;
-                        select.appendChild(option);
-                    });
-                }
+    weaponForgeUpgrades[weapon].forEach(forge => {
+        const option = document.createElement('option');
+        option.value = forge;
+        option.textContent = forge;
+        option.title = weaponForgeDescriptions[forge] || '';
+        select.appendChild(option);
+    });
+}
             });
 
             updateForgeAvailability();
@@ -1381,6 +1444,7 @@
                         const option = document.createElement('option');
                         option.value = forge;
                         option.textContent = forge;
+                        option.title = abilityForgeDescriptions[forge] || '';
                         select.appendChild(option);
                     });
                 }
@@ -1519,6 +1583,11 @@
             btn.addEventListener('click', function() {
                 this.classList.toggle('selected');
             });
+        });
+
+        // Charm tooltips
+            document.querySelectorAll('#charm1 option, #charm2 option').forEach(option => {
+            option.title = charmDescriptions[option.value] || '';
         });
 
         function getSelectedTags() {
