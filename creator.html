@@ -323,28 +323,65 @@
             margin-left: auto;
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 20px;
+            gap: 12px;
+            padding: 8px;
             margin-right: 30px;
             color: white;
-            background-color: #5865F2;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-.discord-link:hover {
-            background-color: #4752C4;
         }
 
 .discord-link img {
-    width: 20px;
-    height: 20px;
-}
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+.discord-link .discord-server-name {
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+.discord-link .discord-join-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 40px;
+            background-color: #5865F2;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+.discord-link .discord-join-btn:hover {
+            background-color: #4752C4;
+        }
+
+.discord-link .wiki-visit-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 40px;
+            background-color: #232a2e;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+.discord-link .wiki-visit-btn:hover {
+            background-color: #3a4549;
+        }
 
 /* Mobile Responsive Styles */
 @media screen and (max-width: 768px) {
@@ -380,11 +417,28 @@
     }
 
    .discord-link {
-                width: 100%;
+                width: calc(100% - 40px);
                 justify-content: center;
-                padding: 15px 20px;
-                margin: 10px 0 0 0;
+                padding: 10px 16px;
+                margin: 10px 20px 0 20px;
+                gap: 8px;
             }
+
+    .discord-link img {
+        width: 22px;
+        height: 22px;
+    }
+
+    .discord-link .discord-server-name {
+        font-size: 14px;
+    }
+
+    .discord-link .discord-join-btn,
+    .discord-link .wiki-visit-btn {
+        min-height: auto;
+        padding: 6px 10px;
+        font-size: 13px;
+    }
 
     /* Creator Container */
     .creator-container {
@@ -652,10 +706,12 @@
             <a href="creator.html" class="active"><img src="icons/icon_build_creator.svg" alt=""> Build Creator</a>
 			<a href="about.html"><img src="icons/icon_about.svg" alt=""> About</a>
         </div>
-        <a href="https://discord.gg/K6nbCvuPbm" class="discord-link" target="_blank" rel="noopener noreferrer">
-    <img src="images/Discord_Icon.png" alt="Discord">
-    Discord	
-</a>
+		<div class="discord-link">
+			<img src="icons/icon_abyssus_wiki_discord.svg" alt="Abyssus Wiki">
+			<span class="discord-server-name">Abyssus Wiki</span>
+			<a href="https://abyssus.wiki.gg/" class="wiki-visit-btn" target="_blank" rel="noopener noreferrer">Visit Wiki</a>
+			<a href="https://discord.gg/K6nbCvuPbm" class="discord-join-btn" target="_blank" rel="noopener noreferrer">Join Server</a>
+</div>
     </nav>
 
     <div class="creator-container">
