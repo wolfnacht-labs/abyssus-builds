@@ -1570,20 +1570,11 @@
                 'abilityForge1', 'abilityForge2', 'abilityForge3'
             ];
 
-            const selectedForges = allForgeSelects.map(id => document.getElementById(id).value).filter(v => v !== '');
-            const selectedCount = selectedForges.length;
-
             allForgeSelects.forEach(selectId => {
                 const select = document.getElementById(selectId);
-                if (select.value === '' && selectedCount >= 3) {
-                    select.disabled = true;
-                    select.style.opacity = '0.5';
-                    select.style.cursor = 'not-allowed';
-                } else {
-                    select.disabled = false;
-                    select.style.opacity = '1';
-                    select.style.cursor = 'pointer';
-                }
+                select.disabled = false;
+                select.style.opacity = '1';
+                select.style.cursor = 'pointer';
             });
         }
 
